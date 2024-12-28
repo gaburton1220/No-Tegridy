@@ -37,6 +37,7 @@
             gap: 20px;
             background: #212529;
             padding: 15px 0;
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
         }
 
         nav a {
@@ -44,6 +45,7 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.2rem;
+            padding: 10px;
         }
 
         nav a:hover {
@@ -52,10 +54,10 @@
 
         .neon-button {
             display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
+            padding: 10px 20px;
+            margin: 5px;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1rem;
             text-transform: uppercase;
             text-decoration: none;
             border: 2px solid #f0ad4e;
@@ -75,6 +77,13 @@
             padding: 20px;
         }
 
+        #main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
         #weekly-updates img {
             width: 100%;
             border-radius: 10px;
@@ -90,19 +99,72 @@
         }
 
         footer marquee {
-            font-size: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .gallery img {
-            border: 5px solid #f0ad4e;
+            border: 3px solid #f0ad4e;
             border-radius: 10px;
-            width: 300px;
+            width: 100%;
+            max-width: 200px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .gallery img:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            #main-content {
+                grid-template-columns: 1fr; /* Single-column layout for smaller screens */
+            }
+
+            nav a {
+                font-size: 1rem;
+                padding: 5px;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            .neon-button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            footer marquee {
+                font-size: 0.9rem;
+            }
+
+            .gallery img {
+                max-width: 150px; /* Smaller images on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1.2rem;
+            }
+
+            .neon-button {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+
+            .gallery img {
+                max-width: 120px;
+            }
         }
     </style>
 </head>
