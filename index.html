@@ -32,201 +32,168 @@
         }
 
         nav {
+            background: #212529;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            background: #212529;
-            padding: 15px 0;
-            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+            margin: 0;
+            padding: 0;
         }
 
-        nav a {
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            padding: 10px;
+            font-size: 1rem;
         }
 
-        nav a:hover {
+        nav ul li a:hover {
             text-decoration: underline;
         }
 
-        .neon-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            color: white;
-            font-size: 1rem;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 2px solid #f0ad4e;
-            border-radius: 5px;
-            background: none;
-            box-shadow: 0 0 5px #f0ad4e, 0 0 15px #f0ad4e, 0 0 30px #f0ad4e;
-            transition: 0.3s;
-        }
-
-        .neon-button:hover {
-            color: #000;
-            background: #f0ad4e;
-            box-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900, 0 0 40px #ff9900;
-        }
-
-        .section {
-            padding: 20px;
-        }
-
         #main-content {
+            margin-top: 60px; /* Offset for fixed nav */
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr;
             gap: 20px;
             padding: 20px;
         }
 
-        #weekly-updates img {
-            width: 100%;
+        #main-content > div {
+            padding: 20px;
+            background: #343a40;
             border-radius: 10px;
-            margin-top: 10px;
         }
 
-        footer {
-            background: #212529;
-            padding: 10px;
-            color: #f0ad4e;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        footer marquee {
-            font-size: 1rem;
+        img {
+            max-width: 100%;
+            border-radius: 10px;
         }
 
         .gallery {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 10px;
-            margin-top: 20px;
+            justify-content: center;
         }
 
         .gallery img {
-            border: 3px solid #f0ad4e;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 200px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: calc(100% / 3 - 10px);
         }
 
-        .gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        footer {
+            background: #212529;
+            padding: 15px;
+            text-align: center;
+            color: #f0ad4e;
+            margin-top: 20px;
         }
 
-        /* Mobile Styles */
+        /* Mobile First */
         @media (max-width: 768px) {
-            #main-content {
-                grid-template-columns: 1fr; /* Single-column layout for smaller screens */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
             }
 
-            nav a {
-                font-size: 1rem;
-                padding: 5px;
+            .gallery img {
+                width: calc(100% / 2 - 10px); /* Larger images for smaller screens */
             }
 
             h1, h2 {
                 font-size: 1.5rem;
             }
-
-            .neon-button {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-            }
-
-            footer marquee {
-                font-size: 0.9rem;
-            }
-
-            .gallery img {
-                max-width: 150px; /* Smaller images on mobile */
-            }
         }
 
         @media (max-width: 480px) {
-            h1, h2 {
-                font-size: 1.2rem;
-            }
-
-            .neon-button {
-                font-size: 0.8rem;
-                padding: 5px 10px;
+            nav ul li {
+                margin: 5px 0;
             }
 
             .gallery img {
-                max-width: 120px;
+                width: 100%; /* Full-width images for the smallest screens */
+            }
+
+            h1, h2 {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>No-Tegridy Fantasy Football</h1>
-
     <nav>
-        <a href="#home" class="neon-button">Home</a>
-        <a href="#pictures" class="neon-button">Pictures</a>
-        <a href="#standings" class="neon-button">Standings</a>
-        <a href="#group" class="neon-button">Meet Our Group</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#pictures">Pictures</a></li>
+            <li><a href="#standings">Standings</a></li>
+            <li><a href="#group">Meet Our Group</a></li>
+        </ul>
     </nav>
 
-    <div id="main-content" style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; padding: 20px;">
-        <!-- Left Sidebar -->
-        <div id="sidebar" data-aos="fade-up" style="background: #212529; padding: 20px; border-radius: 10px;">
+    <div id="main-content">
+        <div id="home">
             <h2>🔥 Live Twitch Stream 🔥</h2>
             <div id="stream-container"></div>
             <div id="offline-message" style="display: none;">No one is streaming right now, dumbass.</div>
         </div>
 
-        <!-- Main Content -->
-        <div id="main" data-aos="zoom-in" style="background: #343a40; padding: 20px; border-radius: 10px;">
+        <div id="weekly-updates">
             <h2>🏈 Weekly Updates</h2>
-            <p><strong>Hot Take:</strong> Room 40’s Nuts will choke this week!</p>
+            <p>Room 40’s Nuts is in trouble this week! Stay tuned for more trash talk.</p>
             <img src="IMG_4326.jpeg" alt="Weekly Highlight">
         </div>
-    </div>
 
-    <div id="pictures" class="section">
-        <h2 data-aos="fade-right">Pictures from Our League</h2>
-        <div class="gallery">
-            <img src="IMG_0822.jpeg" alt="League Photo 1">
-            <img src="IMG_0839.jpeg" alt="League Photo 2">
-            <img src="IMG_1126.jpeg" alt="League Photo 3">
-            <img src="IMG_1129.jpeg" alt="League Photo 4">
-            <img src="IMG_1130.jpeg" alt="League Photo 5">
-            <img src="IMG_1131.jpeg" alt="League Photo 6">
+        <div id="pictures">
+            <h2>Pictures from Our League</h2>
+            <div class="gallery">
+                <img src="IMG_0822.jpeg" alt="League Photo 1">
+                <img src="IMG_0839.jpeg" alt="League Photo 2">
+                <img src="IMG_1126.jpeg" alt="League Photo 3">
+                <img src="IMG_1129.jpeg" alt="League Photo 4">
+                <img src="IMG_1130.jpeg" alt="League Photo 5">
+                <img src="IMG_1131.jpeg" alt="League Photo 6">
+            </div>
         </div>
-    </div>
 
-    <div id="standings" class="section">
-        <h2 data-aos="fade-left">🏆 Championship Standings</h2>
-        <p><strong>(6-8) Hawk Tua an Pitts on That Thang</strong></p>
-        <p>vs</p>
-        <p><strong>(8-6) Room 40's Nuts</strong></p>
-    </div>
+        <div id="standings">
+            <h2>🏆 Championship Standings</h2>
+            <p><strong>(6-8) Hawk Tua an Pitts on That Thang</strong></p>
+            <p>vs</p>
+            <p><strong>(8-6) Room 40's Nuts</strong></p>
+        </div>
 
-    <div id="group" class="section">
-        <h2 data-aos="flip-up">Meet Our Group!</h2>
-        <ul>
-            <li>Don! 🏈 Gut Check</li>
-            <li>Barney! 🅾️ Waddle you doing StepBurrow</li>
-            <li>Logan! 💉 Mr Pfizer + Swifties for Kamala</li>
-            <li>Rylan! 🧇 Waffle House Bound</li>
-            <li>CJ! 🤓 Room 40’s Nuts</li>
-            <li>Garrett! 💻 Hawk Tua an Pitts on That Thang</li>
-        </ul>
+        <div id="group">
+            <h2>Meet Our Group!</h2>
+            <ul>
+                <li><strong>Current Commissioner:</strong> Don! 🏈 Gut Check</li>
+                <li>Barney! 🅾️ Waddle you doing StepBurrow</li>
+                <li>Logan! 💉 Mr Pfizer + Swifties for Kamala</li>
+                <li>Rylan! 🧇 Waffle House Bound</li>
+                <li>CJ! 🤓 Room 40’s Nuts</li>
+                <li>Garrett! 💻 Hawk Tua an Pitts on That Thang</li>
+                <li>Eli! 🏥 Nobody’s Hurt</li>
+                <li>Jacob! 👨🏻‍❤️‍💋‍👨🏿 Blevins’ RubNTug</li>
+                <li>Isuck! 🍔 Burrowito Bowl</li>
+                <li>Cain! 🐐 Deanna’s Fat TDs</li>
+                <li>Blake! 🏃🏻‍♂️ 1st Pick Curse</li>
+                <li>Tyler! 🤡 Beatin Sandy’s Cheeks</li>
+            </ul>
+        </div>
     </div>
 
     <footer>
-        <marquee behavior="scroll" direction="left">🔥 Welcome to No-Tegridy Fantasy Football League! 🔥 Updates every week! 🏈</marquee>
+        <p>🔥 No-Tegridy Fantasy Football League 🔥</p>
     </footer>
 
     <script>
