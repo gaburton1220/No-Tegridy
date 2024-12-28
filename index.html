@@ -77,22 +77,6 @@
             border-radius: 10px;
         }
 
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .gallery img {
-            width: calc(100% / 3 - 10px);
-        }
-
         footer {
             background: #212529;
             padding: 15px;
@@ -101,7 +85,6 @@
             margin-top: 20px;
         }
 
-        /* Mobile First */
         @media (max-width: 768px) {
             #main-content {
                 margin-top: 80px; /* Add more space for smaller screens */
@@ -110,10 +93,6 @@
             nav ul {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .gallery img {
-                width: calc(100% / 2 - 10px); /* Larger images for smaller screens */
             }
 
             h1, h2 {
@@ -126,10 +105,6 @@
                 margin: 5px 0;
             }
 
-            .gallery img {
-                width: 100%; /* Full-width images for the smallest screens */
-            }
-
             h1, h2 {
                 font-size: 1.2rem;
             }
@@ -139,10 +114,10 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#pictures">Pictures</a></li>
-            <li><a href="#standings">Standings</a></li>
-            <li><a href="#group">Meet Our Group</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pictures.html">Pictures</a></li>
+            <li><a href="standings.html">Standings</a></li>
+            <li><a href="group.html">Meet Our Group</a></li>
         </ul>
     </nav>
 
@@ -164,44 +139,17 @@
         <div id="weekly-updates">
             <h2>🏈 Weekly Updates</h2>
             <p>Room 40’s Nuts fucking blows.</p>
-            <img src="IMG_4326.jpeg" alt="Weekly Highlight">
         </div>
 
-        <div id="pictures">
-            <h2>Pictures from Our League</h2>
-            <div class="gallery">
-                <img src="IMG_0822.jpeg" alt="League Photo 1">
-                <img src="IMG_0839.jpeg" alt="League Photo 2">
-                <img src="IMG_1126.jpeg" alt="League Photo 3">
-                <img src="IMG_1129.jpeg" alt="League Photo 4">
-                <img src="IMG_1130.jpeg" alt="League Photo 5">
-                <img src="IMG_1131.jpeg" alt="League Photo 6">
-            </div>
-        </div>
-
-        <div id="standings">
-            <h2>🏆 Championship Standings</h2>
-            <p><strong>(6-8) Hawk Tua an Pitts on That Thang</strong></p>
-            <p>vs</p>
-            <p><strong>(8-6) Room 40's Nuts</strong></p>
-        </div>
-
-        <div id="group">
-            <h2>Meet Our Group!</h2>
-            <ul>
-                <li><strong>Current Commissioner:</strong> Don! 🏈 Gut Check</li>
-                <li>Barney! 🅾️ Waddle you doing StepBurrow</li>
-                <li>Logan! 💉 Mr Pfizer + Swifties for Kamala</li>
-                <li>Rylan! 🧇 Waffle House Bound</li>
-                <li>CJ! 🤓 Room 40’s Nuts</li>
-                <li>Garrett! 💻 Hawk Tua an Pitts on That Thang</li>
-                <li>Eli! 🏥 Nobody’s Hurt</li>
-                <li>Jacob! 👨🏻‍❤️‍💋‍👨🏿 Blevins’ RubNTug</li>
-                <li>Isuck! 🍔 Burrowito Bowl</li>
-                <li>Cain! 🐐 Deanna’s Fat TDs</li>
-                <li>Blake! 🏃🏻‍♂️ 1st Pick Curse</li>
-                <li>Tyler! 🤡 Beatin Sandy’s Cheeks</li>
-            </ul>
+        <div id="video-section">
+            <h2>🎥 Watch How Fuckin’ Sick We Are</h2>
+            <iframe 
+                src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
+                width="100%" 
+                height="400" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 
@@ -212,8 +160,8 @@
     <script>
         AOS.init();
 
-        const clientId = "ua07ll72rovai8gsuz42de6ezbcn8g"; // Your Twitch Client ID
-        const accessToken = "y8145oyz5u1sqctcvd7rbgzt92nusk"; // Your Twitch Access Token
+        const clientId = "ua07ll72rovai8gsuz42de6ezbcn8g";
+        const accessToken = "y8145oyz5u1sqctcvd7rbgzt92nusk";
         const channelName = "notegridy69";
 
         async function checkTwitchStream() {
@@ -228,7 +176,6 @@
             const stream = data.data[0];
 
             if (stream) {
-                // Stream is live
                 document.getElementById("stream-container").innerHTML = `
                     <iframe
                         src="https://player.twitch.tv/?channel=${channelName}&parent=${window.location.hostname}"
@@ -239,13 +186,11 @@
                     </iframe>`;
                 document.getElementById("offline-message").style.display = "none";
             } else {
-                // Stream is offline
                 document.getElementById("offline-message").style.display = "block";
                 document.getElementById("stream-container").innerHTML = "";
             }
         }
 
-        // Run on page load
         checkTwitchStream();
     </script>
 </body>
