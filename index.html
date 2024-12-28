@@ -63,7 +63,7 @@
         }
 
         #main-content {
-            margin-top: 60px; /* Offset for fixed nav */
+            margin-top: 70px; /* Offset for fixed nav */
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
@@ -102,6 +102,10 @@
 
         /* Mobile First */
         @media (max-width: 768px) {
+            #main-content {
+                margin-top: 80px; /* Add more space for smaller screens */
+            }
+
             nav ul {
                 flex-direction: column;
                 align-items: center;
@@ -144,8 +148,10 @@
     <div id="main-content">
         <div id="home">
             <h2>🔥 Live Twitch Stream 🔥</h2>
-            <div id="stream-container"></div>
-            <div id="offline-message" style="display: none;">No one is streaming right now, dumbass.</div>
+            <div id="stream-container" style="text-align: center;"></div>
+            <div id="offline-message" style="display: none; text-align: center; color: #ff4d4d; font-size: 1.2rem;">
+                No one is streaming right now, dumbass.
+            </div>
         </div>
 
         <div id="weekly-updates">
@@ -198,6 +204,42 @@
 
     <script>
         AOS.init();
+
+        const clientId = "ua07ll72rovai8gsuz42de6ezbcn8g"; // Your Twitch Client ID
+        const accessToken = "y8145oyz5u1sqctcvd7rbgzt92nusk"; // Your Twitch Access Token
+        const channelName = "notegridy69";
+
+        async function checkTwitchStream() {
+            const url = `https://api.twitch.tv/helix/streams?user_login=${channelName}`;
+            const response = await fetch(url, {
+                headers: {
+                    "Client-ID": clientId,
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            });
+            const data = await response.json();
+            const stream = data.data[0];
+
+            if (stream) {
+                // Stream is live
+                document.getElementById("stream-container").innerHTML = `
+                    <iframe
+                        src="https://player.twitch.tv/?channel=${channelName}&parent=${window.location.hostname}"
+                        height="400"
+                        width="100%"
+                        allowfullscreen
+                        frameborder="0">
+                    </iframe>`;
+                document.getElementById("offline-message").style.display = "none";
+            } else {
+                // Stream is offline
+                document.getElementById("offline-message").style.display = "block";
+                document.getElementById("stream-container").innerHTML = "";
+            }
+        }
+
+        // Run on page load
+        checkTwitchStream();
     </script>
 </body>
 </html>
