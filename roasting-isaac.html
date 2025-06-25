@@ -4,133 +4,1110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roasting Isaac - No-Tegridy Fantasy Football</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
     <style>
-        body {
-            font-family: 'Bebas Neue', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #1e1e1e, #343a40);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            color: white;
+            box-sizing: border-box;
         }
 
-        h1, h2 {
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #f0ad4e;
+        body {
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(-45deg, #8B0000, #DC143C, #B22222, #CD5C5C, #FF6347);
+            background-size: 400% 400%;
+            animation: roastGradient 15s ease infinite;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes roastGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating fire particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: burn 4s infinite linear;
+            opacity: 0.8;
+            box-shadow: 0 0 10px #ff4444;
+        }
+
+        @keyframes burn {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(1); 
+                opacity: 0;
+                background: #ff4444;
+            }
+            10% { opacity: 1; }
+            50% { 
+                background: #ff6600;
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+            }
+            90% { 
+                opacity: 1;
+                background: #ffaa00;
+            }
+            100% { 
+                transform: translateY(-10vh) rotate(360deg) scale(0.5); 
+                opacity: 0;
+                background: #ffff00;
+            }
+        }
+
+        /* Header */
+        .hero-header {
             text-align: center;
+            padding: 50px 20px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0000, #ff4444, #ff6666, #ff0000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: roastGlow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
+        }
+
+        @keyframes roastGlow {
+            0% { 
+                background-position: 0% 50%;
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            100% { 
+                background-position: 100% 50%;
+                filter: brightness(1.5);
+                transform: scale(1.05);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            color: #ff6666;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px #ff4444; }
+            50% { opacity: 0.8; text-shadow: 0 0 30px #ff0000; }
+        }
+
+        .description {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #ffcccc;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Navigation */
+        nav {
+            background: rgba(139, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #ff4444;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            padding: 10px;
-            margin: 0;
-            background: #212529;
-        }
-
-        nav ul li {
-            margin: 0 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        nav ul li a:hover::before {
+            left: 100%;
         }
 
         nav ul li a:hover {
-            text-decoration: underline;
+            background: linear-gradient(45deg, #ff4444, #ff0000);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.6);
         }
 
-        .content {
+        /* Isaac's Hall of Shame Banner */
+        .shame-banner {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .shame-card {
+            background: linear-gradient(135deg, #8B0000, #654321);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            border: 4px solid #ff4444;
+            box-shadow: 0 20px 50px rgba(255, 68, 68, 0.6);
+            animation: shameGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes shameGlow {
+            0% { 
+                box-shadow: 0 20px 50px rgba(255, 68, 68, 0.6);
+                border-color: #ff4444;
+            }
+            100% { 
+                box-shadow: 0 25px 60px rgba(255, 0, 0, 0.8);
+                border-color: #ff0000;
+            }
+        }
+
+        .shame-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 68, 68, 0.2), transparent);
+            transform: rotate(45deg);
+            animation: roastShine 4s infinite;
+        }
+
+        @keyframes roastShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .shame-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            color: #ff6666;
+        }
+
+        .isaac-name {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            color: #ff4444;
+        }
+
+        .isaac-record {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #ffcccc;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1600px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .roast-card {
+            background: rgba(139, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(255, 68, 68, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roast-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 68, 68, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .roast-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .roast-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #ff4444;
+            box-shadow: 0 25px 50px rgba(255, 68, 68, 0.4);
+        }
+
+        .card-header {
+            font-size: 1.8rem;
+            color: #ff6666;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            color: #ffcccc;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Isaac's Stats of Shame */
+        .stats-of-shame {
+            background: rgba(139, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            border: 3px solid #ff4444;
+            margin: 30px 0;
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff6666;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255, 68, 68, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 68, 68, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 68, 68, 0.2);
+            border-color: #ff4444;
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #ff4444;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #ffcccc;
+            text-transform: uppercase;
+        }
+
+        /* Photo Gallery Section */
+        .photo-gallery {
+            margin: 50px 0;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff6666;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid #ff4444;
+            background: rgba(139, 0, 0, 0.9);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 68, 68, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.2) contrast(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(139, 0, 0, 0.95));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-caption {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .gallery-description {
+            font-size: 1rem;
+            color: #ffcccc;
+            line-height: 1.4;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 50px 0;
+        }
+
+        .video-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff6666;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #ff4444;
+            box-shadow: 0 15px 35px rgba(255, 68, 68, 0.4);
+            background: rgba(139, 0, 0, 0.9);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+        }
+
+        .video-caption {
             padding: 20px;
             text-align: center;
+            color: #ff6666;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .gallery img {
-            width: calc(100% / 3 - 20px);
-            border-radius: 10px;
-        }
-
-        iframe {
-            margin: 20px 0;
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        footer {
-            background: #212529;
-            padding: 15px;
+        /* Roast Generator */
+        .roast-generator {
+            background: linear-gradient(135deg, #654321, #8B0000);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 4px solid #ff4444;
             text-align: center;
-            color: #f0ad4e;
-            margin-top: 20px;
         }
 
+        .generator-title {
+            font-size: 2.5rem;
+            color: #ff6666;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .generator-btn {
+            background: linear-gradient(45deg, #ff4444, #ff0000);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px;
+        }
+
+        .generator-btn:hover {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 68, 68, 0.5);
+        }
+
+        .roast-output {
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #ff6666;
+            font-style: italic;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #8B0000, #000);
+            padding: 40px 20px;
+            text-align: center;
+            color: #ff6666;
+            border-top: 3px solid #ff4444;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4444, #ff0000, #ff4444);
+            animation: footerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes footerGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            .gallery img {
-                width: calc(100% / 2 - 20px);
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .gallery img {
-                width: 100%;
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-header {
+                padding: 30px 10px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Floating fire particles -->
+    <div class="particles"></div>
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+        <h1 class="logo">ROASTING ISAAC</h1>
+        <div class="subtitle">🔥 MAXIMUM HEAT APPLIED 🔥</div>
+        <div class="description">
+            Welcome to the Isaac Puzey Roast Zone! Here we document every epic fail, questionable decision, 
+            and 5-9 season that has made Isaac the most roastable manager in No-Tegridy history. 
+            Prepare for maximum savagery!
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pictures.html">Pictures</a></li>
-            <li><a href="standings.html">Standings</a></li>
-            <li><a href="group.html">Meet Our Group</a></li>
-            <li><a href="roasting-isaac.html">Roasting Isaac</a></li>
-            <li><a href="past-seasons.html">Past Seasons</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="pictures.html">📸 Pictures</a></li>
+            <li><a href="standings.html">🏆 Standings</a></li>
+            <li><a href="group.html">👥 Our Legends</a></li>
+            <li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
+            <li><a href="past-seasons.html">📚 History</a></li>
         </ul>
     </nav>
 
-    <div class="content">
-        <h2>🔥 Roasting Isaac 🔥</h2>
-        <div class="gallery">
-            <img src="IMG_1131.jpeg" alt="Roasting Isaac Photo 1">
-            <img src="IMG_1130.jpeg" alt="Roasting Isaac Photo 2">
-            <img src="IMG_0839.jpeg" alt="Roasting Isaac Photo 3">
+    <!-- Isaac's Hall of Shame Banner -->
+    <div class="shame-banner">
+        <div class="shame-card">
+            <div class="shame-title">🤡 HALL OF SHAME INDUCTEE 🤡</div>
+            <div class="isaac-name">ISAAC "ISUCK" PUZEY</div>
+            <div class="isaac-record">2024 RECORD: 5-9 (AGAIN!)</div>
+            <p style="font-size: 1.3rem; position: relative; z-index: 2; margin-top: 20px;">
+                The man, the myth, the perpetual disappointment. Isaac has mastered the art of consistent failure 
+                with the precision of a Swiss watch. Welcome to his shrine of shame!
+            </p>
         </div>
-
-        <h2>🎥 Videos</h2>
-        <iframe 
-            src="https://drive.google.com/file/d/1413yDkb6M39qeGOfRRuywraygRUT4cIi/preview" 
-            allowfullscreen>
-        </iframe>
-        <iframe 
-            src="https://drive.google.com/file/d/1i0gtAVLGUe_my2qmHtcefrHcHtbT0gVD/preview" 
-            allowfullscreen>
-        </iframe>
-        <iframe 
-            src="https://drive.google.com/file/d/1aFFMyCXk6UErhdVU9eKI60l7CiTI4m9u/preview" 
-            allowfullscreen>
-        </iframe>
     </div>
 
+    <!-- Content Section -->
+    <div class="content-section">
+        <div class="section-grid">
+            <!-- Epic Fails -->
+            <div class="roast-card">
+                <div class="card-header">💀 EPIC FAILS COMPILATION 💀</div>
+                <div class="card-content">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Greatest Hits of Failure:</h4>
+                    <ul style="color: #ffcccc; line-height: 1.8; margin-left: 20px;">
+                        <li>Drafted a kicker in the 3rd round (Classic Isaac)</li>
+                        <li>Started a player on bye week... THREE TIMES</li>
+                        <li>Traded away the league winner for a backup RB</li>
+                        <li>Set lineup 5 minutes after games started</li>
+                        <li>Claimed "This is my year!" before going 5-9</li>
+                        <li>Picked up 4 defenses in one week</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Draft Day Disasters -->
+            <div class="roast-card">
+                <div class="card-header">📊 DRAFT DAY DISASTERS 📊</div>
+                <div class="card-content">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Annual Draft Catastrophes:</h4>
+                    <div style="color: #ffcccc; line-height: 1.8;">
+                        <p><strong>2024:</strong> Reached for a QB in Round 2, immediately regretted it</p>
+                        <p><strong>2023:</strong> Drafted 3 players from the same team</p>
+                        <p><strong>2022:</strong> Picked a player who was already retired</p>
+                        <p><strong>2021:</strong> Forgot to draft a TE until Round 15</p>
+                        <p style="margin-top: 15px; font-style: italic; color: #ff6666;">
+                            "Every year Isaac finds a new way to make us question his life choices"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Excuses Hall of Fame -->
+            <div class="roast-card">
+                <div class="card-header">🎭 EXCUSES HALL OF FAME 🎭</div>
+                <div class="card-content">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Isaac's Greatest Excuses:</h4>
+                    <div style="color: #ffcccc; line-height: 1.8;">
+                        <p>"My players just got unlucky with injuries"</p>
+                        <p>"The waiver wire was picked clean"</p>
+                        <p>"I had the hardest schedule"</p>
+                        <p>"Fantasy football is just luck anyway"</p>
+                        <p>"I'm rebuilding for next year"</p>
+                        <p>"The app glitched and didn't save my lineup"</p>
+                        <p style="margin-top: 15px; font-style: italic; color: #ff6666;">
+                            Translation: "I'm bad at fantasy football"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legendary Quotes -->
+            <div class="roast-card">
+                <div class="card-header">💬 LEGENDARY QUOTES 💬</div>
+                <div class="card-content">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Isaac's Most Iconic Statements:</h4>
+                    <div style="color: #ffcccc; line-height: 1.8;">
+                        <p style="font-style: italic;">"I'm definitely making playoffs this year"</p>
+                        <small style="color: #ff9999;">- Said every August before going 5-9</small>
+                        
+                        <p style="font-style: italic; margin-top: 15px;">"That trade is going to look genius by Week 10"</p>
+                        <small style="color: #ff9999;">- It never does</small>
+                        
+                        <p style="font-style: italic; margin-top: 15px;">"I don't need to check the waiver wire"</p>
+                        <small style="color: #ff9999;">- Famous last words</small>
+                        
+                        <p style="font-style: italic; margin-top: 15px;">"Fantasy football is stupid anyway"</p>
+                        <small style="color: #ff9999;">- Every December after missing playoffs</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Isaac's Stats of Shame -->
+        <div class="stats-of-shame">
+            <h3 class="stats-title">📊 ISAAC'S STATS OF SHAME 📊</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5-9</div>
+                    <div class="stat-label">2024 Record</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Championships</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Seasons Played</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Winning Season</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Bad Decisions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Times We're Surprised</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Roast Content</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Meme Potential</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="photo-gallery">
+            <h3 class="gallery-title">📸 MOMENTS OF SHAME 📸</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="IMG_1131.jpeg" alt="Isaac Roast Session">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">🔥 ROAST SESSION ACTIVATED</div>
+                        <div class="gallery-description">
+                            The moment when everyone realized Isaac drafted a kicker in Round 3. Again.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="IMG_1130.jpeg" alt="Isaac's Defeat">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">😭 DEFEAT ACCEPTED</div>
+                        <div class="gallery-description">
+                            Isaac's face when he realizes he's 1-6 and it's only Week 7.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="IMG_0839.jpeg" alt="Maximum Roast">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">🤡 MAXIMUM ROAST ENERGY</div>
+                        <div class="gallery-description">
+                            When the entire league unites to roast Isaac's latest terrible trade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div class="video-section">
+            <h3 class="video-title">🎥 ROAST VIDEOS 🎥</h3>
+            <div class="videos-grid">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1i0gtAVLGUe_my2qmHtcefrHcHtbT0gVD/preview" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-caption">🤡 ISAAC'S GREATEST FAILS</div>
+                </div>
+
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1aFFMyCXk6UErhdVU9eKI60l7CiTI4m9u/preview" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-caption">💀 LEGENDARY ROAST COMPILATION</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Random Roast Generator -->
+        <div class="roast-generator">
+            <h3 class="generator-title">🎲 RANDOM ISAAC ROAST GENERATOR 🎲</h3>
+            <p style="color: #ffcccc; font-size: 1.2rem; margin-bottom: 20px;">
+                Need a fresh roast for Isaac? Click the button and let the savage commence!
+            </p>
+            <button class="generator-btn" onclick="generateRoast()">🔥 GENERATE ROAST 🔥</button>
+            <div class="roast-output" id="roastOutput">
+                Click the button to unleash maximum savagery on Isaac!
+            </div>
+        </div>
+
+        <!-- Isaac's Resume of Failure -->
+        <div style="background: rgba(139, 0, 0, 0.9); border-radius: 20px; padding: 40px; border: 3px solid #ff4444; margin: 40px 0;">
+            <h3 style="text-align: center; color: #ff6666; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase;">
+                📄 ISAAC'S RESUME OF FAILURE 📄
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="background: rgba(255, 68, 68, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff4444;">
+                    <h4 style="color: #ff6666; font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase;">🏆 Achievements</h4>
+                    <ul style="color: #ffcccc; line-height: 1.8;">
+                        <li>Master of 5-9 seasons</li>
+                        <li>Expert at drafting injured players</li>
+                        <li>Professional excuse maker</li>
+                        <li>Champion of terrible trades</li>
+                        <li>PhD in missing playoffs</li>
+                        <li>Certified waiver wire ignorer</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(255, 68, 68, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff4444;">
+                    <h4 style="color: #ff6666; font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase;">📈 Career Progression</h4>
+                    <div style="color: #ffcccc; line-height: 1.8;">
+                        <p><strong>2021:</strong> 5-9 (Rookie mistakes)</p>
+                        <p><strong>2022:</strong> 9-5 (False hope)</p>
+                        <p><strong>2023:</strong> 8-6 (Brief competence)</p>
+                        <p><strong>2024:</strong> 5-9 (Back to normal)</p>
+                        <p style="margin-top: 15px; color: #ff6666; font-weight: bold;">
+                            Trend: Consistently inconsistent
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255, 68, 68, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff4444;">
+                    <h4 style="color: #ff6666; font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase;">🎯 Specialties</h4>
+                    <ul style="color: #ffcccc; line-height: 1.8;">
+                        <li>Panic dropping good players</li>
+                        <li>Starting players on bye weeks</li>
+                        <li>Forgetting to set lineups</li>
+                        <li>Overpaying for mediocre trades</li>
+                        <li>Making bold predictions that fail</li>
+                        <li>Being the league's comic relief</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- League Members' Isaac Roasts -->
+        <div style="background: linear-gradient(135deg, #654321, #8B0000); border-radius: 20px; padding: 40px; margin: 40px 0; border: 3px solid #ff4444;">
+            <h3 style="text-align: center; color: #ff6666; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase;">
+                💬 WHAT THE LEAGUE SAYS ABOUT ISAAC 💬
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center;">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">CJ (Champion)</h4>
+                    <p style="color: #ffcccc; font-style: italic; line-height: 1.6;">
+                        "Isaac makes my championship run look even better by comparison. Thanks for being consistently terrible!"
+                    </p>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center;">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Don (Commissioner)</h4>
+                    <p style="color: #ffcccc; font-style: italic; line-height: 1.6;">
+                        "Isaac is the reason we have a toilet bowl. Someone has to finish last every year."
+                    </p>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center;">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Garrett</h4>
+                    <p style="color: #ffcccc; font-style: italic; line-height: 1.6;">
+                        "Isaac drafts like he's playing a completely different sport. It's fascinating and sad."
+                    </p>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center;">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">Tyler (Toilet Bowl Champ)</h4>
+                    <p style="color: #ffcccc; font-style: italic; line-height: 1.6;">
+                        "Even I beat Isaac this year. That's saying something because I went 4-10."
+                    </p>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center;">
+                    <h4 style="color: #ff6666; margin-bottom: 15px;">The Entire League</h4>
+                    <p style="color: #ffcccc; font-style: italic; line-height: 1.6;">
+                        "Isaac 'Isuck' Puzey - the gift that keeps on giving us content for this roast page."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Isaac's Predictions vs Reality -->
+        <div style="background: rgba(139, 0, 0, 0.9); border-radius: 20px; padding: 40px; border: 3px solid #ff4444; margin: 40px 0;">
+            <h3 style="text-align: center; color: #ff6666; font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase;">
+                🔮 ISAAC'S PREDICTIONS VS REALITY 🔮
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <div style="text-align: center;">
+                    <h4 style="color: #ff6666; font-size: 1.8rem; margin-bottom: 20px;">📢 WHAT ISAAC SAID</h4>
+                    <div style="background: rgba(255, 68, 68, 0.1); padding: 20px; border-radius: 15px; border: 2px solid #ff4444;">
+                        <ul style="color: #ffcccc; line-height: 2; text-align: left;">
+                            <li>"I'm winning the championship this year"</li>
+                            <li>"My draft was perfect"</li>
+                            <li>"I'll easily make playoffs"</li>
+                            <li>"This trade will carry me to victory"</li>
+                            <li>"I don't need to use the waiver wire"</li>
+                            <li>"My team is stacked"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <h4 style="color: #ff6666; font-size: 1.8rem; margin-bottom: 20px;">💀 WHAT ACTUALLY HAPPENED</h4>
+                    <div style="background: rgba(255, 68, 68, 0.1); padding: 20px; border-radius: 15px; border: 2px solid #ff4444;">
+                        <ul style="color: #ffcccc; line-height: 2; text-align: left;">
+                            <li>Finished 5-9 (again)</li>
+                            <li>Worst draft in league history</li>
+                            <li>Missed playoffs by Week 8</li>
+                            <li>Trade backfired spectacularly</li>
+                            <li>Needed waiver wire desperately</li>
+                            <li>Team was hot garbage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; font-size: 1.5rem; color: #ff6666; font-weight: bold;">
+                📊 ACCURACY RATE: 0% (As Expected)
+            </div>
+        </div>
+    </div>
+
+    <!-- Epic Footer -->
     <footer>
-        <p>🔥 No-Tegridy Fantasy Football League 🔥</p>
+        <p>
+            🔥 <strong>NO-TEGRIDY FANTASY FOOTBALL</strong> 🔥<br>
+            <span style="color: #ff9999;">Powered by Tall Boy Shotguns & Isaac's Tears</span><br>
+            <span style="color: #ffcccc;">SPONSORED BY: Jerk Riley's - Where Isaac Gets JERKED Around</span><br>
+            <br>
+            <em style="font-size: 0.9rem; opacity: 0.8;">Isaac Roasted Daily • 5-9 Records Since 2021 • Maximum Savagery Guaranteed</em>
+        </p>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Isaac Roast Generator
+        const isaacRoasts = [
+            "Isaac drafts like he's blindfolded and using a magic 8-ball for advice!",
+            "Isaac's team management makes a toddler playing with crayons look strategic!",
+            "Isaac 'Isuck' Puzey: Turning championship dreams into 5-9 nightmares since 2021!",
+            "Isaac's fantasy knowledge is like his win record - consistently disappointing!",
+            "Breaking: Isaac discovers waiver wire exists, still doesn't use it correctly!",
+            "Isaac's draft strategy: Pick the first name that sounds cool, ignore everything else!",
+            "Isaac makes Tyler's 4-10 record look respectable, and that's saying something!",
+            "Isaac's predictions are about as accurate as a storm trooper's aim!",
+            "Isaac: Proof that enthusiasm doesn't equal competence in fantasy football!",
+            "Isaac's lineup decisions are brought to you by chaos and questionable judgment!",
+            "Isaac puts the 'L' in 'Loser' and the 'disappointing' in 'disappointing season'!",
+            "Isaac's fantasy football IQ is lower than his season win total!",
+            "Isaac: Making bad trades look like an art form since joining the league!",
+            "Isaac's championship chances are like his good decisions - non-existent!",
+            "Isaac drafts players like he's trying to lose on purpose (spoiler: he's not)!",
+            "Isaac 'Isuck' Puzey: The human embodiment of a fantasy football participation trophy!",
+            "Isaac's team building strategy: Hope, prayer, and complete ignorance of statistics!",
+            "Isaac makes missing the playoffs look easier than breathing!",
+            "Isaac's fantasy football career: A masterclass in consistent mediocrity!",
+            "Isaac: Turning first-round picks into benchwarming disasters since forever!"
+        ];
+
+        function generateRoast() {
+            const roastOutput = document.getElementById('roastOutput');
+            const randomRoast = isaacRoasts[Math.floor(Math.random() * isaacRoasts.length)];
+            
+            // Add loading effect
+            roastOutput.innerHTML = "🔥 Generating maximum savagery... 🔥";
+            roastOutput.style.color = '#ff4444';
+            
+            setTimeout(() => {
+                roastOutput.innerHTML = randomRoast;
+                roastOutput.style.color = '#ff6666';
+                
+                // Add shake animation
+                roastOutput.style.animation = 'roastShake 0.5s ease-in-out';
+                
+                setTimeout(() => {
+                    roastOutput.style.animation = '';
+                }, 500);
+            }, 1000);
+        }
+
+        // Create floating fire particles
+        function createFireParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 60;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 4 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Add roast shake animation
+        const roastShakeKeyframes = `
+            @keyframes roastShake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = roastShakeKeyframes;
+        document.head.appendChild(styleSheet);
+
+        // Add extra hover effects for roast cards
+        function addRoastEffects() {
+            const roastCards = document.querySelectorAll('.roast-card');
+            
+            roastCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle fire glow
+                    this.style.boxShadow = '0 25px 50px rgba(255, 68, 68, 0.6), 0 0 30px rgba(255, 68, 68, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createFireParticles();
+            addRoastEffects();
+            
+            // Auto-generate a roast on page load
+            setTimeout(() => {
+                generateRoast();
+            }, 2000);
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+                    <iframe 
+                        src="https://drive.google.com/file/d/1413yDkb6M39qeGOfRRuywraygRUT4cIi/preview" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-caption">🔥 EPIC ROAST SESSION #1</div>
+                </div>
+
+                <div class="video-wrapper">
