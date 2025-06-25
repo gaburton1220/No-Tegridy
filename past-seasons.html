@@ -4,18 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Past Seasons - No-Tegridy Fantasy Football</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon-32x32.png" type="image/png">
   <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #1e1e1e;
+      padding: 0;
+      background: linear-gradient(45deg, #1e1e1e, #343a40);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
       color: white;
     }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     h1, h2, summary {
+      font-weight: bold;
+      text-transform: uppercase;
       color: #f0ad4e;
       text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      margin: 0;
+      background: #212529;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      padding: 20px;
     }
     table {
       width: 100%;
@@ -48,56 +80,129 @@
       cursor: pointer;
       font-size: 1.2em;
     }
+    footer {
+      background: #212529;
+      padding: 15px;
+      text-align: center;
+      color: #f0ad4e;
+    }
   </style>
 </head>
 <body>
-  <h1>Past Seasons</h1>
-  <details>
-    <summary>2024</summary>
-    <table>
-      <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
-      <tr><td>1</td><td>Room 40's Nuts (CJ Tackett)</td><td>8-6</td><td>1606.28</td><td>1568.6</td><td>114.7</td><td>112</td><td>+2.7</td></tr>
-      <tr><td>2</td><td>Hawk Tua an Pitts On That Thang (Garrett Burton)</td><td>6-8</td><td>1693.42</td><td>1713.76</td><td>121</td><td>122.4</td><td>-1.5</td></tr>
-      <tr><td>3</td><td>Waddle you doing stepburrow (jacob barnwell)</td><td>10-4</td><td>1847.86</td><td>1660.8</td><td>132</td><td>118.6</td><td>+13.4</td></tr>
-      <tr><td>4</td><td>Blevins' RubNTug (Jacob Johnson)</td><td>6-8</td><td>1539.76</td><td>1660.64</td><td>110</td><td>118.6</td><td>-8.6</td></tr>
-      <tr><td>5</td><td>Nobody’s Hurt (Eli Hurt)</td><td>6-8</td><td>1619.46</td><td>1553.44</td><td>115.7</td><td>111</td><td>+4.7</td></tr>
-      <tr><td>6</td><td>Gut Check (Donavon Alderson)</td><td>11-3</td><td>1793.26</td><td>1529.5</td><td>128.1</td><td>109.3</td><td>+18.8</td></tr>
-      <tr><td>7</td><td>Mr Pfizer + Swifties for Kamala (Logan Alderson)</td><td>9-5</td><td>1706.22</td><td>1555.44</td><td>121.9</td><td>111.1</td><td>+10.8</td></tr>
-      <tr><td>8</td><td>Waffle House Bound (Rylan Thomas)</td><td>9-5</td><td>1545.62</td><td>1501.64</td><td>110.4</td><td>107.3</td><td>+3.1</td></tr>
-      <tr><td>9</td><td>Burrowito Bowl (Isaac Puzey)</td><td>5-9</td><td>1557.84</td><td>1639.96</td><td>111.3</td><td>117.1</td><td>-5.9</td></tr>
-      <tr><td>10</td><td>Beatin Sandy's Cheeks (Tyler Blevins)</td><td>4-10</td><td>1445.34</td><td>1689.92</td><td>103.2</td><td>120.7</td><td>-17.5</td></tr>
-      <tr><td>11</td><td>1st Pick Curse (Blake Howell)</td><td>5-9</td><td>1487.28</td><td>1674.74</td><td>106.2</td><td>119.6</td><td>-13.4</td></tr>
-      <tr><td>12</td><td>Deannas Fat TDs (Cain Cooksey)</td><td>5-9</td><td>1552.82</td><td>1646.72</td><td>110.9</td><td>117.6</td><td>-6.7</td></tr>
-    </table>
-  </details>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pictures.html">Pictures</a></li>
+      <li><a href="standings.html">Standings</a></li>
+      <li><a href="group.html">Meet Our Group</a></li>
+      <li><a href="roasting-isaac.html">Roasting Isaac</a></li>
+    </ul>
+  </nav>
+  
+  <div class="content">
+    <h1>Past Seasons</h1>
+    
+    <div style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a); border: 2px solid #f0ad4e; border-radius: 10px; padding: 20px; margin-bottom: 30px; text-align: center;">
+      <h2 style="color: #f0ad4e; margin-top: 0;">🏆 LEAGUE LEGACY 🏆</h2>
+      <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
+        Four seasons of pure chaos, legendary team names, and questionable roster decisions have led us here. From Jesse Tuggle's dominant "Chicken Fingers" crushing everyone with 2000 points in 2021, to the recent battle between "Room 40's Nuts" and "Hawk Tua an Pitts On That Thang" - this league has seen it all!
+      </p>
+      <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
+        <strong>Championship Winners:</strong><br>
+        🥇 2021: Chicken Fingers (Jesse Tuggle) - 12-2 BEAST MODE<br>
+        🥇 2022: Lets Ride (Blake Howell) - 10-4 Dominant<br>
+        🥇 2023: Blevins' RubNTug (Jacob Johnson) - 8-6 Clutch<br>
+        🥇 2024: Room 40's Nuts (CJ Tackett) - 8-6 Grinder
+      </p>
+      <div style="background: #f0ad4e; color: #1e1e1e; padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: #1e1e1e;">🔥 2025 SEASON INCOMING 🔥</h3>
+        <p style="margin: 0; font-weight: bold;">
+          Will Room 40's Nuts repeat? Can Donavon's "Gut Check" finally close the deal after that 11-3 regular season heartbreak? 
+          Will Isaac finally live up to his potential or keep earning that "Isuck" nickname? 
+          <br><br>
+          <span style="font-size: 1.2em;">THE STAGE IS SET. THE TRASH TALK IS LOADED. LET'S RIDE! 🚀</span>
+        </p>
+      </div>
+    </div>
+    <details>
+      <summary>2024</summary>
+      <table>
+        <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
+        <tr><td>1</td><td>Room 40's Nuts (CJ Tackett)</td><td>8-6</td><td>1606.28</td><td>1568.6</td><td>114.7</td><td>112</td><td>+2.7</td></tr>
+        <tr><td>2</td><td>Hawk Tua an Pitts On That Thang (Garrett Burton)</td><td>6-8</td><td>1693.42</td><td>1713.76</td><td>121</td><td>122.4</td><td>-1.5</td></tr>
+        <tr><td>3</td><td>Waddle you doing stepburrow (jacob barnwell)</td><td>10-4</td><td>1847.86</td><td>1660.8</td><td>132</td><td>118.6</td><td>+13.4</td></tr>
+        <tr><td>4</td><td>Blevins' RubNTug (Jacob Johnson)</td><td>6-8</td><td>1539.76</td><td>1660.64</td><td>110</td><td>118.6</td><td>-8.6</td></tr>
+        <tr><td>5</td><td>Nobody's Hurt (Eli Hurt)</td><td>6-8</td><td>1619.46</td><td>1553.44</td><td>115.7</td><td>111</td><td>+4.7</td></tr>
+        <tr><td>6</td><td>Gut Check (Donavon Alderson)</td><td>11-3</td><td>1793.26</td><td>1529.5</td><td>128.1</td><td>109.3</td><td>+18.8</td></tr>
+        <tr><td>7</td><td>Mr Pfizer + Swifties for Kamala (Logan Alderson)</td><td>9-5</td><td>1706.22</td><td>1555.44</td><td>121.9</td><td>111.1</td><td>+10.8</td></tr>
+        <tr><td>8</td><td>Waffle House Bound (Rylan Thomas)</td><td>9-5</td><td>1545.62</td><td>1501.64</td><td>110.4</td><td>107.3</td><td>+3.1</td></tr>
+        <tr><td>9</td><td>Burrowito Bowl (Isaac Puzey)</td><td>5-9</td><td>1557.84</td><td>1639.96</td><td>111.3</td><td>117.1</td><td>-5.9</td></tr>
+        <tr><td>10</td><td>Beatin Sandy's Cheeks (Tyler Blevins)</td><td>4-10</td><td>1445.34</td><td>1689.92</td><td>103.2</td><td>120.7</td><td>-17.5</td></tr>
+        <tr><td>11</td><td>1st Pick Curse (Blake Howell)</td><td>5-9</td><td>1487.28</td><td>1674.74</td><td>106.2</td><td>119.6</td><td>-13.4</td></tr>
+        <tr><td>12</td><td>Deannas Fat TDs (Cain Cooksey)</td><td>5-9</td><td>1552.82</td><td>1646.72</td><td>110.9</td><td>117.6</td><td>-6.7</td></tr>
+      </table>
+    </details>
 
-  <details>
-    <summary>2023</summary>
-    <table>
-      <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
-      <tr><td>1</td><td>Blevins' RubNTug (Jacob Johnson)</td><td>8-6</td><td>1748.28</td><td>1615.66</td><td>124.9</td><td>115.4</td><td>+9.5</td></tr>
-      <tr><td>2</td><td>Room 40's Nuts (CJ Tackett)</td><td>8-6</td><td>1619.1</td><td>1592.08</td><td>115.6</td><td>113.7</td><td>+1.9</td></tr>
-      <tr><td>3</td><td>Waffle House Bound (Rylan Thomas)</td><td>7-7</td><td>1686.92</td><td>1544.08</td><td>120.5</td><td>110.3</td><td>+10.2</td></tr>
-      <tr><td>4</td><td>Jerkin Goff (Logan Alderson)</td><td>10-4</td><td>1598.64</td><td>1485.66</td><td>114.2</td><td>106.1</td><td>+8.1</td></tr>
-      <tr><td>5</td><td>CeeDeez Nutz (Blake Howell)</td><td>7-7</td><td>1666.68</td><td>1528.02</td><td>119</td><td>109.1</td><td>+9.9</td></tr>
-      <tr><td>6</td><td>Adrian beaturson (jacob barnwell)</td><td>8-6</td><td>1739.54</td><td>1687.3</td><td>124.3</td><td>120.5</td><td>+3.7</td></tr>
-      <tr><td>7</td><td>IAMAFRAUD (Isaac Puzey)</td><td>8-6</td><td>1508.42</td><td>1533.9</td><td>107.7</td><td>109.6</td><td>-1.8</td></tr>
-      <tr><td>8</td><td>I am a fraud (Donavon Alderson)</td><td>9-5</td><td>1545.5</td><td>1580.2</td><td>110.4</td><td>112.9</td><td>-2.5</td></tr>
-      <tr><td>9</td><td>Nobody’s Hurt (Eli Hurt)</td><td>5-9</td><td>1522.42</td><td>1676.26</td><td>108.7</td><td>119.7</td><td>-11</td></tr>
-      <tr><td>10</td><td>Deanna's Tight End (Cain Cooksey)</td><td>2-12</td><td>1447.92</td><td>1632.74</td><td>103.4</td><td>116.6</td><td>-13.2</td></tr>
-      <tr><td>11</td><td>Stinky Stubby Isaac (Garrett Burton)</td><td>7-7</td><td>1530.12</td><td>1645.6</td><td>109.3</td><td>117.5</td><td>-8.2</td></tr>
-      <tr><td>12</td><td>Beatin Sandy's Cheeks (Tyler Blevins)</td><td>5-9</td><td>1498.78</td><td>1590.82</td><td>107.1</td><td>113.6</td><td>-6.6</td></tr>
-    </table>
-  </details>
+    <details>
+      <summary>2023</summary>
+      <table>
+        <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
+        <tr><td>1</td><td>Blevins' RubNTug (Jacob Johnson)</td><td>8-6</td><td>1748.28</td><td>1615.66</td><td>124.9</td><td>115.4</td><td>+9.5</td></tr>
+        <tr><td>2</td><td>Room 40's Nuts (CJ Tackett)</td><td>8-6</td><td>1619.1</td><td>1592.08</td><td>115.6</td><td>113.7</td><td>+1.9</td></tr>
+        <tr><td>3</td><td>Waffle House Bound (Rylan Thomas)</td><td>7-7</td><td>1686.92</td><td>1544.08</td><td>120.5</td><td>110.3</td><td>+10.2</td></tr>
+        <tr><td>4</td><td>Jerkin Goff (Logan Alderson)</td><td>10-4</td><td>1598.64</td><td>1485.66</td><td>114.2</td><td>106.1</td><td>+8.1</td></tr>
+        <tr><td>5</td><td>CeeDeez Nutz (Blake Howell)</td><td>7-7</td><td>1666.68</td><td>1528.02</td><td>119</td><td>109.1</td><td>+9.9</td></tr>
+        <tr><td>6</td><td>Adrian beaturson (jacob barnwell)</td><td>8-6</td><td>1739.54</td><td>1687.3</td><td>124.3</td><td>120.5</td><td>+3.7</td></tr>
+        <tr><td>7</td><td>IAMAFRAUD (Isaac Puzey)</td><td>8-6</td><td>1508.42</td><td>1533.9</td><td>107.7</td><td>109.6</td><td>-1.8</td></tr>
+        <tr><td>8</td><td>I am a fraud (Donavon Alderson)</td><td>9-5</td><td>1545.5</td><td>1580.2</td><td>110.4</td><td>112.9</td><td>-2.5</td></tr>
+        <tr><td>9</td><td>Nobody's Hurt (Eli Hurt)</td><td>5-9</td><td>1522.42</td><td>1676.26</td><td>108.7</td><td>119.7</td><td>-11</td></tr>
+        <tr><td>10</td><td>Deanna's Tight End (Cain Cooksey)</td><td>2-12</td><td>1447.92</td><td>1632.74</td><td>103.4</td><td>116.6</td><td>-13.2</td></tr>
+        <tr><td>11</td><td>Stinky Stubby Isaac (Garrett Burton)</td><td>7-7</td><td>1530.12</td><td>1645.6</td><td>109.3</td><td>117.5</td><td>-8.2</td></tr>
+        <tr><td>12</td><td>Beatin Sandy's Cheeks (Tyler Blevins)</td><td>5-9</td><td>1498.78</td><td>1590.82</td><td>107.1</td><td>113.6</td><td>-6.6</td></tr>
+      </table>
+    </details>
 
-  <details>
-    <summary>2022</summary>
-    <!-- Already present -->
-  </details>
+    <details>
+      <summary>2022</summary>
+      <table>
+        <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
+        <tr><td>1</td><td>Lets Ride (Blake Howell)</td><td>10-4</td><td>1783.58</td><td>1482.8</td><td>127.4</td><td>106</td><td>+21.5</td></tr>
+        <tr><td>2</td><td>Catalina Wine Mixon (Isaac Puzey)</td><td>9-5</td><td>1760.02</td><td>1658</td><td>125.7</td><td>118</td><td>+7.3</td></tr>
+        <tr><td>3</td><td>Thicc Succ (Tyler Blevins)</td><td>8-6</td><td>1720.52</td><td>1506.4</td><td>122.9</td><td>108</td><td>+15.3</td></tr>
+        <tr><td>4</td><td>Urban Meyer's Sunday Scaries (CJ Tackett)</td><td>10-4</td><td>1640.54</td><td>1537.7</td><td>117.2</td><td>110</td><td>+7.3</td></tr>
+        <tr><td>5</td><td>Racing with Ruggs (Garrett Burton)</td><td>8-6</td><td>1559.24</td><td>1362.7</td><td>111.4</td><td>97.3</td><td>+14</td></tr>
+        <tr><td>6</td><td>Burrow McCokiner (Jacob Johnson)</td><td>6-8</td><td>1502.5</td><td>1605.9</td><td>107</td><td>115</td><td>-7.4</td></tr>
+        <tr><td>7</td><td>Franklin Pussa Grabbers (Rylan Thomas)</td><td>7-7</td><td>1719.9</td><td>1628</td><td>122.9</td><td>116</td><td>+6.6</td></tr>
+        <tr><td>8</td><td>Team Littrell (Parker Littrell)</td><td>8-6</td><td>1531.5</td><td>1434.4</td><td>109.4</td><td>103</td><td>+6.9</td></tr>
+        <tr><td>9</td><td>Fantasy Foursome (Garrett Johnson)</td><td>4-10</td><td>1454.52</td><td>1773.7</td><td>103.9</td><td>127</td><td>-22.8</td></tr>
+        <tr><td>10</td><td>Team Alderson (Donavon Alderson)</td><td>5-9</td><td>1599.38</td><td>1737.5</td><td>114.2</td><td>124</td><td>-9.9</td></tr>
+        <tr><td>11</td><td>Babysitting By AP (Logan Alderson)</td><td>5-9</td><td>1493.08</td><td>1885.9</td><td>106.6</td><td>135</td><td>-28.1</td></tr>
+        <tr><td>12</td><td>Nobody's Hurt (Eli Hurt)</td><td>4-10</td><td>1445.52</td><td>1597.3</td><td>103.3</td><td>114</td><td>-10.8</td></tr>
+      </table>
+    </details>
 
-  <details>
-    <summary>2021</summary>
-    <!-- Already present -->
-  </details>
+    <details>
+      <summary>2021</summary>
+      <table>
+        <tr><th>RK</th><th>Team</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th></tr>
+        <tr><td>1</td><td>Chicken Fingers (Jesse Tuggle)</td><td>12-2</td><td>1999.62</td><td>1588.7</td><td>142.8</td><td>114</td><td>+29.4</td></tr>
+        <tr><td>2</td><td>Hanging with Hernandez (Garrett Burton)</td><td>11-3</td><td>1804.1</td><td>1571.1</td><td>128.9</td><td>112</td><td>+16.6</td></tr>
+        <tr><td>3</td><td>Chubb At Half Stafford (Jacob Johnson)</td><td>8-6</td><td>1765.66</td><td>1691.4</td><td>126.1</td><td>121</td><td>+5.3</td></tr>
+        <tr><td>4</td><td>Not the worst Alderson (Donavon Alderson)</td><td>9-5</td><td>1710.94</td><td>1611.2</td><td>122.2</td><td>115</td><td>+7.1</td></tr>
+        <tr><td>5</td><td>I Kill The Goblin (Blake Howell)</td><td>8-6</td><td>1549.56</td><td>1523.7</td><td>110.7</td><td>109</td><td>+1.9</td></tr>
+        <tr><td>6</td><td>Puzey's Barrel (Logan Alderson)</td><td>5-9</td><td>1784.4</td><td>1777.8</td><td>128</td><td>127</td><td>+0.5</td></tr>
+        <tr><td>7</td><td>Team Littrell (Parker Littrell)</td><td>6-8</td><td>1485.16</td><td>1485.3</td><td>106.1</td><td>106</td><td>0</td></tr>
+        <tr><td>8</td><td>Urban Meyer's Sunday Scaries (CJ Tackett)</td><td>6-8</td><td>1510.36</td><td>1550.4</td><td>107.9</td><td>111</td><td>-2.9</td></tr>
+        <tr><td>9</td><td>Balls Mcgee (Isaac Puzey)</td><td>5-9</td><td>1495.8</td><td>1729.3</td><td>106.8</td><td>124</td><td>-16.7</td></tr>
+        <tr><td>10</td><td>Thicc Succ (Tyler Blevins)</td><td>5-9</td><td>1476.58</td><td>1586.4</td><td>105.5</td><td>113</td><td>-7.8</td></tr>
+        <tr><td>11</td><td>Fantasy Foursome (Garrett Johnson)</td><td>5-9</td><td>1452.44</td><td>1682.8</td><td>103.7</td><td>120</td><td>-16.5</td></tr>
+        <tr><td>12</td><td>Nobody's Hurt (Eli Hurt)</td><td>4-10</td><td>1477.66</td><td>1714.4</td><td>105.5</td><td>123</td><td>-16.9</td></tr>
+      </table>
+    </details>
+  </div>
+
+  <footer>
+    <p>🔥 No-Tegridy Fantasy Football. <br> Powered by Tall Boy Shotguns & Ran Through Porn Stars. <br> SPONSORED BY: Jerk Riley's. Where we go to get JERKED 🔥</p>
+  </footer>
 </body>
 </html>
