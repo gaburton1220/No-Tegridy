@@ -3,199 +3,516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No-Tegridy Fantasy Football</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <style>
-        body {
-            font-family: 'Bebas Neue', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #1e1e1e, #343a40);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            color: white;
+            box-sizing: border-box;
         }
 
-        @keyframes gradientBG {
+        body {
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(-45deg, #000000, #1a1a1a, #2d1b69, #1e3c72, #2a5298);
+            background-size: 400% 400%;
+            animation: epicGradient 15s ease infinite;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes epicGradient {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
             100% { background-position: 0% 50%; }
         }
 
-        h1, h2 {
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #f0ad4e;
-            text-align: center;
-        }
-
-        nav {
-            background: #212529;
-            padding: 10px;
+        /* Floating particles effect */
+        .particles {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #f0ad4e;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header with logo */
+        .hero-header {
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b35, #f0ad4e, #ff6b35);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 50px rgba(240, 173, 78, 0.5);
+            margin-bottom: 20px;
+        }
+
+        @keyframes logoGlow {
+            0% { 
+                background-position: 0% 50%;
+                filter: brightness(1);
+            }
+            100% { 
+                background-position: 100% 50%;
+                filter: brightness(1.2);
+            }
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #f0ad4e;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: #ff6b35;
+            margin-bottom: 30px;
+        }
+
+        /* Enhanced Navigation */
+        nav {
+            background: rgba(33, 37, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
             z-index: 1000;
+            border-bottom: 3px solid #f0ad4e;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(240, 173, 78, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        nav ul li a:hover::before {
+            left: 100%;
         }
 
         nav ul li a:hover {
-            text-decoration: underline;
+            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(240, 173, 78, 0.4);
         }
 
-        #main-content {
-            margin-top: 70px; /* Offset for fixed nav */
+        /* Main content areas */
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        #main-content > div {
-            padding: 20px;
-            background: #343a40;
-            border-radius: 10px;
+        .content-card {
+            background: rgba(52, 58, 64, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(240, 173, 78, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(240, 173, 78, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            border-color: #f0ad4e;
+            box-shadow: 0 20px 40px rgba(240, 173, 78, 0.2);
+        }
+
+        .card-header {
+            font-size: 2rem;
+            color: #f0ad4e;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stream section */
+        .video-wrapper {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #f0ad4e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        .championship-banner {
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            color: #000;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 3px solid #ff6b35;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            animation: championGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes championGlow {
+            0% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6); }
+        }
+
+        .championship-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Video section */
+        .video-wrapper {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #f0ad4e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Twitter feed */
+        .twitter-container {
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #1da1f2;
+        }
+
+        /* Footer */
         footer {
-            background: #212529;
-            padding: 15px;
+            background: linear-gradient(135deg, #212529, #000);
+            padding: 40px 20px;
             text-align: center;
             color: #f0ad4e;
-            margin-top: 20px;
+            border-top: 3px solid #f0ad4e;
+            margin-top: 50px;
+            position: relative;
         }
 
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f0ad4e, #ff6b35, #f0ad4e);
+            animation: footerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes footerGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        footer p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            #main-content {
-                margin-top: 80px; /* Add more space for smaller screens */
+            .content-grid {
+                grid-template-columns: 1fr;
+                padding: 20px 10px;
+                gap: 20px;
+            }
+
+            .content-card {
+                padding: 20px;
             }
 
             nav ul {
-                flex-direction: column;
-                align-items: center;
+                gap: 15px;
             }
 
-            h1, h2 {
-                font-size: 1.5rem;
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
             }
         }
 
         @media (max-width: 480px) {
-            nav ul li {
-                margin: 5px 0;
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
             }
 
-            h1, h2 {
-                font-size: 1.2rem;
+            .hero-header {
+                padding: 30px 10px;
             }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(240, 173, 78, 0.3);
+            border-radius: 50%;
+            border-top-color: #f0ad4e;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+        <h1 class="logo">NO-TEGRIDY</h1>
+        <div class="tagline">🏈 FANTASY FOOTBALL LEGENDS 🏈</div>
+        <div class="subtitle">Where Champions Are Made & Dreams Are Crushed</div>
+    </div>
+
+    <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pictures.html">Pictures</a></li>
-            <li><a href="standings.html">Current Standings</a></li>
-            <li><a href="group.html">Meet Our Group</a></li>
-            <li><a href="roasting-isaac.html">Roasting Isaac</a></li>
-            <li><a href="past-seasons.html">Past Seasons</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="pictures.html">📸 Pictures</a></li>
+            <li><a href="standings.html">🏆 Standings</a></li>
+            <li><a href="group.html">👥 Our Legends</a></li>
+            <li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
+            <li><a href="past-seasons.html">📚 History</a></li>
         </ul>
     </nav>
 
-    <div id="main-content">
-        <div id="home">
-            <h2>🔥 Live Twitch Stream 🔥</h2>
-            <div id="stream-container" style="text-align: center;"></div>
-            <div id="offline-message" style="display: none; text-align: center; color: #ff4d4d; font-size: 1.2rem;">
-                No one is streaming right now, dumbass.
-            </div>
-
-            <h2 style="margin-top: 20px;">🏈 Live NFL Updates</h2>
-            <a class="twitter-timeline" data-width="100%" data-height="500" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">
-                Tweets by NFL
-            </a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-
-        <div id="weekly-updates">
-            <h2>🏈 Weekly Updates</h2>
-            <p>🏆Congratulations to CJ on winning the No-Tegridy 2024 Championship!🏆
-                <br> Rhmondre Stevenson is a whole bitch! <br> James Connor is a whole pussy!
-            </p>
-        </div>
-
-        <div id="video-section">
-            <h2>🎥 Watch How Fuckin’ Sick We Are</h2>
-            <iframe 
-                src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
-                width="100%" 
-                height="400" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
+    <!-- Championship Banner -->
+    <div style="padding: 0 20px; max-width: 1400px; margin: 0 auto;">
+        <div class="championship-banner">
+            <h2>🏆 2024 CHAMPION 🏆</h2>
+            <h3>ROOM 40'S NUTS (CJ TACKETT)</h3>
+            <p>THE LEGEND CONTINUES! 8-6 GRINDER MENTALITY PAYS OFF!</p>
         </div>
     </div>
 
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+        <!-- Video Section -->
+        <div class="content-card">
+            <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
+            <div class="card-content">
+                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
+                    🔥 Watch How Fuckin' Sick We Are 🔥
+                </p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Updates -->
+        <div class="content-card">
+            <div class="card-header">📰 WEEKLY CHAOS 📰</div>
+            <div class="card-content">
+                <h3 style="color: #ffd700; margin-bottom: 15px;">🎉 CHAMPIONSHIP AFTERMATH 🎉</h3>
+                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;">
+                    🏆 Congratulations to CJ on winning the No-Tegridy 2024 Championship! 🏆
+                </p>
+                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;">
+                    💀 Rhmondre Stevenson is a whole bitch!
+                </p>
+                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6;">
+                    🤡 James Connor is a whole pussy!
+                </p>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(240, 173, 78, 0.1); border-radius: 10px; border-left: 4px solid #f0ad4e;">
+                    <strong>🚨 2025 SEASON INCOMING 🚨</strong><br>
+                    Draft prep starts NOW. Don't be the next Isaac.
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div class="content-card">
+            <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
+            <div class="card-content">
+                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
+                    🔥 Watch How Fuckin' Sick We Are 🔥
+                </p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFL Updates -->
+        <div class="content-card">
+            <div class="card-header">🏈 NFL UPDATES 🏈</div>
+            <div class="card-content">
+                <div class="twitter-container">
+                    <a class="twitter-timeline" 
+                       data-width="100%" 
+                       data-height="500" 
+                       data-theme="dark"
+                       data-chrome="nofooter noborders"
+                       href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">
+                        Tweets by NFL
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Epic Footer -->
     <footer>
-        <p>🔥 No-Tegridy Fantasy Football. <br> Powered by Tall Boy Shotguns & Ran Through Porn Stars. <br> SPONSORED BY: Jerk Riley's. Where we go to get JERKED 🔥</p>
+        <p>
+            🔥 <strong>NO-TEGRIDY FANTASY FOOTBALL</strong> 🔥<br>
+            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Ran Through Porn Stars</span><br>
+            <span style="color: #ffd700;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
+            <br>
+            <em style="font-size: 0.9rem; opacity: 0.8;">Est. 2021 • Champions Forever • Legends Never Die</em>
+        </p>
     </footer>
 
+    <!-- Scripts -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        AOS.init();
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
 
-        const clientId = "ua07ll72rovai8gsuz42de6ezbcn8g";
-        const accessToken = "y8145oyz5u1sqctcvd7rbgzt92nusk";
-        const channelName = "notegridy69";
-
-        async function checkTwitchStream() {
-            const url = `https://api.twitch.tv/helix/streams?user_login=${channelName}`;
-            const response = await fetch(url, {
-                headers: {
-                    "Client-ID": clientId,
-                    "Authorization": `Bearer ${accessToken}`
-                }
-            });
-            const data = await response.json();
-            const stream = data.data[0];
-
-            if (stream) {
-                document.getElementById("stream-container").innerHTML = `
-                    <iframe
-                        src="https://player.twitch.tv/?channel=${channelName}&parent=${window.location.hostname}"
-                        height="400"
-                        width="100%"
-                        allowfullscreen
-                        frameborder="0">
-                    </iframe>`;
-                document.getElementById("offline-message").style.display = "none";
-            } else {
-                document.getElementById("offline-message").style.display = "block";
-                document.getElementById("stream-container").innerHTML = "";
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
             }
         }
 
-        checkTwitchStream();
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
