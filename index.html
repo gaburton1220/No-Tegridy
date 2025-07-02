@@ -612,100 +612,6 @@
     <!-- Scripts -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        // Poll functionality - Using in-memory storage instead of sessionStorage
-        let pollData = {
-            ashland: 0,
-            augusta: 0,
-            lexington: 0,
-            bowling: 0,
-            scottsdale: 0
-        };
-
-        let userHasVoted = false;
-
-        // Update poll display
-        function updatePollDisplay() {
-            const totalVotes = Object.values(pollData).reduce((sum, votes) => sum + votes, 0);
-            document.getElementById('totalVotes').textContent = totalVotes;
-
-            Object.keys(pollData).forEach(option => {
-                const percentage = totalVotes > 0 ? Math.round((pollData[option] / totalVotes) * 100) : 0;
-                const fillElement = document.querySelector(`[data-option="${option}"] .poll-fill`);
-                const percentageElement = document.querySelector(`[data-option="${option}"] .poll-percentage`);
-                
-                if (fillElement && percentageElement) {
-                    fillElement.style.width = percentage + '%';
-                    percentageElement.textContent = percentage + '%';
-                }
-            });
-
-            // Update cursor style based on voting status
-            document.querySelectorAll('.poll-option').forEach(option => {
-                option.style.cursor = userHasVoted ? 'default' : 'pointer';
-            });
-        }
-
-        // Handle poll option click
-        function handlePollVote(option) {
-            if (userHasVoted) {
-                showMessage("You've already voted! 🗳️", '#ff6b35');
-                return;
-            }
-
-            pollData[option]++;
-            userHasVoted = true;
-            updatePollDisplay();
-            
-            // Add voted class to the clicked option
-            document.querySelector(`[data-option="${option}"]`).classList.add('voted');
-            
-            showMessage("Vote recorded! Thanks for participating! 🎉", '#f0ad4e');
-        }
-
-        // Reset poll (for demo purposes)
-        function resetPoll() {
-            pollData = {
-                ashland: 0,
-                augusta: 0,
-                lexington: 0,
-                bowling: 0,
-                scottsdale: 0
-            };
-            userHasVoted = false;
-            document.querySelectorAll('.poll-option').forEach(option => {
-                option.classList.remove('voted');
-            });
-            updatePollDisplay();
-            showMessage("Poll reset! You can vote again.", '#f0ad4e');
-        }
-
-        // Show message
-        function showMessage(text, color) {
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = text;
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(0, 0, 0, 0.9);
-                color: ${color};
-                padding: 20px;
-                border-radius: 10px;
-                border: 2px solid ${color};
-                font-size: 1.2rem;
-                font-weight: bold;
-                z-index: 9999;
-                animation: fadeInOut 3s ease;
-            `;
-            
-            document.body.appendChild(messageDiv);
-            
-            setTimeout(() => {
-                document.body.removeChild(messageDiv);
-            }, 3000);
-        }
-
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.querySelector('.particles');
@@ -724,19 +630,6 @@
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-            updatePollDisplay();
-            
-            // Add click event listeners to poll options
-            document.querySelectorAll('.poll-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const optionKey = this.getAttribute('data-option');
-                    handlePollVote(optionKey);
-                });
-            });
-
-            // Add reset button listener (uncomment to enable)
-            // document.getElementById('resetPoll').style.display = 'block';
-            // document.getElementById('resetPoll').addEventListener('click', resetPoll);
         });
 
         // Add smooth scrolling
