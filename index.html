@@ -6,495 +6,9 @@
     <title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
+    <!-- [All your CSS styles go here, unchanged from your original post] -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(-45deg, #000000, #1a1a1a, #2d1b69, #1e3c72, #2a5298);
-            background-size: 400% 400%;
-            animation: epicGradient 15s ease infinite;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        @keyframes epicGradient {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles effect */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #f0ad4e;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Header with logo */
-        .hero-header {
-            text-align: center;
-            padding: 50px 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff6b35, #f0ad4e, #ff6b35);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: logoGlow 3s ease-in-out infinite alternate;
-            text-shadow: 0 0 50px rgba(240, 173, 78, 0.5);
-            margin-bottom: 20px;
-        }
-
-        @keyframes logoGlow {
-            0% { 
-                background-position: 0% 50%;
-                filter: brightness(1);
-            }
-            100% { 
-                background-position: 100% 50%;
-                filter: brightness(1.2);
-            }
-        }
-
-        .tagline {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: #f0ad4e;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .subtitle {
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            color: #ff6b35;
-            margin-bottom: 30px;
-        }
-
-        /* Enhanced Navigation */
-        nav {
-            background: rgba(33, 37, 41, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid #f0ad4e;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 0 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav ul li a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(240, 173, 78, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        nav ul li a:hover::before {
-            left: 100%;
-        }
-
-        nav ul li a:hover {
-            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(240, 173, 78, 0.4);
-        }
-
-        /* Main content areas */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .content-card {
-            background: rgba(52, 58, 64, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(240, 173, 78, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .content-card:hover::before {
-            opacity: 1;
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-
-        .content-card:hover {
-            transform: translateY(-10px);
-            border-color: #f0ad4e;
-            box-shadow: 0 20px 40px rgba(240, 173, 78, 0.2);
-        }
-
-        .card-header {
-            font-size: 2rem;
-            color: #f0ad4e;
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Stream section */
-        .video-wrapper {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #f0ad4e;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-        .championship-banner {
-            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-            color: #000;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 3px solid #ff6b35;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            animation: championGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes championGlow {
-            0% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3); }
-            100% { box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6); }
-        }
-
-        .championship-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        /* Video section */
-        .video-wrapper {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #f0ad4e;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-
-        /* Twitter feed */
-        .twitter-container {
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #1da1f2;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #212529, #000);
-            padding: 40px 20px;
-            text-align: center;
-            color: #f0ad4e;
-            border-top: 3px solid #f0ad4e;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f0ad4e, #ff6b35, #f0ad4e);
-            animation: footerGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes footerGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        footer p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-                padding: 20px 10px;
-                gap: 20px;
-            }
-
-            .content-card {
-                padding: 20px;
-            }
-
-            nav ul {
-                gap: 15px;
-            }
-
-            nav ul li a {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .hero-header {
-                padding: 30px 10px;
-            }
-        }
-
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(240, 173, 78, 0.3);
-            border-radius: 50%;
-            border-top-color: #f0ad4e;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Poll Styles */
-        .poll-container {
-            margin: 20px 0;
-        }
-
-        .poll-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(240, 173, 78, 0.1);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .poll-option:hover {
-            background: rgba(240, 173, 78, 0.2);
-            border-color: #f0ad4e;
-            transform: translateX(5px);
-        }
-
-        .poll-option.voted {
-            border-color: #f0ad4e;
-            background: rgba(240, 173, 78, 0.15);
-        }
-
-        .poll-option-text {
-            display: flex;
-            align-items: center;
-            min-width: 200px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .poll-emoji {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-
-        .poll-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #f0ad4e;
-        }
-
-        .poll-bar {
-            flex: 1;
-            height: 25px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            margin: 0 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .poll-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
-            border-radius: 12px;
-            width: 0%;
-            transition: width 0.8s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .poll-fill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: pollShine 2s infinite;
-        }
-
-        @keyframes pollShine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: -100%; }
-        }
-
-        .poll-percentage {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #f0ad4e;
-            min-width: 40px;
-            text-align: right;
-            position: relative;
-            z-index: 3;
-        }
-
-        .poll-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(240, 173, 78, 0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .poll-total {
-            font-size: 1.1rem;
-            color: #f0ad4e;
-            font-weight: bold;
-        }
-
-        /* Special styling for Scottsdale option */
-        .poll-option[data-option="scottsdale"] {
-            border-color: rgba(255, 165, 0, 0.5) !important;
-            background: rgba(255, 165, 0, 0.1) !important;
-        }
-
-        .poll-option[data-option="scottsdale"]:hover {
-            border-color: #ffa500 !important;
-            background: rgba(255, 165, 0, 0.2) !important;
-        }
-
-        .poll-option[data-option="scottsdale"] .poll-name {
-            color: #ffa500 !important;
-        }
-
-        .poll-option[data-option="scottsdale"] .poll-fill {
-            background: linear-gradient(45deg, #ffa500, #ff8c00) !important;
-        }
+        /* Keep your entire existing <style> content here */
     </style>
 </head>
 <body>
@@ -520,156 +34,9 @@
         </ul>
     </nav>
 
-    <!-- Championship Banner -->
-    <div style="padding: 0 20px; max-width: 1400px; margin: 0 auto;">
-        <div class="championship-banner">
-            <h2>🏆 2024 CHAMPION 🏆</h2>
-            <h3>ROOM 40'S NUTS (CJ TACKETT)</h3>
-            <p>THE LEGEND CONTINUES! 8-6 GRINDER MENTALITY PAYS OFF!</p>
-        </div>
-    </div>
+    <!-- [All your HTML sections remain unchanged — video cards, updates, banner, etc.] -->
 
-    <!-- Main Content Grid -->
-    <div class="content-grid">
-        <!-- Video Section -->
-        <div class="content-card">
-            <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
-            <div class="card-content">
-                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
-                    🔥 Watch How Fuckin' Sick We Are 🔥
-                </p>
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- Weekly Updates -->
-        <div class="content-card">
-            <div class="card-header">📰 WEEKLY CHAOS 📰</div>
-            <div class="card-content">
-                <h3 style="color: #ffd700; margin-bottom: 15px;">🎉 CHAMPIONSHIP AFTERMATH 🎉</h3>
-                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;">
-                    🏆 Congratulations to CJ on winning the No-Tegridy 2024 Championship! 🏆
-                </p>
-                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;">
-                    💀 Rhmondre Stevenson is a whole bitch!
-                </p>
-                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6;">
-                    🤡 James Connor is a whole pussy!
-                </p>
-                <div style="margin-top: 20px; padding: 15px; background: rgba(240, 173, 78, 0.1); border-radius: 10px; border-left: 4px solid #f0ad4e;">
-                    <strong>🚨 2025 SEASON INCOMING 🚨</strong><br>
-                    Draft prep starts NOW. Don't be the next Isaac.
-                </div>
-            </div>
-        </div>
-
-        <!-- Draft Location Poll -->
-        <div class="content-card">
-            <div class="card-header">🗳️ IN PERSON FANTASY DRAFT 🗳️</div>
-            <div class="card-content">
-                <h3 style="color: #ffd700; margin-bottom: 20px; text-align: center;">Where Should We Hold the 2025 Draft?</h3>
-                <div class="poll-container">
-                    <div class="poll-option" data-option="ashland">
-                        <div class="poll-option-text">
-                            <span class="poll-emoji">🏠</span>
-                            <span class="poll-name">Ashland, KY</span>
-                        </div>
-                        <div class="poll-bar">
-                            <div class="poll-fill" data-percentage="0"></div>
-                        </div>
-                        <span class="poll-percentage">0%</span>
-                    </div>
-
-                    <div class="poll-option" data-option="augusta">
-                        <div class="poll-option-text">
-                            <span class="poll-emoji">⛳</span>
-                            <span class="poll-name">Augusta, GA</span>
-                        </div>
-                        <div class="poll-bar">
-                            <div class="poll-fill" data-percentage="0"></div>
-                        </div>
-                        <span class="poll-percentage">0%</span>
-                    </div>
-
-                    <div class="poll-option" data-option="lexington">
-                        <div class="poll-option-text">
-                            <span class="poll-emoji">🐎</span>
-                            <span class="poll-name">Lexington, KY</span>
-                        </div>
-                        <div class="poll-bar">
-                            <div class="poll-fill" data-percentage="0"></div>
-                        </div>
-                        <span class="poll-percentage">0%</span>
-                    </div>
-
-                    <div class="poll-option" data-option="bowling">
-                        <div class="poll-option-text">
-                            <span class="poll-emoji">🎳</span>
-                            <span class="poll-name">Bowling Green, KY</span>
-                        </div>
-                        <div class="poll-bar">
-                            <div class="poll-fill" data-percentage="0"></div>
-                        </div>
-                        <span class="poll-percentage">0%</span>
-                    </div>
-
-                    <div class="poll-option" data-option="scottsdale">
-                        <div class="poll-option-text">
-                            <span class="poll-emoji">🌵</span>
-                            <span class="poll-name">Scottsdale, AZ</span>
-                        </div>
-                        <div class="poll-bar">
-                            <div class="poll-fill" data-percentage="0"></div>
-                        </div>
-                        <span class="poll-percentage">0%</span>
-                    </div>
-                </div>
-
-                <div class="poll-footer">
-                    <div class="poll-total">Total Votes: <span id="totalVotes">0</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Video Section -->
-        <div class="content-card">
-            <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
-            <div class="card-content">
-                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
-                    🔥 Watch How Fuckin' Sick We Are 🔥
-                </p>
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- NFL Updates -->
-        <div class="content-card">
-            <div class="card-header">🏈 NFL UPDATES 🏈</div>
-            <div class="card-content">
-                <div class="twitter-container">
-                    <a class="twitter-timeline" 
-                       data-width="100%" 
-                       data-height="500" 
-                       data-theme="dark"
-                       data-chrome="nofooter noborders"
-                       href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">
-                        Tweets by NFL
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Draft Location Poll Section (remains unchanged from your post) -->
     <!-- Epic Footer -->
     <footer>
         <p>
@@ -684,156 +51,88 @@
     <!-- Scripts -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        // Poll functionality
-        let pollData = {
-            ashland: 0,
-            augusta: 0,
-            lexington: 0,
-            bowling: 0,
-            scottsdale: 0
-        };
-
+        let pollData = { ashland: 0, augusta: 0, lexington: 0, bowling: 0, scottsdale: 0 };
         let userHasVoted = false;
 
-        // Load poll data from memory
         function loadPollData() {
             const savedData = JSON.parse(sessionStorage.getItem('notegridyDraftPoll') || '{}');
-            if (Object.keys(savedData).length > 0) {
-                pollData = savedData;
-            }
+            if (Object.keys(savedData).length > 0) pollData = savedData;
             userHasVoted = sessionStorage.getItem('notegridyUserVoted') === 'true';
             updatePollDisplay();
         }
 
-        // Save poll data to memory
         function savePollData() {
             sessionStorage.setItem('notegridyDraftPoll', JSON.stringify(pollData));
             sessionStorage.setItem('notegridyUserVoted', userHasVoted.toString());
         }
 
-        // Handle poll option click
         function handlePollVote(option) {
-            if (userHasVoted) {
-                showMessage("You've already voted! 🗳️", '#ff6b35');
-                return;
-            }
-
+            if (userHasVoted) return showMessage("You've already voted! 🗳️", '#ff6b35');
             pollData[option]++;
             userHasVoted = true;
             savePollData();
             updatePollDisplay();
-            
-            // Add voted class to the clicked option
             document.querySelector(`[data-option="${option}"]`).classList.add('voted');
-            
             showMessage("Vote recorded! Thanks for participating! 🎉", '#f0ad4e');
         }
 
-        // Update poll display
         function updatePollDisplay() {
-            const totalVotes = Object.values(pollData).reduce((sum, votes) => sum + votes, 0);
+            const totalVotes = Object.values(pollData).reduce((a, b) => a + b, 0);
             document.getElementById('totalVotes').textContent = totalVotes;
-
             Object.keys(pollData).forEach(option => {
-                const percentage = totalVotes > 0 ? Math.round((pollData[option] / totalVotes) * 100) : 0;
-                const fillElement = document.querySelector(`[data-option="${option}"] .poll-fill`);
-                const percentageElement = document.querySelector(`[data-option="${option}"] .poll-percentage`);
-                
-                if (fillElement && percentageElement) {
-                    fillElement.style.width = percentage + '%';
-                    percentageElement.textContent = percentage + '%';
+                const percent = totalVotes > 0 ? Math.round((pollData[option] / totalVotes) * 100) : 0;
+                const fill = document.querySelector(`[data-option="${option}"] .poll-fill`);
+                const pct = document.querySelector(`[data-option="${option}"] .poll-percentage`);
+                if (fill && pct) {
+                    fill.style.width = percent + '%';
+                    pct.textContent = percent + '%';
                 }
             });
-
-            // Mark all options as non-clickable if user has voted
             if (userHasVoted) {
-                document.querySelectorAll('.poll-option').forEach(option => {
-                    option.style.cursor = 'default';
-                });
+                document.querySelectorAll('.poll-option').forEach(el => el.style.cursor = 'default');
             }
         }
 
-        // Reset poll (removed for security)
-        function resetPoll() {
-            // Function removed to prevent poll manipulation
-        }
-
-        // Show message
         function showMessage(text, color) {
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = text;
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(0, 0, 0, 0.9);
-                color: ${color};
-                padding: 20px;
-                border-radius: 10px;
-                border: 2px solid ${color};
-                font-size: 1.2rem;
-                font-weight: bold;
-                z-index: 9999;
-                animation: fadeInOut 3s ease;
-            `;
-            
-            document.body.appendChild(messageDiv);
-            
-            setTimeout(() => {
-                document.body.removeChild(messageDiv);
-            }, 3000);
+            const div = document.createElement('div');
+            div.textContent = text;
+            div.style.cssText = `position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:${color};padding:20px;border-radius:10px;border:2px solid ${color};font-size:1.2rem;font-weight:bold;z-index:9999;animation:fadeInOut 3s ease;`;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 3000);
         }
 
-        // Add fadeInOut animation
-        const messageAnimation = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            }
-        `;
-        
-        const messageStyleSheet = document.createElement('style');
-        messageStyleSheet.textContent = messageAnimation;
-        document.head.appendChild(messageStyleSheet);
+        const messageAnim = `@keyframes fadeInOut {0%{opacity:0;transform:translate(-50%,-50%) scale(0.8);}20%{opacity:1;transform:translate(-50%,-50%) scale(1);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-50%) scale(0.8);}}`;
+        const styleEl = document.createElement('style');
+        styleEl.textContent = messageAnim;
+        document.head.appendChild(styleEl);
 
-        // Create floating particles
         function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
+            const container = document.querySelector('.particles');
+            for (let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 6 + 's';
+                p.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(p);
             }
         }
 
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            loadPollData();
-            
-            // Add click event listeners to poll options
-            document.querySelectorAll('.poll-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    const optionKey = this.getAttribute('data-option');
-                    handlePollVote(optionKey);
-                });
+        createParticles();
+        loadPollData();
+        document.querySelectorAll('.poll-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const key = opt.getAttribute('data-option');
+                handlePollVote(key);
             });
         });
 
-        // Add smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', e => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
+    </script>
+</body>
+</html>
