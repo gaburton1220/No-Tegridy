@@ -363,6 +363,138 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Poll Styles */
+        .poll-container {
+            margin: 20px 0;
+        }
+
+        .poll-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(240, 173, 78, 0.1);
+            border: 2px solid rgba(240, 173, 78, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .poll-option:hover {
+            background: rgba(240, 173, 78, 0.2);
+            border-color: #f0ad4e;
+            transform: translateX(5px);
+        }
+
+        .poll-option.voted {
+            border-color: #f0ad4e;
+            background: rgba(240, 173, 78, 0.15);
+        }
+
+        .poll-option-text {
+            display: flex;
+            align-items: center;
+            min-width: 200px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .poll-emoji {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .poll-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #f0ad4e;
+        }
+
+        .poll-bar {
+            flex: 1;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin: 0 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .poll-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poll-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: pollShine 2s infinite;
+        }
+
+        @keyframes pollShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        .poll-percentage {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #f0ad4e;
+            min-width: 40px;
+            text-align: right;
+            position: relative;
+            z-index: 3;
+        }
+
+        .poll-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(240, 173, 78, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .poll-total {
+            font-size: 1.1rem;
+            color: #f0ad4e;
+            font-weight: bold;
+        }
+
+        /* Special styling for Scottsdale option */
+        .poll-option[data-option="scottsdale"] {
+            border-color: rgba(255, 165, 0, 0.5) !important;
+            background: rgba(255, 165, 0, 0.1) !important;
+        }
+
+        .poll-option[data-option="scottsdale"]:hover {
+            border-color: #ffa500 !important;
+            background: rgba(255, 165, 0, 0.2) !important;
+        }
+
+        .poll-option[data-option="scottsdale"] .poll-name {
+            color: #ffa500 !important;
+        }
+
+        .poll-option[data-option="scottsdale"] .poll-fill {
+            background: linear-gradient(45deg, #ffa500, #ff8c00) !important;
+        }
     </style>
 </head>
 <body>
@@ -436,6 +568,74 @@
             </div>
         </div>
 
+        <!-- Draft Location Poll -->
+        <div class="content-card">
+            <div class="card-header">🗳️ IN PERSON FANTASY DRAFT 🗳️</div>
+            <div class="card-content">
+                <h3 style="color: #ffd700; margin-bottom: 20px; text-align: center;">Where Should We Hold the 2025 Draft?</h3>
+                <div class="poll-container">
+                    <div class="poll-option" data-option="ashland">
+                        <div class="poll-option-text">
+                            <span class="poll-emoji">🏠</span>
+                            <span class="poll-name">Ashland, KY</span>
+                        </div>
+                        <div class="poll-bar">
+                            <div class="poll-fill" data-percentage="0"></div>
+                        </div>
+                        <span class="poll-percentage">0%</span>
+                    </div>
+
+                    <div class="poll-option" data-option="augusta">
+                        <div class="poll-option-text">
+                            <span class="poll-emoji">⛳</span>
+                            <span class="poll-name">Augusta, GA</span>
+                        </div>
+                        <div class="poll-bar">
+                            <div class="poll-fill" data-percentage="0"></div>
+                        </div>
+                        <span class="poll-percentage">0%</span>
+                    </div>
+
+                    <div class="poll-option" data-option="lexington">
+                        <div class="poll-option-text">
+                            <span class="poll-emoji">🐎</span>
+                            <span class="poll-name">Lexington, KY</span>
+                        </div>
+                        <div class="poll-bar">
+                            <div class="poll-fill" data-percentage="0"></div>
+                        </div>
+                        <span class="poll-percentage">0%</span>
+                    </div>
+
+                    <div class="poll-option" data-option="bowling">
+                        <div class="poll-option-text">
+                            <span class="poll-emoji">🎳</span>
+                            <span class="poll-name">Bowling Green, KY</span>
+                        </div>
+                        <div class="poll-bar">
+                            <div class="poll-fill" data-percentage="0"></div>
+                        </div>
+                        <span class="poll-percentage">0%</span>
+                    </div>
+
+                    <div class="poll-option" data-option="scottsdale">
+                        <div class="poll-option-text">
+                            <span class="poll-emoji">🌵</span>
+                            <span class="poll-name">Scottsdale, AZ</span>
+                        </div>
+                        <div class="poll-bar">
+                            <div class="poll-fill" data-percentage="0"></div>
+                        </div>
+                        <span class="poll-percentage">0%</span>
+                    </div>
+                </div>
+
+                <div class="poll-footer">
+                    <div class="poll-total">Total Votes: <span id="totalVotes">0</span></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Video Section -->
         <div class="content-card">
             <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
@@ -484,35 +684,108 @@
     <!-- Scripts -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
+        // Poll functionality
+        let pollData = {
+            ashland: 0,
+            augusta: 0,
+            lexington: 0,
+            bowling: 0,
+            scottsdale: 0
+        };
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
+        let userHasVoted = false;
+
+        // Load poll data from memory
+        function loadPollData() {
+            const savedData = JSON.parse(sessionStorage.getItem('notegridyDraftPoll') || '{}');
+            if (Object.keys(savedData).length > 0) {
+                pollData = savedData;
+            }
+            userHasVoted = sessionStorage.getItem('notegridyUserVoted') === 'true';
+            updatePollDisplay();
+        }
+
+        // Save poll data to memory
+        function savePollData() {
+            sessionStorage.setItem('notegridyDraftPoll', JSON.stringify(pollData));
+            sessionStorage.setItem('notegridyUserVoted', userHasVoted.toString());
+        }
+
+        // Handle poll option click
+        function handlePollVote(option) {
+            if (userHasVoted) {
+                showMessage("You've already voted! 🗳️", '#ff6b35');
+                return;
+            }
+
+            pollData[option]++;
+            userHasVoted = true;
+            savePollData();
+            updatePollDisplay();
+            
+            // Add voted class to the clicked option
+            document.querySelector(`[data-option="${option}"]`).classList.add('voted');
+            
+            showMessage("Vote recorded! Thanks for participating! 🎉", '#f0ad4e');
+        }
+
+        // Update poll display
+        function updatePollDisplay() {
+            const totalVotes = Object.values(pollData).reduce((sum, votes) => sum + votes, 0);
+            document.getElementById('totalVotes').textContent = totalVotes;
+
+            Object.keys(pollData).forEach(option => {
+                const percentage = totalVotes > 0 ? Math.round((pollData[option] / totalVotes) * 100) : 0;
+                const fillElement = document.querySelector(`[data-option="${option}"] .poll-fill`);
+                const percentageElement = document.querySelector(`[data-option="${option}"] .poll-percentage`);
+                
+                if (fillElement && percentageElement) {
+                    fillElement.style.width = percentage + '%';
+                    percentageElement.textContent = percentage + '%';
+                }
+            });
+
+            // Mark all options as non-clickable if user has voted
+            if (userHasVoted) {
+                document.querySelectorAll('.poll-option').forEach(option => {
+                    option.style.cursor = 'default';
+                });
             }
         }
 
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-        });
+        // Reset poll (removed for security)
+        function resetPoll() {
+            // Function removed to prevent poll manipulation
+        }
 
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+        // Show message
+        function showMessage(text, color) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = text;
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.9);
+                color: ${color};
+                padding: 20px;
+                border-radius: 10px;
+                border: 2px solid ${color};
+                font-size: 1.2rem;
+                font-weight: bold;
+                z-index: 9999;
+                animation: fadeInOut 3s ease;
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(messageDiv);
+            }, 3000);
+        }
+
+        // Add fadeInOut animation
+        const messageAnimation = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8
