@@ -561,23 +561,35 @@
         </div>
 
         <!-- Draft Location Poll -->
+
+        <!-- Draft Day Countdown -->
         <div class="content-card">
-            <div class="card-header">🗳️ IN PERSON FANTASY DRAFT 🗳️</div>
-            <div class="card-content">
-                <h3 style="color: #ffd700; margin-bottom: 20px; text-align: center;">Where Should We Hold the 2025 Draft?</h3>
-                <div style="border-radius: 15px; overflow: hidden; border: 3px solid #f0ad4e; box-shadow: 0 10px 30px rgba(240, 173, 78, 0.3);">
-                    <iframe 
-                        src="https://docs.google.com/forms/d/e/1FAIpQLScFUDTA9YzR0om_cYbhmvfBDj8GE27V6ZNYj0e53cr6CvhH2g/viewform?embedded=true" 
-                        width="100%" 
-                        height="600" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
-                        style="background: white;">
-                        Loading…
-                    </iframe>
+            <div class="card-header">⏳ DRAFT DAY COUNTDOWN ⏳</div>
+            <div class="card-content" style="text-align:center">
+                <p style="font-size:1.1rem; margin-bottom:15px;">Draft: Monday, September 1, 2025 at 7:00 PM</p>
+                <div id="draft-countdown" style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
+                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
+                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-days">--</div>
+                        <div style="color:#f0ad4e;letter-spacing:1px;">DAYS</div>
+                    </div>
+                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
+                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-hours">--</div>
+                        <div style="color:#f0ad4e;letter-spacing:1px;">HOURS</div>
+                    </div>
+                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
+                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-mins">--</div>
+                        <div style="color:#f0ad4e;letter-spacing:1px;">MINUTES</div>
+                    </div>
+                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
+                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-secs">--</div>
+                        <div style="color:#f0ad4e;letter-spacing:1px;">SECONDS</div>
+                    </div>
                 </div>
+                <div id="dd-done" style="display:none;margin-top:15px;color:#ffd700;font-weight:bold;">It’s Draft Time.</div>
             </div>
+        </div>
+
+
         </div>
 
         <!-- NFL Updates -->
@@ -645,5 +657,44 @@
             });
         });
     </script>
+
+    <script>
+        // Draft countdown (local time)
+        (function() {
+            // September 1, 2025 19:00 local time
+            var target = new Date(2025, 8, 1, 19, 0, 0); // months are 0-indexed
+            var elDays = document.getElementById('dd-days');
+            var elHours = document.getElementById('dd-hours');
+            var elMins = document.getElementById('dd-mins');
+            var elSecs = document.getElementById('dd-secs');
+            var elDone = document.getElementById('dd-done');
+            if (!elDays || !elHours || !elMins || !elSecs) return;
+
+            function tick() {
+                var now = new Date();
+                var diff = target - now;
+                if (diff <= 0) {
+                    elDays.textContent = '0';
+                    elHours.textContent = '0';
+                    elMins.textContent = '0';
+                    elSecs.textContent = '0';
+                    if (elDone) elDone.style.display = 'block';
+                    clearInterval(timer);
+                    return;
+                }
+                var d = Math.floor(diff / (1000*60*60*24));
+                var h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                var m = Math.floor((diff % (1000*60*60)) / (1000*60));
+                var s = Math.floor((diff % (1000*60)) / 1000);
+                elDays.textContent = d;
+                elHours.textContent = h;
+                elMins.textContent = m;
+                elSecs.textContent = s;
+            }
+            var timer = setInterval(tick, 1000);
+            tick();
+        })();
+    </script>
+
 </body>
 </html>
