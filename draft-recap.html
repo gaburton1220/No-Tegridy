@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;family=Orbitron:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="favicon-32x32.png" rel="icon" type="image/png"/>
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
+    <link href="favicon-32x32.png" rel="icon" type="image/png"/>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -163,173 +162,141 @@
             box-shadow: 0 5px 15px rgba(240, 173, 78, 0.4);
         }
 
-        /* Main content areas */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
+        /* Section styling */
+        .section {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .content-card {
-            background: rgba(52, 58, 64, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(240, 173, 78, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .content-card:hover::before {
-            opacity: 1;
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-
-        .content-card:hover {
-            transform: translateY(-10px);
-            border-color: #f0ad4e;
-            box-shadow: 0 20px 40px rgba(240, 173, 78, 0.2);
-        }
-
-        .card-header {
-            font-size: 2rem;
+        .section h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
             color: #f0ad4e;
             text-align: center;
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
+            letter-spacing: 3px;
         }
 
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Stream section */
-        .video-wrapper {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #f0ad4e;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-        }
-
-        /* Power Rankings */
-        .power-rankings {
-            list-style: none;
-            padding: 0;
-        }
-
-        .power-ranking-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(240, 173, 78, 0.1);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .power-ranking-item:hover {
-            background: rgba(240, 173, 78, 0.2);
-            border-color: #f0ad4e;
-            transform: translateX(5px);
-        }
-
-        .ranking-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
-            min-width: 40px;
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #ff6b35;
             text-align: center;
-            margin-right: 15px;
+            margin: 40px 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .ranking-team {
-            font-size: 1.1rem;
-            font-weight: bold;
+        .section h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #ffd700;
+            margin: 30px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section p {
+            text-align: center;
+            font-size: 1.2rem;
             color: #f0ad4e;
-            flex-grow: 1;
+            margin-bottom: 30px;
         }
 
-        /* Draft Recap */
+        /* Draft team styling */
         .draft-team {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: rgba(240, 173, 78, 0.08);
-            border: 2px solid rgba(240, 173, 78, 0.3);
+            margin: 1.25rem 0;
+            padding: 1.5rem;
+            border: 2px solid #f0ad4e;
             border-radius: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
         }
 
         .draft-team:hover {
-            background: rgba(240, 173, 78, 0.15);
-            border-color: #f0ad4e;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(240, 173, 78, 0.3);
+            border-color: #ff6b35;
         }
 
         .draft-team-name {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: #f0ad4e;
             font-weight: bold;
             margin-bottom: 15px;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .draft-picks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 8px;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .draft-picks li {
+            padding: 8px 12px;
+            background: rgba(240, 173, 78, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #ff6b35;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .draft-picks li:hover {
+            background: rgba(240, 173, 78, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* Table styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .table thead {
+            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
+        }
+
+        .table thead th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid rgba(240, 173, 78, 0.2);
+            transition: background 0.2s ease;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(240, 173, 78, 0.1);
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            color: white;
         }
 
         .draft-pick {
-            padding: 5px 10px;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b35, #f0ad4e);
+            color: #000;
+            font-weight: bold;
+            text-align: center;
             border-radius: 5px;
-            border-left: 3px solid #ff6b35;
-        }
-
-        .draft-pick strong {
-            color: #ffd700;
-        }
-
-        /* Twitter feed */
-        .twitter-container {
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #1da1f2;
+            padding: 5px 8px;
+            min-width: 40px;
         }
 
         /* Footer */
@@ -368,16 +335,6 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-                padding: 20px 10px;
-                gap: 20px;
-            }
-
-            .content-card {
-                padding: 20px;
-            }
-
             nav ul {
                 gap: 15px;
             }
@@ -390,6 +347,15 @@
             .draft-picks {
                 grid-template-columns: 1fr;
             }
+
+            .table {
+                font-size: 0.9rem;
+            }
+
+            .table thead th,
+            .table tbody td {
+                padding: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -398,481 +364,776 @@
                 gap: 10px;
             }
 
-            .hero-header {
-                padding: 30px 10px;
+            .section {
+                padding: 30px 15px;
+            }
+
+            .draft-team {
+                padding: 1rem;
+            }
+
+            .table thead th,
+            .table tbody td {
+                padding: 8px;
+                font-size: 0.8rem;
             }
         }
 
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(240, 173, 78, 0.3);
-            border-radius: 50%;
-            border-top-color: #f0ad4e;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
+        /* Particle generation */
+        .particles::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #f0ad4e, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ff6b35, transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent);
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            animation: particleFloat 20s linear infinite;
+            opacity: 0.3;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
         }
     </style>
-<!-- Floating particles -->
-<div class="particles"></div>
-       <!-- Navigation -->
-<nav>
-<ul>
-<li><a href="index.html">🏠 Home</a></li>
-<li><a href="pictures.html">📸 Pictures</a></li>
-<li><a href="standings.html">🏆 Standings</a></li>
-<li><a href="group.html">👥 Our Legends</a></li>
-<li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
-<li><a href="past-seasons.html">📚 History</a></li>
-<li><a href="draft-recap.html">📰 Draft Recap</a></li>
 </head>
 <body>
-<nav>
-<ul>
-<li><a href="index.html">🏠 Home</a></li>
-<li><a href="pictures.html">📸 Pictures</a></li>
-<li><a href="standings.html">🏆 Standings</a></li>
-<li><a href="group.html">👥 Our Legends</a></li>
-<li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
-<li><a href="past-seasons.html">📚 History</a></li>
-</ul>
-</nav>
-<main>
-
-<section class="section">
-  <h1 style="font-family:'Bebas Neue',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; letter-spacing:1px;">2025 Draft Recap</h1>
-  <p>Full results by team and by round.</p>
-</section>
-
-<!-- BY TEAM START -->
-<section class="section">
-  <h2>By Team</h2>
-  
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Mr Pfizer + Swifties for Kamala</h3>
-      <ul class="draft-picks"><li>Jahmyr Gibbs Det, RB</li>
-<li>Josh Jacobs GB, RB</li>
-<li>George Kittle SF, TE</li>
-<li>Jaxon Smith-Njigba Sea, WR</li>
-<li>DeVonta Smith Phi, WR</li>
-<li>Jameson Williams Det, WR</li>
-<li>Brock Purdy SF, QB</li>
-<li>Chris Olave NO, WR</li>
-<li>Javonte Williams Dal, RB</li>
-<li>Jerome Ford Cle, RB</li>
-<li>Brandon Aubrey Dal, K</li>
-<li>Jordan Love GB, QB</li>
-<li>Joe Mixon Hou, RB</li>
-<li>Amari Cooper LV, WR</li>
-<li>Rashod Bateman Bal, WR</li>
-<li>Bills D/ST Buf, D/ST</li></ul>
-    </section>
+    <!-- Floating particles -->
+    <div class="particles"></div>
     
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="pictures.html">📸 Pictures</a></li>
+            <li><a href="standings.html">🏆 Standings</a></li>
+            <li><a href="group.html">👥 Our Legends</a></li>
+            <li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
+            <li><a href="past-seasons.html">📚 History</a></li>
+            <li><a href="draft-recap.html">📰 Draft Recap</a></li>
+        </ul>
+    </nav>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Gut Check</h3>
-      <ul class="draft-picks"><li>Christian McCaffrey SF, RB</li>
-<li>A.J. Brown Phi, WR</li>
-<li>Ladd McConkey LAC, WR</li>
-<li>Omarion Hampton LAC, RB</li>
-<li>DJ Moore Chi, WR</li>
-<li>Jerry Jeudy Cle, WR</li>
-<li>Jacory Croskey-Merritt Wsh, RB</li>
-<li>Rashee Rice KC, WR</li>
-<li>Jordan Mason Min, RB</li>
-<li>Caleb Williams Chi, QB</li>
-<li>Dallas Goedert Phi, TE</li>
-<li>Quinshon Judkins FA, RB</li>
-<li>Will Shipley Phi, RB</li>
-<li>Vikings D/ST Min, D/ST</li>
-<li>Ka'imi Fairbairn Hou, K</li>
-<li>Kendre Miller NO, RB</li></ul>
-    </section>
-    
+    <main>
+        <section class="section">
+            <h1>2025 Draft Recap</h1>
+            <p>Full results by team and by round.</p>
+        </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">1st Pick Curse</h3>
-      <ul class="draft-picks"><li>Malik Nabers NYG, WR</li>
-<li>Drake London Atl, WR</li>
-<li>Tyrone Tracy Jr. NYG, RB</li>
-<li>Chuba Hubbard Car, RB</li>
-<li>Tetairoa McMillan Car, WR</li>
-<li>Emeka Egbuka TB, WR</li>
-<li>Baker Mayfield TB, QB</li>
-<li>J.K. Dobbins Den, RB</li>
-<li>Cam Skattebo NYG, RB</li>
-<li>Colston Loveland Chi, TE</li>
-<li>J.J. McCarthy Min, QB</li>
-<li>Steelers D/ST Pit, D/ST</li>
-<li>Marvin Mims Jr. Den, WR</li>
-<li>Christian Kirk Hou, WR</li>
-<li>Darren Waller Mia, TE</li>
-<li>Harrison Butker KC, K</li></ul>
-    </section>
-    
+        <!-- BY TEAM START -->
+        <section class="section">
+            <h2>By Team</h2>
+            
+            <section class="draft-team">
+                <h3 class="draft-team-name">Mr Pfizer + Swifties for Kamala</h3>
+                <ul class="draft-picks">
+                    <li>Jahmyr Gibbs Det, RB</li>
+                    <li>Josh Jacobs GB, RB</li>
+                    <li>George Kittle SF, TE</li>
+                    <li>Jaxon Smith-Njigba Sea, WR</li>
+                    <li>DeVonta Smith Phi, WR</li>
+                    <li>Jameson Williams Det, WR</li>
+                    <li>Brock Purdy SF, QB</li>
+                    <li>Chris Olave NO, WR</li>
+                    <li>Javonte Williams Dal, RB</li>
+                    <li>Jerome Ford Cle, RB</li>
+                    <li>Brandon Aubrey Dal, K</li>
+                    <li>Jordan Love GB, QB</li>
+                    <li>Joe Mixon Hou, RB</li>
+                    <li>Amari Cooper LV, WR</li>
+                    <li>Rashod Bateman Bal, WR</li>
+                    <li>Bills D/ST Buf, D/ST</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Waddle you doing stepburrow</h3>
-      <ul class="draft-picks"><li>Saquon Barkley Phi, RB</li>
-<li>Chase Brown Cin, RB</li>
-<li>Trey McBride Ari, TE</li>
-<li>Garrett Wilson NYJ, WR</li>
-<li>George Pickens Dal, WR</li>
-<li>Rome Odunze Chi, WR</li>
-<li>Stefon Diggs NE, WR</li>
-<li>Dak Prescott Dal, QB</li>
-<li>Austin Ekeler Wsh, RB</li>
-<li>Justin Herbert LAC, QB</li>
-<li>Jake Ferguson Dal, TE</li>
-<li>Tyler Allgeier Atl, RB</li>
-<li>Cedric Tillman Cle, WR</li>
-<li>Brandon Aiyuk SF, WR</li>
-<li>Lions D/ST Det, D/ST</li>
-<li>Evan McPherson Cin, K</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Gut Check</h3>
+                <ul class="draft-picks">
+                    <li>Christian McCaffrey SF, RB</li>
+                    <li>A.J. Brown Phi, WR</li>
+                    <li>Ladd McConkey LAC, WR</li>
+                    <li>Omarion Hampton LAC, RB</li>
+                    <li>DJ Moore Chi, WR</li>
+                    <li>Jerry Jeudy Cle, WR</li>
+                    <li>Jacory Croskey-Merritt Wsh, RB</li>
+                    <li>Rashee Rice KC, WR</li>
+                    <li>Jordan Mason Min, RB</li>
+                    <li>Caleb Williams Chi, QB</li>
+                    <li>Dallas Goedert Phi, TE</li>
+                    <li>Quinshon Judkins FA, RB</li>
+                    <li>Will Shipley Phi, RB</li>
+                    <li>Vikings D/ST Min, D/ST</li>
+                    <li>Ka'imi Fairbairn Hou, K</li>
+                    <li>Kendre Miller NO, RB</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Burrowito Bowl</h3>
-      <ul class="draft-picks"><li>CeeDee Lamb Dal, WR</li>
-<li>Kyren Williams LAR, RB</li>
-<li>Alvin Kamara NO, RB</li>
-<li>James Conner Ari, RB</li>
-<li>Breece Hall NYJ, RB</li>
-<li>Matthew Golden GB, WR</li>
-<li>Travis Hunter Jax, WR</li>
-<li>Jordan Addison Min, WR</li>
-<li>Drake Maye NE, QB</li>
-<li>Tucker Kraft GB, TE</li>
-<li>Darnell Mooney Atl, WR</li>
-<li>Xavier Legette Car, WR</li>
-<li>Texans D/ST Hou, D/ST</li>
-<li>Cameron Dicker LAC, K</li>
-<li>Tua Tagovailoa Mia, QB</li>
-<li>Romeo Doubs GB, WR</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">1st Pick Curse</h3>
+                <ul class="draft-picks">
+                    <li>Malik Nabers NYG, WR</li>
+                    <li>Drake London Atl, WR</li>
+                    <li>Tyrone Tracy Jr. NYG, RB</li>
+                    <li>Chuba Hubbard Car, RB</li>
+                    <li>Tetairoa McMillan Car, WR</li>
+                    <li>Emeka Egbuka TB, WR</li>
+                    <li>Baker Mayfield TB, QB</li>
+                    <li>J.K. Dobbins Den, RB</li>
+                    <li>Cam Skattebo NYG, RB</li>
+                    <li>Colston Loveland Chi, TE</li>
+                    <li>J.J. McCarthy Min, QB</li>
+                    <li>Steelers D/ST Pit, D/ST</li>
+                    <li>Marvin Mims Jr. Den, WR</li>
+                    <li>Christian Kirk Hou, WR</li>
+                    <li>Darren Waller Mia, TE</li>
+                    <li>Harrison Butker KC, K</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Blevins' RubNTug</h3>
-      <ul class="draft-picks"><li>Ashton Jeanty LV, RB</li>
-<li>Jonathan Taylor Ind, RB</li>
-<li>Jalen Hurts Phi, QB</li>
-<li>Terry McLaurin Wsh, WR</li>
-<li>Zay Flowers Bal, WR</li>
-<li>Jaylen Waddle Mia, WR</li>
-<li>David Njoku Cle, TE</li>
-<li>Chris Godwin Jr. TB, WR</li>
-<li>Khalil Shakir Buf, WR</li>
-<li>Zach Charbonnet Sea, RB</li>
-<li>Wan'Dale Robinson NYG, WR</li>
-<li>Kyle Pitts Sr. Atl, TE</li>
-<li>Hollywood Brown KC, WR</li>
-<li>Chris Boswell Pit, K</li>
-<li>Luther Burden III Chi, WR</li>
-<li>Cardinals D/ST Ari, D/ST</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Waddle you doing stepburrow</h3>
+                <ul class="draft-picks">
+                    <li>Saquon Barkley Phi, RB</li>
+                    <li>Chase Brown Cin, RB</li>
+                    <li>Trey McBride Ari, TE</li>
+                    <li>Garrett Wilson NYJ, WR</li>
+                    <li>George Pickens Dal, WR</li>
+                    <li>Rome Odunze Chi, WR</li>
+                    <li>Stefon Diggs NE, WR</li>
+                    <li>Dak Prescott Dal, QB</li>
+                    <li>Austin Ekeler Wsh, RB</li>
+                    <li>Justin Herbert LAC, QB</li>
+                    <li>Jake Ferguson Dal, TE</li>
+                    <li>Tyler Allgeier Atl, RB</li>
+                    <li>Cedric Tillman Cle, WR</li>
+                    <li>Brandon Aiyuk SF, WR</li>
+                    <li>Lions D/ST Det, D/ST</li>
+                    <li>Evan McPherson Cin, K</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Room 40's Nuts</h3>
-      <ul class="draft-picks"><li>Nico Collins Hou, WR</li>
-<li>Derrick Henry Bal, RB</li>
-<li>Tyreek Hill Mia, WR</li>
-<li>Marvin Harrison Jr. Ari, WR</li>
-<li>Patrick Mahomes KC, QB</li>
-<li>Isiah Pacheco KC, RB</li>
-<li>Mark Andrews Bal, TE</li>
-<li>Cooper Kupp Sea, WR</li>
-<li>Rhamondre Stevenson NE, RB</li>
-<li>Jayden Reed GB, WR</li>
-<li>Dalton Kincaid Buf, TE</li>
-<li>Jaydon Blue Dal, RB</li>
-<li>Dylan Sampson Cle, RB</li>
-<li>Jake Bates Det, K</li>
-<li>Matthew Stafford LAR, QB</li>
-<li>Buccaneers D/ST TB, D/ST</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Burrowito Bowl</h3>
+                <ul class="draft-picks">
+                    <li>CeeDee Lamb Dal, WR</li>
+                    <li>Kyren Williams LAR, RB</li>
+                    <li>Alvin Kamara NO, RB</li>
+                    <li>James Conner Ari, RB</li>
+                    <li>Breece Hall NYJ, RB</li>
+                    <li>Matthew Golden GB, WR</li>
+                    <li>Travis Hunter Jax, WR</li>
+                    <li>Jordan Addison Min, WR</li>
+                    <li>Drake Maye NE, QB</li>
+                    <li>Tucker Kraft GB, TE</li>
+                    <li>Darnell Mooney Atl, WR</li>
+                    <li>Xavier Legette Car, WR</li>
+                    <li>Texans D/ST Hou, D/ST</li>
+                    <li>Cameron Dicker LAC, K</li>
+                    <li>Tua Tagovailoa Mia, QB</li>
+                    <li>Romeo Doubs GB, WR</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Waffle House Bound</h3>
-      <ul class="draft-picks"><li>Justin Jefferson Min, WR</li>
-<li>Bucky Irving TB, RB</li>
-<li>Lamar Jackson Bal, QB</li>
-<li>Xavier Worthy KC, WR</li>
-<li>Tony Pollard Ten, RB</li>
-<li>Ricky Pearsall SF, WR</li>
-<li>Travis Kelce KC, TE</li>
-<li>Michael Pittman Jr. Ind, WR</li>
-<li>Nick Chubb Hou, RB</li>
-<li>Tank Bigsby Jax, RB</li>
-<li>Braelon Allen NYJ, RB</li>
-<li>Ollie Gordon II Mia, RB</li>
-<li>DeMario Douglas NE, WR</li>
-<li>Trevor Lawrence Jax, QB</li>
-<li>Patriots D/ST NE, D/ST</li>
-<li>Cairo Santos Chi, K</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Blevins' RubNTug</h3>
+                <ul class="draft-picks">
+                    <li>Ashton Jeanty LV, RB</li>
+                    <li>Jonathan Taylor Ind, RB</li>
+                    <li>Jalen Hurts Phi, QB</li>
+                    <li>Terry McLaurin Wsh, WR</li>
+                    <li>Zay Flowers Bal, WR</li>
+                    <li>Jaylen Waddle Mia, WR</li>
+                    <li>David Njoku Cle, TE</li>
+                    <li>Chris Godwin Jr. TB, WR</li>
+                    <li>Khalil Shakir Buf, WR</li>
+                    <li>Zach Charbonnet Sea, RB</li>
+                    <li>Wan'Dale Robinson NYG, WR</li>
+                    <li>Kyle Pitts Sr. Atl, TE</li>
+                    <li>Hollywood Brown KC, WR</li>
+                    <li>Chris Boswell Pit, K</li>
+                    <li>Luther Burden III Chi, WR</li>
+                    <li>Cardinals D/ST Ari, D/ST</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">4th n Long to Deannas Tight End</h3>
-      <ul class="draft-picks"><li>Puka Nacua LAR, WR</li>
-<li>De'Von Achane Mia, RB</li>
-<li>Davante Adams LAR, WR</li>
-<li>Joe Burrow Cin, QB</li>
-<li>Sam LaPorta Det, TE</li>
-<li>Aaron Jones Sr. Min, RB</li>
-<li>Jakobi Meyers LV, WR</li>
-<li>Kyler Murray Ari, QB</li>
-<li>Jauan Jennings SF, WR</li>
-<li>Keon Coleman Buf, WR</li>
-<li>Rachaad White TB, RB</li>
-<li>Hunter Henry NE, TE</li>
-<li>Ravens D/ST Bal, D/ST</li>
-<li>Chase McLaughlin TB, K</li>
-<li>Jalen Coker Car, WR</li>
-<li>Joshua Palmer Buf, WR</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Room 40's Nuts</h3>
+                <ul class="draft-picks">
+                    <li>Nico Collins Hou, WR</li>
+                    <li>Derrick Henry Bal, RB</li>
+                    <li>Tyreek Hill Mia, WR</li>
+                    <li>Marvin Harrison Jr. Ari, WR</li>
+                    <li>Patrick Mahomes KC, QB</li>
+                    <li>Isiah Pacheco KC, RB</li>
+                    <li>Mark Andrews Bal, TE</li>
+                    <li>Cooper Kupp Sea, WR</li>
+                    <li>Rhamondre Stevenson NE, RB</li>
+                    <li>Jayden Reed GB, WR</li>
+                    <li>Dalton Kincaid Buf, TE</li>
+                    <li>Jaydon Blue Dal, RB</li>
+                    <li>Dylan Sampson Cle, RB</li>
+                    <li>Jake Bates Det, K</li>
+                    <li>Matthew Stafford LAR, QB</li>
+                    <li>Buccaneers D/ST TB, D/ST</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Nobody’s Hurt</h3>
-      <ul class="draft-picks"><li>Ja'Marr Chase Cin, WR</li>
-<li>Brock Bowers LV, TE</li>
-<li>Josh Allen Buf, QB</li>
-<li>TreVeyon Henderson NE, RB</li>
-<li>DK Metcalf Pit, WR</li>
-<li>Calvin Ridley Ten, WR</li>
-<li>RJ Harvey Den, RB</li>
-<li>Bo Nix Den, QB</li>
-<li>Tyler Warren Ind, TE</li>
-<li>Josh Downs Ind, WR</li>
-<li>Trey Benson Ari, RB</li>
-<li>Ray Davis Buf, RB</li>
-<li>Broncos D/ST Den, D/ST</li>
-<li>Tyler Bass Buf, K</li>
-<li>Seahawks D/ST Sea, D/ST</li>
-<li>Tre' Harris LAC, WR</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Waffle House Bound</h3>
+                <ul class="draft-picks">
+                    <li>Justin Jefferson Min, WR</li>
+                    <li>Bucky Irving TB, RB</li>
+                    <li>Lamar Jackson Bal, QB</li>
+                    <li>Xavier Worthy KC, WR</li>
+                    <li>Tony Pollard Ten, RB</li>
+                    <li>Ricky Pearsall SF, WR</li>
+                    <li>Travis Kelce KC, TE</li>
+                    <li>Michael Pittman Jr. Ind, WR</li>
+                    <li>Nick Chubb Hou, RB</li>
+                    <li>Tank Bigsby Jax, RB</li>
+                    <li>Braelon Allen NYJ, RB</li>
+                    <li>Ollie Gordon II Mia, RB</li>
+                    <li>DeMario Douglas NE, WR</li>
+                    <li>Trevor Lawrence Jax, QB</li>
+                    <li>Patriots D/ST NE, D/ST</li>
+                    <li>Cairo Santos Chi, K</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Beatin Sandy's Cheeks</h3>
-      <ul class="draft-picks"><li>Bijan Robinson Atl, RB</li>
-<li>Tee Higgins Cin, WR</li>
-<li>Jayden Daniels Wsh, QB</li>
-<li>Mike Evans TB, WR</li>
-<li>D'Andre Swift Chi, RB</li>
-<li>T.J. Hockenson Min, TE</li>
-<li>Jaylen Warren Pit, RB</li>
-<li>Deebo Samuel Wsh, WR</li>
-<li>Keenan Allen LAC, WR</li>
-<li>Bhayshul Tuten Jax, RB</li>
-<li>C.J. Stroud Hou, QB</li>
-<li>Najee Harris LAC, RB</li>
-<li>Jayden Higgins Hou, WR</li>
-<li>Jake Elliott Phi, K</li>
-<li>Brenton Strange Jax, TE</li>
-<li>Colts D/ST Ind, D/ST</li></ul>
-    </section>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">4th n Long to Deannas Tight End</h3>
+                <ul class="draft-picks">
+                    <li>Puka Nacua LAR, WR</li>
+                    <li>De'Von Achane Mia, RB</li>
+                    <li>Davante Adams LAR, WR</li>
+                    <li>Joe Burrow Cin, QB</li>
+                    <li>Sam LaPorta Det, TE</li>
+                    <li>Aaron Jones Sr. Min, RB</li>
+                    <li>Jakobi Meyers LV, WR</li>
+                    <li>Kyler Murray Ari, QB</li>
+                    <li>Jauan Jennings SF, WR</li>
+                    <li>Keon Coleman Buf, WR</li>
+                    <li>Rachaad White TB, RB</li>
+                    <li>Hunter Henry NE, TE</li>
+                    <li>Ravens D/ST Bal, D/ST</li>
+                    <li>Chase McLaughlin TB, K</li>
+                    <li>Jalen Coker Car, WR</li>
+                    <li>Joshua Palmer Buf, WR</li>
+                </ul>
+            </section>
 
-    <section class="draft-team" style="margin:1.25rem 0;padding:1rem;border:1px solid #333;border-radius:0.75rem;background:rgba(0,0,0,0.3)">
-      <h3 class="draft-team-name">Hawk Tua an Pitts On That Thang</h3>
-      <ul class="draft-picks"><li>Amon-Ra St. Brown Det, WR</li>
-<li>Brian Thomas Jr. Jax, WR</li>
-<li>James Cook Buf, RB</li>
-<li>Kenneth Walker III Sea, RB</li>
-<li>Courtland Sutton Den, WR</li>
-<li>David Montgomery Det, RB</li>
-<li>Evan Engram Den, TE</li>
-<li>Kaleb Johnson Pit, RB</li>
-<li>Travis Etienne Jr. Jax, RB</li>
-<li>Justin Fields NYJ, QB</li>
-<li>Jared Goff Det, QB</li>
-<li>Rashid Shaheed NO, WR</li>
-<li>Brian Robinson Jr. SF, RB</li>
-<li>Zach Ertz Wsh, TE</li>
-<li>Eagles D/ST Phi, D/ST</li>
-<li>Wil Lutz Den, K</li></ul>
-    </section>
-    
-</section>
-<!-- BY TEAM END -->
+            <section class="draft-team">
+                <h3 class="draft-team-name">Nobody's Hurt</h3>
+                <ul class="draft-picks">
+                    <li>Ja'Marr Chase Cin, WR</li>
+                    <li>Brock Bowers LV, TE</li>
+                    <li>Josh Allen Buf, QB</li>
+                    <li>TreVeyon Henderson NE, RB</li>
+                    <li>DK Metcalf Pit, WR</li>
+                    <li>Calvin Ridley Ten, WR</li>
+                    <li>RJ Harvey Den, RB</li>
+                    <li>Bo Nix Den, QB</li>
+                    <li>Tyler Warren Ind, TE</li>
+                    <li>Josh Downs Ind, WR</li>
+                    <li>Trey Benson Ari, RB</li>
+                    <li>Ray Davis Buf, RB</li>
+                    <li>Broncos D/ST Den, D/ST</li>
+                    <li>Tyler Bass Buf, K</li>
+                    <li>Seahawks D/ST Sea, D/ST</li>
+                    <li>Tre' Harris LAC, WR</li>
+                </ul>
+            </section>
 
-<!-- BY ROUND START -->
-<section class="section">
-  <h2>By Round</h2>
-  
-    <h3>Round 1</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>1</td><td>Ja'Marr Chase Cin, WR</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>1</td><td>Bijan Robinson Atl, RB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>1</td><td>CeeDee Lamb Dal, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>1</td><td>Saquon Barkley Phi, RB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>1</td><td>Justin Jefferson Min, WR</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>1</td><td>Malik Nabers NYG, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>1</td><td>Jahmyr Gibbs Det, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>1</td><td>Ashton Jeanty LV, RB</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>1</td><td>Christian McCaffrey SF, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>1</td><td>Amon-Ra St. Brown Det, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>1</td><td>Nico Collins Hou, WR</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>1</td><td>Puka Nacua LAR, WR</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Beatin Sandy's Cheeks</h3>
+                <ul class="draft-picks">
+                    <li>Bijan Robinson Atl, RB</li>
+                    <li>Tee Higgins Cin, WR</li>
+                    <li>Jayden Daniels Wsh, QB</li>
+                    <li>Mike Evans TB, WR</li>
+                    <li>D'Andre Swift Chi, RB</li>
+                    <li>T.J. Hockenson Min, TE</li>
+                    <li>Jaylen Warren Pit, RB</li>
+                    <li>Deebo Samuel Wsh, WR</li>
+                    <li>Keenan Allen LAC, WR</li>
+                    <li>Bhayshul Tuten Jax, RB</li>
+                    <li>C.J. Stroud Hou, QB</li>
+                    <li>Najee Harris LAC, RB</li>
+                    <li>Jayden Higgins Hou, WR</li>
+                    <li>Jake Elliott Phi, K</li>
+                    <li>Brenton Strange Jax, TE</li>
+                    <li>Colts D/ST Ind, D/ST</li>
+                </ul>
+            </section>
 
-    <h3>Round 2</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>2</td><td>De'Von Achane Mia, RB</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>2</td><td>Derrick Henry Bal, RB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>2</td><td>Brian Thomas Jr. Jax, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>2</td><td>A.J. Brown Phi, WR</td><td>Gut Check</td></tr><tr><td class='draft-pick'>2</td><td>Jonathan Taylor Ind, RB</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>2</td><td>Josh Jacobs GB, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>2</td><td>Drake London Atl, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>2</td><td>Bucky Irving TB, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>2</td><td>Chase Brown Cin, RB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>2</td><td>Kyren Williams LAR, RB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>2</td><td>Tee Higgins Cin, WR</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>2</td><td>Brock Bowers LV, TE</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+            <section class="draft-team">
+                <h3 class="draft-team-name">Hawk Tua an Pitts On That Thang</h3>
+                <ul class="draft-picks">
+                    <li>Amon-Ra St. Brown Det, WR</li>
+                    <li>Brian Thomas Jr. Jax, WR</li>
+                    <li>James Cook Buf, RB</li>
+                    <li>Kenneth Walker III Sea, RB</li>
+                    <li>Courtland Sutton Den, WR</li>
+                    <li>David Montgomery Det, RB</li>
+                    <li>Evan Engram Den, TE</li>
+                    <li>Kaleb Johnson Pit, RB</li>
+                    <li>Travis Etienne Jr. Jax, RB</li>
+                    <li>Justin Fields NYJ, QB</li>
+                    <li>Jared Goff Det, QB</li>
+                    <li>Rashid Shaheed NO, WR</li>
+                    <li>Brian Robinson Jr. SF, RB</li>
+                    <li>Zach Ertz Wsh, TE</li>
+                    <li>Eagles D/ST Phi, D/ST</li>
+                    <li>Wil Lutz Den, K</li>
+                </ul>
+            </section>
+        </section>
+        <!-- BY TEAM END -->
 
-    <h3>Round 3</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>3</td><td>Josh Allen Buf, QB</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>3</td><td>Jayden Daniels Wsh, QB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>3</td><td>Alvin Kamara NO, RB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>3</td><td>Trey McBride Ari, TE</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>3</td><td>Lamar Jackson Bal, QB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>3</td><td>Tyrone Tracy Jr. NYG, RB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>3</td><td>George Kittle SF, TE</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>3</td><td>Jalen Hurts Phi, QB</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>3</td><td>Ladd McConkey LAC, WR</td><td>Gut Check</td></tr><tr><td class='draft-pick'>3</td><td>James Cook Buf, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>3</td><td>Tyreek Hill Mia, WR</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>3</td><td>Davante Adams LAR, WR</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+        <!-- BY ROUND START -->
+        <section class="section">
+            <h2>By Round</h2>
+            
+            <h3>Round 1</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Rnd</th>
+                        <th>Player</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+    <tr><td class='draft-pick'>1</td><td>Ja'Marr Chase Cin, WR</td><td>Nobody's Hurt</td></tr>
+    <tr><td class='draft-pick'>2</td><td>Bijan Robinson Atl, RB</td><td>Beatin Sandy's Cheeks</td></tr>
+    <tr><td class='draft-pick'>3</td><td>CeeDee Lamb Dal, WR</td><td>Burrowito Bowl</td></tr>
+    <tr><td class='draft-pick'>4</td><td>Saquon Barkley Phi, RB</td><td>Waddle you doing stepburrow</td></tr>
+    <tr><td class='draft-pick'>5</td><td>Justin Jefferson Min, WR</td><td>Waffle House Bound</td></tr>
+    <tr><td class='draft-pick'>6</td><td>Malik Nabers NYG, WR</td><td>1st Pick Curse</td></tr>
+    <tr><td class='draft-pick'>7</td><td>Jahmyr Gibbs Det, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+    <tr><td class='draft-pick'>8</td><td>Ashton Jeanty LV, RB</td><td>Blevins' RubNTug</td></tr>
+    <tr><td class='draft-pick'>9</td><td>Christian McCaffrey SF, RB</td><td>Gut Check</td></tr>
+    <tr><td class='draft-pick'>10</td><td>Amon-Ra St. Brown Det, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+    <tr><td class='draft-pick'>11</td><td>Nico Collins Hou, WR</td><td>Room 40's Nuts</td></tr>
+    <tr><td class='draft-pick'>12</td><td>Puka Nacua LAR, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+</tbody>
+</table>
 
-    <h3>Round 4</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>4</td><td>Joe Burrow Cin, QB</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>4</td><td>Marvin Harrison Jr. Ari, WR</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>4</td><td>Kenneth Walker III Sea, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>4</td><td>Omarion Hampton LAC, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>4</td><td>Terry McLaurin Wsh, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>4</td><td>Jaxon Smith-Njigba Sea, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>4</td><td>Chuba Hubbard Car, RB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>4</td><td>Xavier Worthy KC, WR</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>4</td><td>Garrett Wilson NYJ, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>4</td><td>James Conner Ari, RB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>4</td><td>Mike Evans TB, WR</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>4</td><td>TreVeyon Henderson NE, RB</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 2</h3>
+<table class="table">
+<thead>
+<tr>
+    <th>Rnd</th>
+    <th>Player</th>
+    <th>Team</th>
+</tr>
+</thead>
+<tbody>
+    <tr><td class='draft-pick'>13</td><td>De'Von Achane Mia, RB</td><td>4th n Long to Deannas Tight End</td></tr>
+    <tr><td class='draft-pick'>14</td><td>Derrick Henry Bal, RB</td><td>Room 40's Nuts</td></tr>
+    <tr><td class='draft-pick'>15</td><td>Brian Thomas Jr. Jax, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+    <tr><td class='draft-pick'>16</td><td>A.J. Brown Phi, WR</td><td>Gut Check</td></tr>
+    <tr><td class='draft-pick'>17</td><td>Jonathan Taylor Ind, RB</td><td>Blevins' RubNTug</td></tr>
+    <tr><td class='draft-pick'>18</td><td>Josh Jacobs GB, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+    <tr><td class='draft-pick'>19</td><td>Drake London Atl, WR</td><td>1st Pick Curse</td></tr>
+    <tr><td class='draft-pick'>20</td><td>Bucky Irving TB, RB</td><td>Waffle House Bound</td></tr>
+    <tr><td class='draft-pick'>21</td><td>Chase Brown Cin, RB</td><td>Waddle you doing stepburrow</td></tr>
+    <tr><td class='draft-pick'>22</td><td>Kyren Williams LAR, RB</td><td>Burrowito Bowl</td></tr>
+    <tr><td class='draft-pick'>23</td><td>Tee Higgins Cin, WR</td><td>Beatin Sandy's Cheeks</td></tr>
+    <tr><td class='draft-pick'>24</td><td>Brock Bowers LV, TE</td><td>Nobody's Hurt</td></tr>
+</tbody>
+</table>
 
-    <h3>Round 5</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>5</td><td>DK Metcalf Pit, WR</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>5</td><td>D'Andre Swift Chi, RB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>5</td><td>Breece Hall NYJ, RB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>5</td><td>George Pickens Dal, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>5</td><td>Tony Pollard Ten, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>5</td><td>Tetairoa McMillan Car, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>5</td><td>DeVonta Smith Phi, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>5</td><td>Zay Flowers Bal, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>5</td><td>DJ Moore Chi, WR</td><td>Gut Check</td></tr><tr><td class='draft-pick'>5</td><td>Courtland Sutton Den, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>5</td><td>Patrick Mahomes KC, QB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>5</td><td>Sam LaPorta Det, TE</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+            <h3>Round 3</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>25</td><td>Josh Allen Buf, QB</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>26</td><td>Jayden Daniels Wsh, QB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>27</td><td>Alvin Kamara NO, RB</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>28</td><td>Trey McBride Ari, TE</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>29</td><td>Lamar Jackson Bal, QB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>30</td><td>Tyrone Tracy Jr. NYG, RB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>31</td><td>George Kittle SF, TE</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>32</td><td>Jalen Hurts Phi, QB</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>33</td><td>Ladd McConkey LAC, WR</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>34</td><td>James Cook Buf, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>35</td><td>Tyreek Hill Mia, WR</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>36</td><td>Davante Adams LAR, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 6</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>6</td><td>Aaron Jones Sr. Min, RB</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>6</td><td>Isiah Pacheco KC, RB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>6</td><td>David Montgomery Det, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>6</td><td>Jerry Jeudy Cle, WR</td><td>Gut Check</td></tr><tr><td class='draft-pick'>6</td><td>Jaylen Waddle Mia, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>6</td><td>Jameson Williams Det, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>6</td><td>Emeka Egbuka TB, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>6</td><td>Ricky Pearsall SF, WR</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>6</td><td>Rome Odunze Chi, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>6</td><td>Matthew Golden GB, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>6</td><td>T.J. Hockenson Min, TE</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>6</td><td>Calvin Ridley Ten, WR</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 4</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>37</td><td>Joe Burrow Cin, QB</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>38</td><td>Marvin Harrison Jr. Ari, WR</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>39</td><td>Kenneth Walker III Sea, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>40</td><td>Omarion Hampton LAC, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>41</td><td>Terry McLaurin Wsh, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>42</td><td>Jaxon Smith-Njigba Sea, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>43</td><td>Chuba Hubbard Car, RB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>44</td><td>Xavier Worthy KC, WR</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>45</td><td>Garrett Wilson NYJ, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>46</td><td>James Conner Ari, RB</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>47</td><td>Mike Evans TB, WR</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>48</td><td>TreVeyon Henderson NE, RB</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 7</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>7</td><td>RJ Harvey Den, RB</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>7</td><td>Jaylen Warren Pit, RB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>7</td><td>Travis Hunter Jax, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>7</td><td>Stefon Diggs NE, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>7</td><td>Travis Kelce KC, TE</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>7</td><td>Baker Mayfield TB, QB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>7</td><td>Brock Purdy SF, QB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>7</td><td>David Njoku Cle, TE</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>7</td><td>Jacory Croskey-Merritt Wsh, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>7</td><td>Evan Engram Den, TE</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>7</td><td>Mark Andrews Bal, TE</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>7</td><td>Jakobi Meyers LV, WR</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 5</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>49</td><td>DK Metcalf Pit, WR</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>50</td><td>D'Andre Swift Chi, RB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>51</td><td>Breece Hall NYJ, RB</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>52</td><td>George Pickens Dal, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>53</td><td>Tony Pollard Ten, RB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>54</td><td>Tetairoa McMillan Car, WR</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>55</td><td>DeVonta Smith Phi, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>56</td><td>Zay Flowers Bal, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>57</td><td>DJ Moore Chi, WR</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>58</td><td>Courtland Sutton Den, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>59</td><td>Patrick Mahomes KC, QB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>60</td><td>Sam LaPorta Det, TE</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 8</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>8</td><td>Kyler Murray Ari, QB</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>8</td><td>Cooper Kupp Sea, WR</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>8</td><td>Kaleb Johnson Pit, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>8</td><td>Rashee Rice KC, WR</td><td>Gut Check</td></tr><tr><td class='draft-pick'>8</td><td>Chris Godwin Jr. TB, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>8</td><td>Chris Olave NO, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>8</td><td>J.K. Dobbins Den, RB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>8</td><td>Michael Pittman Jr. Ind, WR</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>8</td><td>Dak Prescott Dal, QB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>8</td><td>Jordan Addison Min, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>8</td><td>Deebo Samuel Wsh, WR</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>8</td><td>Bo Nix Den, QB</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 6</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>61</td><td>Aaron Jones Sr. Min, RB</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>62</td><td>Isiah Pacheco KC, RB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>63</td><td>David Montgomery Det, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>64</td><td>Jerry Jeudy Cle, WR</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>65</td><td>Jaylen Waddle Mia, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>66</td><td>Jameson Williams Det, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>67</td><td>Emeka Egbuka TB, WR</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>68</td><td>Ricky Pearsall SF, WR</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>69</td><td>Rome Odunze Chi, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>70</td><td>Matthew Golden GB, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>71</td><td>T.J. Hockenson Min, TE</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>72</td><td>Calvin Ridley Ten, WR</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 9</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>9</td><td>Tyler Warren Ind, TE</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>9</td><td>Keenan Allen LAC, WR</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>9</td><td>Drake Maye NE, QB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>9</td><td>Austin Ekeler Wsh, RB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>9</td><td>Nick Chubb Hou, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>9</td><td>Cam Skattebo NYG, RB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>9</td><td>Javonte Williams Dal, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>9</td><td>Khalil Shakir Buf, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>9</td><td>Jordan Mason Min, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>9</td><td>Travis Etienne Jr. Jax, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>9</td><td>Rhamondre Stevenson NE, RB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>9</td><td>Jauan Jennings SF, WR</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 7</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>73</td><td>RJ Harvey Den, RB</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>74</td><td>Jaylen Warren Pit, RB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>75</td><td>Travis Hunter Jax, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>76</td><td>Stefon Diggs NE, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>77</td><td>Travis Kelce KC, TE</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>78</td><td>Baker Mayfield TB, QB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>79</td><td>Brock Purdy SF, QB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>80</td><td>David Njoku Cle, TE</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>81</td><td>Jacory Croskey-Merritt Wsh, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>82</td><td>Evan Engram Den, TE</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>83</td><td>Mark Andrews Bal, TE</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>84</td><td>Jakobi Meyers LV, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 10</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>10</td><td>Keon Coleman Buf, WR</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>10</td><td>Jayden Reed GB, WR</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>10</td><td>Justin Fields NYJ, QB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>10</td><td>Caleb Williams Chi, QB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>10</td><td>Zach Charbonnet Sea, RB</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>10</td><td>Jerome Ford Cle, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>10</td><td>Colston Loveland Chi, TE</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>10</td><td>Tank Bigsby Jax, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>10</td><td>Justin Herbert LAC, QB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>10</td><td>Tucker Kraft GB, TE</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>10</td><td>Bhayshul Tuten Jax, RB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>10</td><td>Josh Downs Ind, WR</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 8</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>85</td><td>Kyler Murray Ari, QB</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>86</td><td>Cooper Kupp Sea, WR</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>87</td><td>Kaleb Johnson Pit, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>88</td><td>Rashee Rice KC, WR</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>89</td><td>Chris Godwin Jr. TB, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>90</td><td>Chris Olave NO, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>91</td><td>J.K. Dobbins Den, RB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>92</td><td>Michael Pittman Jr. Ind, WR</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>93</td><td>Dak Prescott Dal, QB</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>94</td><td>Jordan Addison Min, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>95</td><td>Deebo Samuel Wsh, WR</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>96</td><td>Bo Nix Den, QB</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 11</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>11</td><td>Trey Benson Ari, RB</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>11</td><td>C.J. Stroud Hou, QB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>11</td><td>Darnell Mooney Atl, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>11</td><td>Jake Ferguson Dal, TE</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>11</td><td>Braelon Allen NYJ, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>11</td><td>J.J. McCarthy Min, QB</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>11</td><td>Brandon Aubrey Dal, K</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>11</td><td>Wan'Dale Robinson NYG, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>11</td><td>Dallas Goedert Phi, TE</td><td>Gut Check</td></tr><tr><td class='draft-pick'>11</td><td>Jared Goff Det, QB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>11</td><td>Dalton Kincaid Buf, TE</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>11</td><td>Rachaad White TB, RB</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 9</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>97</td><td>Tyler Warren Ind, TE</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>98</td><td>Keenan Allen LAC, WR</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>99</td><td>Drake Maye NE, QB</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>100</td><td>Austin Ekeler Wsh, RB</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>101</td><td>Nick Chubb Hou, RB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>102</td><td>Cam Skattebo NYG, RB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>103</td><td>Javonte Williams Dal, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>104</td><td>Khalil Shakir Buf, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>105</td><td>Jordan Mason Min, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>106</td><td>Travis Etienne Jr. Jax, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>107</td><td>Rhamondre Stevenson NE, RB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>108</td><td>Jauan Jennings SF, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 12</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>12</td><td>Hunter Henry NE, TE</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>12</td><td>Jaydon Blue Dal, RB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>12</td><td>Rashid Shaheed NO, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>12</td><td>Quinshon Judkins FA, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>12</td><td>Kyle Pitts Sr. Atl, TE</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>12</td><td>Jordan Love GB, QB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>12</td><td>Steelers D/ST Pit, D/ST</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>12</td><td>Ollie Gordon II Mia, RB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>12</td><td>Tyler Allgeier Atl, RB</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>12</td><td>Xavier Legette Car, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>12</td><td>Najee Harris LAC, RB</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>12</td><td>Ray Davis Buf, RB</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 10</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>109</td><td>Keon Coleman Buf, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>110</td><td>Jayden Reed GB, WR</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>111</td><td>Justin Fields NYJ, QB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>112</td><td>Caleb Williams Chi, QB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>113</td><td>Zach Charbonnet Sea, RB</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>114</td><td>Jerome Ford Cle, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>115</td><td>Colston Loveland Chi, TE</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>116</td><td>Tank Bigsby Jax, RB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>117</td><td>Justin Herbert LAC, QB</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>118</td><td>Tucker Kraft GB, TE</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>119</td><td>Bhayshul Tuten Jax, RB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>120</td><td>Josh Downs Ind, WR</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 13</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>13</td><td>Broncos D/ST Den, D/ST</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>13</td><td>Jayden Higgins Hou, WR</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>13</td><td>Texans D/ST Hou, D/ST</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>13</td><td>Cedric Tillman Cle, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>13</td><td>DeMario Douglas NE, WR</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>13</td><td>Marvin Mims Jr. Den, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>13</td><td>Joe Mixon Hou, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>13</td><td>Hollywood Brown KC, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>13</td><td>Will Shipley Phi, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>13</td><td>Brian Robinson Jr. SF, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>13</td><td>Dylan Sampson Cle, RB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>13</td><td>Ravens D/ST Bal, D/ST</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 11</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>121</td><td>Trey Benson Ari, RB</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>122</td><td>C.J. Stroud Hou, QB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>123</td><td>Darnell Mooney Atl, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>124</td><td>Jake Ferguson Dal, TE</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>125</td><td>Braelon Allen NYJ, RB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>126</td><td>J.J. McCarthy Min, QB</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>127</td><td>Brandon Aubrey Dal, K</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>128</td><td>Wan'Dale Robinson NYG, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>129</td><td>Dallas Goedert Phi, TE</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>130</td><td>Jared Goff Det, QB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>131</td><td>Dalton Kincaid Buf, TE</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>132</td><td>Rachaad White TB, RB</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 14</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>14</td><td>Chase McLaughlin TB, K</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>14</td><td>Jake Bates Det, K</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>14</td><td>Zach Ertz Wsh, TE</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>14</td><td>Vikings D/ST Min, D/ST</td><td>Gut Check</td></tr><tr><td class='draft-pick'>14</td><td>Chris Boswell Pit, K</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>14</td><td>Amari Cooper LV, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>14</td><td>Christian Kirk Hou, WR</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>14</td><td>Trevor Lawrence Jax, QB</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>14</td><td>Brandon Aiyuk SF, WR</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>14</td><td>Cameron Dicker LAC, K</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>14</td><td>Jake Elliott Phi, K</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>14</td><td>Tyler Bass Buf, K</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 12</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>133</td><td>Hunter Henry NE, TE</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>134</td><td>Jaydon Blue Dal, RB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>135</td><td>Rashid Shaheed NO, WR</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>136</td><td>Quinshon Judkins FA, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>137</td><td>Kyle Pitts Sr. Atl, TE</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>138</td><td>Jordan Love GB, QB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>139</td><td>Steelers D/ST Pit, D/ST</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>140</td><td>Ollie Gordon II Mia, RB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>141</td><td>Tyler Allgeier Atl, RB</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>142</td><td>Xavier Legette Car, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>143</td><td>Najee Harris LAC, RB</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>144</td><td>Ray Davis Buf, RB</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 15</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>15</td><td>Seahawks D/ST Sea, D/ST</td><td>Nobody’s Hurt</td></tr><tr><td class='draft-pick'>15</td><td>Brenton Strange Jax, TE</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>15</td><td>Tua Tagovailoa Mia, QB</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>15</td><td>Lions D/ST Det, D/ST</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>15</td><td>Patriots D/ST NE, D/ST</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>15</td><td>Darren Waller Mia, TE</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>15</td><td>Rashod Bateman Bal, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>15</td><td>Luther Burden III Chi, WR</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>15</td><td>Ka'imi Fairbairn Hou, K</td><td>Gut Check</td></tr><tr><td class='draft-pick'>15</td><td>Eagles D/ST Phi, D/ST</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>15</td><td>Matthew Stafford LAR, QB</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>15</td><td>Jalen Coker Car, WR</td><td>4th n Long to Deannas Tight End</td></tr>
-      </tbody>
-    </table>
-    
+<h3>Round 13</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>145</td><td>Broncos D/ST Den, D/ST</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>146</td><td>Jayden Higgins Hou, WR</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>147</td><td>Texans D/ST Hou, D/ST</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>148</td><td>Cedric Tillman Cle, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>149</td><td>DeMario Douglas NE, WR</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>150</td><td>Marvin Mims Jr. Den, WR</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>151</td><td>Joe Mixon Hou, RB</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>152</td><td>Hollywood Brown KC, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>153</td><td>Will Shipley Phi, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>154</td><td>Brian Robinson Jr. SF, RB</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>155</td><td>Dylan Sampson Cle, RB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>156</td><td>Ravens D/ST Bal, D/ST</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
 
-    <h3>Round 16</h3>
-    <table class="table" style="width:100%;border-collapse:collapse;margin-bottom:1.25rem">
-      <thead><tr><th>Rnd</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody>
-        <tr><td class='draft-pick'>16</td><td>Joshua Palmer Buf, WR</td><td>4th n Long to Deannas Tight End</td></tr><tr><td class='draft-pick'>16</td><td>Buccaneers D/ST TB, D/ST</td><td>Room 40's Nuts</td></tr><tr><td class='draft-pick'>16</td><td>Wil Lutz Den, K</td><td>Hawk Tua an Pitts On That Thang</td></tr><tr><td class='draft-pick'>16</td><td>Kendre Miller NO, RB</td><td>Gut Check</td></tr><tr><td class='draft-pick'>16</td><td>Cardinals D/ST Ari, D/ST</td><td>Blevins' RubNTug</td></tr><tr><td class='draft-pick'>16</td><td>Bills D/ST Buf, D/ST</td><td>Mr Pfizer + Swifties for Kamala</td></tr><tr><td class='draft-pick'>16</td><td>Harrison Butker KC, K</td><td>1st Pick Curse</td></tr><tr><td class='draft-pick'>16</td><td>Cairo Santos Chi, K</td><td>Waffle House Bound</td></tr><tr><td class='draft-pick'>16</td><td>Evan McPherson Cin, K</td><td>Waddle you doing stepburrow</td></tr><tr><td class='draft-pick'>16</td><td>Romeo Doubs GB, WR</td><td>Burrowito Bowl</td></tr><tr><td class='draft-pick'>16</td><td>Colts D/ST Ind, D/ST</td><td>Beatin Sandy's Cheeks</td></tr><tr><td class='draft-pick'>16</td><td>Tre' Harris LAC, WR</td><td>Nobody’s Hurt</td></tr>
-      </tbody>
-    </table>
-    
-</section>
-<!-- BY ROUND END -->
-</main>
-<footer>
-<p>
+<h3>Round 14</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>157</td><td>Chase McLaughlin TB, K</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>158</td><td>Jake Bates Det, K</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>159</td><td>Zach Ertz Wsh, TE</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>160</td><td>Vikings D/ST Min, D/ST</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>161</td><td>Chris Boswell Pit, K</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>162</td><td>Amari Cooper LV, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>163</td><td>Christian Kirk Hou, WR</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>164</td><td>Trevor Lawrence Jax, QB</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>165</td><td>Brandon Aiyuk SF, WR</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>166</td><td>Cameron Dicker LAC, K</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>167</td><td>Jake Elliott Phi, K</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>168</td><td>Tyler Bass Buf, K</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
+
+<h3>Round 15</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>169</td><td>Seahawks D/ST Sea, D/ST</td><td>Nobody's Hurt</td></tr>
+        <tr><td class='draft-pick'>170</td><td>Brenton Strange Jax, TE</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>171</td><td>Tua Tagovailoa Mia, QB</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>172</td><td>Lions D/ST Det, D/ST</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>173</td><td>Patriots D/ST NE, D/ST</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>174</td><td>Darren Waller Mia, TE</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>175</td><td>Rashod Bateman Bal, WR</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>176</td><td>Luther Burden III Chi, WR</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>177</td><td>Ka'imi Fairbairn Hou, K</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>178</td><td>Eagles D/ST Phi, D/ST</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>179</td><td>Matthew Stafford LAR, QB</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>180</td><td>Jalen Coker Car, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+    </tbody>
+</table>
+
+<h3>Round 16</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rnd</th>
+            <th>Player</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class='draft-pick'>181</td><td>Joshua Palmer Buf, WR</td><td>4th n Long to Deannas Tight End</td></tr>
+        <tr><td class='draft-pick'>182</td><td>Buccaneers D/ST TB, D/ST</td><td>Room 40's Nuts</td></tr>
+        <tr><td class='draft-pick'>183</td><td>Wil Lutz Den, K</td><td>Hawk Tua an Pitts On That Thang</td></tr>
+        <tr><td class='draft-pick'>184</td><td>Kendre Miller NO, RB</td><td>Gut Check</td></tr>
+        <tr><td class='draft-pick'>185</td><td>Cardinals D/ST Ari, D/ST</td><td>Blevins' RubNTug</td></tr>
+        <tr><td class='draft-pick'>186</td><td>Bills D/ST Buf, D/ST</td><td>Mr Pfizer + Swifties for Kamala</td></tr>
+        <tr><td class='draft-pick'>187</td><td>Harrison Butker KC, K</td><td>1st Pick Curse</td></tr>
+        <tr><td class='draft-pick'>188</td><td>Cairo Santos Chi, K</td><td>Waffle House Bound</td></tr>
+        <tr><td class='draft-pick'>189</td><td>Evan McPherson Cin, K</td><td>Waddle you doing stepburrow</td></tr>
+        <tr><td class='draft-pick'>190</td><td>Romeo Doubs GB, WR</td><td>Burrowito Bowl</td></tr>
+        <tr><td class='draft-pick'>191</td><td>Colts D/ST Ind, D/ST</td><td>Beatin Sandy's Cheeks</td></tr>
+        <tr><td class='draft-pick'>192</td><td>Tre' Harris LAC, WR</td><td>Nobody's Hurt</td></tr>
+    </tbody>
+</table>
+
+        </section>
+        <!-- BY ROUND END -->
+    </main>
+
+    <footer>
+        <p>
             🔥 <strong>NO-TEGRIDY FANTASY FOOTBALL</strong> 🔥<br/>
-<span style="color: #ff6b35;">Powered by Tall Boy Shotguns &amp; Ran Through Porn Stars</span><br/>
-<span style="color: #ffd700;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br/>
-<br/>
-<em style="font-size: 0.9rem; opacity: 0.8;">Est. 2021 • Champions Forever • Legends Never Die</em>
-</p>
-</footer>
+            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Ran Through Porn Stars</span><br/>
+            <span style="color: #ffd700;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br/>
+            <br/>
+            <em style="font-size: 0.9rem; opacity: 0.8;">Est. 2021 • Champions Forever • Legends Never Die</em>
+        </p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.querySelector('.particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+        
+        // Create particles periodically
+        setInterval(createParticle, 300);
+        
+        // Initial burst of particles
+        for(let i = 0; i < 20; i++) {
+            setTimeout(createParticle, i * 100);
+        }
+    </script>
 </body>
 </html>
