@@ -237,26 +237,91 @@
             height: 400px;
             border: none;
         }
-        .championship-banner {
-            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-            color: #000;
-            padding: 25px;
-            border-radius: 20px;
+
+        /* Power Rankings */
+        .power-rankings {
+            list-style: none;
+            padding: 0;
+        }
+
+        .power-ranking-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(240, 173, 78, 0.1);
+            border: 2px solid rgba(240, 173, 78, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .power-ranking-item:hover {
+            background: rgba(240, 173, 78, 0.2);
+            border-color: #f0ad4e;
+            transform: translateX(5px);
+        }
+
+        .ranking-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            min-width: 40px;
             text-align: center;
-            margin-bottom: 30px;
-            border: 3px solid #ff6b35;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            animation: championGlow 2s ease-in-out infinite alternate;
+            margin-right: 15px;
         }
 
-        @keyframes championGlow {
-            0% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3); }
-            100% { box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6); }
+        .ranking-team {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #f0ad4e;
+            flex-grow: 1;
         }
 
-        .championship-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        /* Draft Recap */
+        .draft-team {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(240, 173, 78, 0.08);
+            border: 2px solid rgba(240, 173, 78, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .draft-team:hover {
+            background: rgba(240, 173, 78, 0.15);
+            border-color: #f0ad4e;
+            transform: translateY(-3px);
+        }
+
+        .draft-team-name {
+            font-size: 1.3rem;
+            color: #f0ad4e;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .draft-picks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .draft-pick {
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .draft-pick strong {
+            color: #ffd700;
         }
 
         /* Twitter feed */
@@ -320,6 +385,10 @@
                 font-size: 0.9rem;
                 padding: 8px 15px;
             }
+
+            .draft-picks {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -347,138 +416,6 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        /* Poll Styles */
-        .poll-container {
-            margin: 20px 0;
-        }
-
-        .poll-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(240, 173, 78, 0.1);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .poll-option:hover {
-            background: rgba(240, 173, 78, 0.2);
-            border-color: #f0ad4e;
-            transform: translateX(5px);
-        }
-
-        .poll-option.voted {
-            border-color: #f0ad4e;
-            background: rgba(240, 173, 78, 0.15);
-        }
-
-        .poll-option-text {
-            display: flex;
-            align-items: center;
-            min-width: 200px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .poll-emoji {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-
-        .poll-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #f0ad4e;
-        }
-
-        .poll-bar {
-            flex: 1;
-            height: 25px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            margin: 0 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .poll-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #f0ad4e, #ff6b35);
-            border-radius: 12px;
-            width: 0%;
-            transition: width 0.8s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .poll-fill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: pollShine 2s infinite;
-        }
-
-        @keyframes pollShine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: -100%; }
-        }
-
-        .poll-percentage {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #f0ad4e;
-            min-width: 40px;
-            text-align: right;
-            position: relative;
-            z-index: 3;
-        }
-
-        .poll-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(240, 173, 78, 0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .poll-total {
-            font-size: 1.1rem;
-            color: #f0ad4e;
-            font-weight: bold;
-        }
-
-        /* Special styling for Scottsdale option */
-        .poll-option[data-option="scottsdale"] {
-            border-color: rgba(255, 165, 0, 0.5) !important;
-            background: rgba(255, 165, 0, 0.1) !important;
-        }
-
-        .poll-option[data-option="scottsdale"]:hover {
-            border-color: #ffa500 !important;
-            background: rgba(255, 165, 0, 0.2) !important;
-        }
-
-        .poll-option[data-option="scottsdale"] .poll-name {
-            color: #ffa500 !important;
-        }
-
-        .poll-option[data-option="scottsdale"] .poll-fill {
-            background: linear-gradient(45deg, #ffa500, #ff8c00) !important;
         }
 
         @keyframes fadeInOut {
@@ -512,17 +449,65 @@
         </ul>
     </nav>
 
-    <!-- Championship Banner -->
-    <div style="padding: 0 20px; max-width: 1400px; margin: 0 auto;">
-        <div class="championship-banner">
-            <h2>🏆 2024 CHAMPION 🏆</h2>
-            <h3>ROOM 40'S NUTS (CJ TACKETT)</h3>
-            <p>THE LEGEND CONTINUES! 8-6 GRINDER MENTALITY PAYS OFF!</p>
-        </div>
-    </div>
-
     <!-- Main Content Grid -->
     <div class="content-grid">
+        <!-- Power Rankings -->
+        <div class="content-card">
+            <div class="card-header">🏆 CURRENT POWER RANKINGS 🏆</div>
+            <div class="card-content">
+                <ol class="power-rankings">
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">1</div>
+                        <div class="ranking-team">Nobody's Hurt</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">2</div>
+                        <div class="ranking-team">4th n Long to Deannas Tight End</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">3</div>
+                        <div class="ranking-team">Blevins' RubNTug</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">4</div>
+                        <div class="ranking-team">Waddle you doing stepburrow</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">5</div>
+                        <div class="ranking-team">Beatin Sandy's Cheeks</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">6</div>
+                        <div class="ranking-team">Waffle House Bound</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">7</div>
+                        <div class="ranking-team">Mr Pfizer + Swifties for Kamala</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">8</div>
+                        <div class="ranking-team">Burrowito Bowl</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">9</div>
+                        <div class="ranking-team">Room 40's Nuts</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">10</div>
+                        <div class="ranking-team">Gut Check</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">11</div>
+                        <div class="ranking-team">Hawk Tua an Pitts On That Thang</div>
+                    </li>
+                    <li class="power-ranking-item">
+                        <div class="ranking-number">12</div>
+                        <div class="ranking-team">1st Pick Curse</div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
         <!-- Video Section -->
         <div class="content-card">
             <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
@@ -543,9 +528,9 @@
         <div class="content-card">
             <div class="card-header">📰 WEEKLY CHAOS 📰</div>
             <div class="card-content">
-                <h3 style="color: #ffd700; margin-bottom: 15px;">🎉 CHAMPIONSHIP AFTERMATH 🎉</h3>
+                <h3 style="color: #ffd700; margin-bottom: 15px;">🎯 2025 SEASON READY 🎯</h3>
                 <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;">
-                    🏆 Congratulations to CJ on winning the No-Tegridy 2024 Championship! 🏆
+                    🏈 Draft complete! Time to see who's destined for glory and who's headed for shame!
                 </p>
                 <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;">
                     💀 Rhmondre Stevenson is a whole bitch!
@@ -554,48 +539,290 @@
                     🤡 James Connor is a whole pussy!
                 </p>
                 <div style="margin-top: 20px; padding: 15px; background: rgba(240, 173, 78, 0.1); border-radius: 10px; border-left: 4px solid #f0ad4e;">
-                    <strong>🚨 2025 SEASON INCOMING 🚨</strong><br>
-                    Draft prep starts NOW. Don't be the next Isaac.
+                    <strong>🚨 SEASON STARTS NOW 🚨</strong><br>
+                    Waivers are open. Don't be the next Isaac.
                 </div>
             </div>
-        </div>
-
-        <!-- Draft Location Poll -->
-
-        <!-- Draft Day Countdown -->
-        <div class="content-card">
-            <div class="card-header">⏳ DRAFT DAY COUNTDOWN ⏳</div>
-            <div class="card-content" style="text-align:center">
-                <p style="font-size:1.1rem; margin-bottom:15px;">Draft: Monday, September 1, 2025 at 7:00 PM</p>
-                <div id="draft-countdown" style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
-                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
-                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-days">--</div>
-                        <div style="color:#f0ad4e;letter-spacing:1px;">DAYS</div>
-                    </div>
-                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
-                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-hours">--</div>
-                        <div style="color:#f0ad4e;letter-spacing:1px;">HOURS</div>
-                    </div>
-                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
-                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-mins">--</div>
-                        <div style="color:#f0ad4e;letter-spacing:1px;">MINUTES</div>
-                    </div>
-                    <div style="min-width:110px;padding:15px 20px;border:2px solid rgba(240,173,78,0.3);border-radius:12px;background:rgba(240,173,78,0.08)">
-                        <div style="font-size:2.2rem;color:#ffd700;" id="dd-secs">--</div>
-                        <div style="color:#f0ad4e;letter-spacing:1px;">SECONDS</div>
-                    </div>
-                </div>
-                <div id="dd-done" style="display:none;margin-top:15px;color:#ffd700;font-weight:bold;">It’s Draft Time.</div>
-            </div>
-        </div>
-
-
         </div>
 
         <!-- NFL Updates -->
-        <div class="content-card"><div class="card-header">🏈 NFL UPDATES 🏈</div><div class="card-content">
-            <a class="twitter-timeline" data-height="650" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">Tweets by NFL</a>
-    </div></div>
+        <div class="content-card">
+            <div class="card-header">🏈 NFL UPDATES 🏈</div>
+            <div class="card-content">
+                <a class="twitter-timeline" data-height="650" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">Tweets by NFL</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Draft Recap Section -->
+    <div style="padding: 0 20px; max-width: 1400px; margin: 0 auto;">
+        <div class="content-card" style="margin-bottom: 30px;">
+            <div class="card-header">📋 2025 DRAFT RECAP 📋</div>
+            <div class="card-content">
+                <div class="draft-team">
+                    <div class="draft-team-name">Mr Pfizer + Swifties for Kamala</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Jahmyr Gibbs Det, RB</div>
+                        <div class="draft-pick"><strong>R2:</strong> Josh Jacobs GB, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> George Kittle SF, TE</div>
+                        <div class="draft-pick"><strong>R4:</strong> Jaxon Smith-Njigba Sea, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> DeVonta Smith Phi, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Jameson Williams Det, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Brock Purdy SF, QB</div>
+                        <div class="draft-pick"><strong>R8:</strong> Chris Olave NO, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Javonte Williams Dal, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Jerome Ford Cle, RB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Brandon Aubrey Dal, K</div>
+                        <div class="draft-pick"><strong>R12:</strong> Jordan Love GB, QB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Joe Mixon Hou, RB</div>
+                        <div class="draft-pick"><strong>R14:</strong> Amari Cooper LV, WR</div>
+                        <div class="draft-pick"><strong>R15:</strong> Rashod Bateman Bal, WR</div>
+                        <div class="draft-pick"><strong>R16:</strong> Bills D/ST Buf, D/ST</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Gut Check</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Christian McCaffrey SF, RB</div>
+                        <div class="draft-pick"><strong>R2:</strong> A.J. Brown Phi, WR</div>
+                        <div class="draft-pick"><strong>R3:</strong> Ladd McConkey LAC, WR</div>
+                        <div class="draft-pick"><strong>R4:</strong> Omarion Hampton LAC, RB</div>
+                        <div class="draft-pick"><strong>R5:</strong> DJ Moore Chi, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Jerry Jeudy Cle, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Jacory Croskey-Merritt Wsh, RB</div>
+                        <div class="draft-pick"><strong>R8:</strong> Rashee Rice KC, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Jordan Mason Min, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Caleb Williams Chi, QB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Dallas Goedert Phi, TE</div>
+                        <div class="draft-pick"><strong>R12:</strong> Quinshon Judkins FA, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Will Shipley Phi, RB</div>
+                        <div class="draft-pick"><strong>R14:</strong> Vikings D/ST Min, D/ST</div>
+                        <div class="draft-pick"><strong>R15:</strong> Ka'imi Fairbairn Hou, K</div>
+                        <div class="draft-pick"><strong>R16:</strong> Kendre Miller NO, RB</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">1st Pick Curse</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Malik Nabers NYG, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Drake London Atl, WR</div>
+                        <div class="draft-pick"><strong>R3:</strong> Tyrone Tracy Jr. NYG, RB</div>
+                        <div class="draft-pick"><strong>R4:</strong> Chuba Hubbard Car, RB</div>
+                        <div class="draft-pick"><strong>R5:</strong> Tetairoa McMillan Car, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Emeka Egbuka TB, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Baker Mayfield TB, QB</div>
+                        <div class="draft-pick"><strong>R8:</strong> J.K. Dobbins Den, RB</div>
+                        <div class="draft-pick"><strong>R9:</strong> Cam Skattebo NYG, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Colston Loveland Chi, TE</div>
+                        <div class="draft-pick"><strong>R11:</strong> J.J. McCarthy Min, QB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Steelers D/ST Pit, D/ST</div>
+                        <div class="draft-pick"><strong>R13:</strong> Marvin Mims Jr. Den, WR</div>
+                        <div class="draft-pick"><strong>R14:</strong> Christian Kirk Hou, WR</div>
+                        <div class="draft-pick"><strong>R15:</strong> Darren Waller Mia, TE</div>
+                        <div class="draft-pick"><strong>R16:</strong> Harrison Butker KC, K</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Waddle you doing stepburrow</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Saquon Barkley Phi, RB</div>
+                        <div class="draft-pick"><strong>R2:</strong> Chase Brown Cin, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Trey McBride Ari, TE</div>
+                        <div class="draft-pick"><strong>R4:</strong> Garrett Wilson NYJ, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> George Pickens Dal, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Rome Odunze Chi, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Stefon Diggs NE, WR</div>
+                        <div class="draft-pick"><strong>R8:</strong> Dak Prescott Dal, QB</div>
+                        <div class="draft-pick"><strong>R9:</strong> Austin Ekeler Wsh, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Justin Herbert LAC, QB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Jake Ferguson Dal, TE</div>
+                        <div class="draft-pick"><strong>R12:</strong> Tyler Allgeier Atl, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Cedric Tillman Cle, WR</div>
+                        <div class="draft-pick"><strong>R14:</strong> Brandon Aiyuk SF, WR</div>
+                        <div class="draft-pick"><strong>R15:</strong> Lions D/ST Det, D/ST</div>
+                        <div class="draft-pick"><strong>R16:</strong> Evan McPherson Cin, K</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Burrowito Bowl</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> CeeDee Lamb Dal, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Kyren Williams LAR, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Alvin Kamara NO, RB</div>
+                        <div class="draft-pick"><strong>R4:</strong> James Conner Ari, RB</div>
+                        <div class="draft-pick"><strong>R5:</strong> Breece Hall NYJ, RB</div>
+                        <div class="draft-pick"><strong>R6:</strong> Matthew Golden GB, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Travis Hunter Jax, WR</div>
+                        <div class="draft-pick"><strong>R8:</strong> Jordan Addison Min, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Drake Maye NE, QB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Tucker Kraft GB, TE</div>
+                        <div class="draft-pick"><strong>R11:</strong> Darnell Mooney Atl, WR</div>
+                        <div class="draft-pick"><strong>R12:</strong> Xavier Legette Car, WR</div>
+                        <div class="draft-pick"><strong>R13:</strong> Texans D/ST Hou, D/ST</div>
+                        <div class="draft-pick"><strong>R14:</strong> Cameron Dicker LAC, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Tua Tagovailoa Mia, QB</div>
+                        <div class="draft-pick"><strong>R16:</strong> Romeo Doubs GB, WR</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Blevins' RubNTug</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Ashton Jeanty LV, RB</div>
+                        <div class="draft-pick"><strong>R2:</strong> Jonathan Taylor Ind, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Jalen Hurts Phi, QB</div>
+                        <div class="draft-pick"><strong>R4:</strong> Terry McLaurin Wsh, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> Zay Flowers Bal, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Jaylen Waddle Mia, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> David Njoku Cle, TE</div>
+                        <div class="draft-pick"><strong>R8:</strong> Chris Godwin Jr. TB, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Khalil Shakir Buf, WR</div>
+                        <div class="draft-pick"><strong>R10:</strong> Zach Charbonnet Sea, RB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Wan'Dale Robinson NYG, WR</div>
+                        <div class="draft-pick"><strong>R12:</strong> Kyle Pitts Sr. Atl, TE</div>
+                        <div class="draft-pick"><strong>R13:</strong> Hollywood Brown KC, WR</div>
+                        <div class="draft-pick"><strong>R14:</strong> Chris Boswell Pit, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Luther Burden III Chi, WR</div>
+                        <div class="draft-pick"><strong>R16:</strong> Cardinals D/ST Ari, D/ST</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Room 40's Nuts</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Nico Collins Hou, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Derrick Henry Bal, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Tyreek Hill Mia, WR</div>
+                        <div class="draft-pick"><strong>R4:</strong> Marvin Harrison Jr. Ari, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> Patrick Mahomes KC, QB</div>
+                        <div class="draft-pick"><strong>R6:</strong> Isiah Pacheco KC, RB</div>
+                        <div class="draft-pick"><strong>R7:</strong> Mark Andrews Bal, TE</div>
+                        <div class="draft-pick"><strong>R8:</strong> Cooper Kupp Sea, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Rhamondre Stevenson NE, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Jayden Reed GB, WR</div>
+                        <div class="draft-pick"><strong>R11:</strong> Dalton Kincaid Buf, TE</div>
+                        <div class="draft-pick"><strong>R12:</strong> Jaydon Blue Dal, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Dylan Sampson Cle, RB</div>
+                        <div class="draft-pick"><strong>R14:</strong> Jake Bates Det, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Matthew Stafford LAR, QB</div>
+                        <div class="draft-pick"><strong>R16:</strong> Buccaneers D/ST TB, D/ST</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Waffle House Bound</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Justin Jefferson Min, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Bucky Irving TB, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Lamar Jackson Bal, QB</div>
+                        <div class="draft-pick"><strong>R4:</strong> Xavier Worthy KC, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> Tony Pollard Ten, RB</div>
+                        <div class="draft-pick"><strong>R6:</strong> Ricky Pearsall SF, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> Travis Kelce KC, TE</div>
+                        <div class="draft-pick"><strong>R8:</strong> Michael Pittman Jr. Ind, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Nick Chubb Hou, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Tank Bigsby Jax, RB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Braelon Allen NYJ, RB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Ollie Gordon II Mia, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> DeMario Douglas NE, WR</div>
+                        <div class="draft-pick"><strong>R14:</strong> Trevor Lawrence Jax, QB</div>
+                        <div class="draft-pick"><strong>R15:</strong> Patriots D/ST NE, D/ST</div>
+                        <div class="draft-pick"><strong>R16:</strong> Cairo Santos Chi, K</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">4th n Long to Deannas Tight End</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Puka Nacua LAR, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> De'Von Achane Mia, RB</div>
+                        <div class="draft-pick"><strong>R3:</strong> Davante Adams LAR, WR</div>
+                        <div class="draft-pick"><strong>R4:</strong> Joe Burrow Cin, QB</div>
+                        <div class="draft-pick"><strong>R5:</strong> Sam LaPorta Det, TE</div>
+                        <div class="draft-pick"><strong>R6:</strong> Aaron Jones Sr. Min, RB</div>
+                        <div class="draft-pick"><strong>R7:</strong> Jakobi Meyers LV, WR</div>
+                        <div class="draft-pick"><strong>R8:</strong> Kyler Murray Ari, QB</div>
+                        <div class="draft-pick"><strong>R9:</strong> Jauan Jennings SF, WR</div>
+                        <div class="draft-pick"><strong>R10:</strong> Keon Coleman Buf, WR</div>
+                        <div class="draft-pick"><strong>R11:</strong> Rachaad White TB, RB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Hunter Henry NE, TE</div>
+                        <div class="draft-pick"><strong>R13:</strong> Ravens D/ST Bal, D/ST</div>
+                        <div class="draft-pick"><strong>R14:</strong> Chase McLaughlin TB, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Jalen Coker Car, WR</div>
+                        <div class="draft-pick"><strong>R16:</strong> Joshua Palmer Buf, WR</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Nobody's Hurt</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Ja'Marr Chase Cin, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Brock Bowers LV, TE</div>
+                        <div class="draft-pick"><strong>R3:</strong> Josh Allen Buf, QB</div>
+                        <div class="draft-pick"><strong>R4:</strong> TreVeyon Henderson NE, RB</div>
+                        <div class="draft-pick"><strong>R5:</strong> DK Metcalf Pit, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> Calvin Ridley Ten, WR</div>
+                        <div class="draft-pick"><strong>R7:</strong> RJ Harvey Den, RB</div>
+                        <div class="draft-pick"><strong>R8:</strong> Bo Nix Den, QB</div>
+                        <div class="draft-pick"><strong>R9:</strong> Tyler Warren Ind, TE</div>
+                        <div class="draft-pick"><strong>R10:</strong> Josh Downs Ind, WR</div>
+                        <div class="draft-pick"><strong>R11:</strong> Trey Benson Ari, RB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Ray Davis Buf, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Broncos D/ST Den, D/ST</div>
+                        <div class="draft-pick"><strong>R14:</strong> Tyler Bass Buf, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Seahawks D/ST Sea, D/ST</div>
+                        <div class="draft-pick"><strong>R16:</strong> Tre' Harris LAC, WR</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Beatin Sandy's Cheeks</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Bijan Robinson Atl, RB</div>
+                        <div class="draft-pick"><strong>R2:</strong> Tee Higgins Cin, WR</div>
+                        <div class="draft-pick"><strong>R3:</strong> Jayden Daniels Wsh, QB</div>
+                        <div class="draft-pick"><strong>R4:</strong> Mike Evans TB, WR</div>
+                        <div class="draft-pick"><strong>R5:</strong> D'Andre Swift Chi, RB</div>
+                        <div class="draft-pick"><strong>R6:</strong> T.J. Hockenson Min, TE</div>
+                        <div class="draft-pick"><strong>R7:</strong> Jaylen Warren Pit, RB</div>
+                        <div class="draft-pick"><strong>R8:</strong> Deebo Samuel Wsh, WR</div>
+                        <div class="draft-pick"><strong>R9:</strong> Keenan Allen LAC, WR</div>
+                        <div class="draft-pick"><strong>R10:</strong> Bhayshul Tuten Jax, RB</div>
+                        <div class="draft-pick"><strong>R11:</strong> C.J. Stroud Hou, QB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Najee Harris LAC, RB</div>
+                        <div class="draft-pick"><strong>R13:</strong> Jayden Higgins Hou, WR</div>
+                        <div class="draft-pick"><strong>R14:</strong> Jake Elliott Phi, K</div>
+                        <div class="draft-pick"><strong>R15:</strong> Brenton Strange Jax, TE</div>
+                        <div class="draft-pick"><strong>R16:</strong> Colts D/ST Ind, D/ST</div>
+                    </div>
+                </div>
+
+                <div class="draft-team">
+                    <div class="draft-team-name">Hawk Tua an Pitts On That Thang</div>
+                    <div class="draft-picks">
+                        <div class="draft-pick"><strong>R1:</strong> Amon-Ra St. Brown Det, WR</div>
+                        <div class="draft-pick"><strong>R2:</strong> Brian Thomas Jr. Jax, WR</div>
+                        <div class="draft-pick"><strong>R3:</strong> James Cook Buf, RB</div>
+                        <div class="draft-pick"><strong>R4:</strong> Kenneth Walker III Sea, RB</div>
+                        <div class="draft-pick"><strong>R5:</strong> Courtland Sutton Den, WR</div>
+                        <div class="draft-pick"><strong>R6:</strong> David Montgomery Det, RB</div>
+                        <div class="draft-pick"><strong>R7:</strong> Evan Engram Den, TE</div>
+                        <div class="draft-pick"><strong>R8:</strong> Kaleb Johnson Pit, RB</div>
+                        <div class="draft-pick"><strong>R9:</strong> Travis Etienne Jr. Jax, RB</div>
+                        <div class="draft-pick"><strong>R10:</strong> Justin Fields NYJ, QB</div>
+                        <div class="draft-pick"><strong>R11:</strong> Jared Goff Det, QB</div>
+                        <div class="draft-pick"><strong>R12:</strong> Rashid Shaheed NO, WR</div>
+                        <div class="draft-pick"><strong>R13:</strong> Brian Robinson Jr. SF, RB</div>
+                        <div class="draft-pick"><strong>R14:</strong> Zach Ertz Wsh, TE</div>
+                        <div class="draft-pick"><strong>R15:</strong> Eagles D/ST Phi, D/ST</div>
+                        <div class="draft-pick"><strong>R16:</strong> Wil Lutz Den, K</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -645,44 +872,6 @@
                 }
             });
         });
-    </script>
-
-    <script>
-        // Draft countdown (local time)
-        (function() {
-            // September 1, 2025 19:00 local time
-            var target = new Date(2025, 8, 1, 19, 0, 0); // months are 0-indexed
-            var elDays = document.getElementById('dd-days');
-            var elHours = document.getElementById('dd-hours');
-            var elMins = document.getElementById('dd-mins');
-            var elSecs = document.getElementById('dd-secs');
-            var elDone = document.getElementById('dd-done');
-            if (!elDays || !elHours || !elMins || !elSecs) return;
-
-            function tick() {
-                var now = new Date();
-                var diff = target - now;
-                if (diff <= 0) {
-                    elDays.textContent = '0';
-                    elHours.textContent = '0';
-                    elMins.textContent = '0';
-                    elSecs.textContent = '0';
-                    if (elDone) elDone.style.display = 'block';
-                    clearInterval(timer);
-                    return;
-                }
-                var d = Math.floor(diff / (1000*60*60*24));
-                var h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-                var m = Math.floor((diff % (1000*60*60)) / (1000*60));
-                var s = Math.floor((diff % (1000*60)) / 1000);
-                elDays.textContent = d;
-                elHours.textContent = h;
-                elMins.textContent = m;
-                elSecs.textContent = s;
-            }
-            var timer = setInterval(tick, 1000);
-            tick();
-        })();
     </script>
 
 </body>
