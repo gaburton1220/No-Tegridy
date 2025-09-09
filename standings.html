@@ -857,7 +857,10 @@
     <script>
         function addTrashTalk() {
             const input = document.getElementById('trashInput');
+            const usernameInput = document.getElementById('usernameInput');
             if (!input || input.value.trim() === '') return;
+            
+            const username = usernameInput && usernameInput.value.trim() !== '' ? usernameInput.value.trim() : 'Anonymous';
             
             const messagesContainer = document.getElementById('trashMessages');
             if (!messagesContainer) return;
@@ -867,7 +870,7 @@
             
             messageDiv.innerHTML = `
                 <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span style="color: #28a745; font-weight: bold; font-size: 0.9rem;">You</span>
+                    <span style="color: #28a745; font-weight: bold; font-size: 0.9rem;">${username}</span>
                     <span style="color: #ccc; font-size: 0.8rem;">Just now</span>
                 </div>
                 <div style="color: white; font-size: 0.9rem;">${input.value}</div>
