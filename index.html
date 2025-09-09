@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&amp;family=Orbitron:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="favicon-32x32.png" rel="icon" type="image/png"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No-Tegridy Fantasy Football - WHERE LEGENDS ARE BORN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon-32x32.png" type="image/png">
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -224,6 +223,76 @@
             z-index: 2;
         }
 
+        /* Game Lines Styles */
+        .game-lines-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .game-lines-table th {
+            background: rgba(240, 173, 78, 0.2);
+            color: #f0ad4e;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #f0ad4e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-lines-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid rgba(240, 173, 78, 0.2);
+        }
+
+        .away-team, .home-team {
+            font-weight: bold;
+            color: #f0ad4e;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .projection {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .line-favorite {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .line-underdog {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .box-score-link {
+            background: linear-gradient(45deg, #17a2b8, #20c997);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .box-score-link:hover {
+            background: linear-gradient(45deg, #138496, #1e7e34);
+            transform: scale(1.05);
+        }
+
+        .week-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
         /* Stream section */
         .video-wrapper {
             position: relative;
@@ -237,92 +306,6 @@
             width: 100%;
             height: 400px;
             border: none;
-        }
-
-        /* Power Rankings */
-        .power-rankings {
-            list-style: none;
-            padding: 0;
-        }
-
-        .power-ranking-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(240, 173, 78, 0.1);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .power-ranking-item:hover {
-            background: rgba(240, 173, 78, 0.2);
-            border-color: #f0ad4e;
-            transform: translateX(5px);
-        }
-
-        .ranking-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
-            min-width: 40px;
-            text-align: center;
-            margin-right: 15px;
-        }
-
-        .ranking-team {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #f0ad4e;
-            flex-grow: 1;
-        }
-
-        /* Draft Recap */
-        .draft-team {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: rgba(240, 173, 78, 0.08);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .draft-team:hover {
-            background: rgba(240, 173, 78, 0.15);
-            border-color: #f0ad4e;
-            transform: translateY(-3px);
-        }
-
-        .draft-team-name {
-            font-size: 1.3rem;
-            color: #f0ad4e;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .draft-picks {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 8px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .draft-pick {
-            padding: 5px 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 5px;
-            border-left: 3px solid #ff6b35;
-        }
-
-        .draft-pick strong {
-            color: #ffd700;
         }
 
         /* Twitter feed */
@@ -387,8 +370,17 @@
                 padding: 8px 15px;
             }
 
-            .draft-picks {
-                grid-template-columns: 1fr;
+            .game-lines-table {
+                font-size: 0.8rem;
+            }
+
+            .game-lines-table th,
+            .game-lines-table td {
+                padding: 8px 4px;
+            }
+
+            .away-team, .home-team {
+                font-size: 0.85rem;
             }
         }
 
@@ -418,144 +410,168 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-        }
     </style>
-<!-- Floating particles -->
-<div class="particles"></div>
-<!-- Hero Header -->
-<div class="hero-header">
-<h1 class="logo">NO-TEGRIDY</h1>
-<div class="tagline">🏈 FANTASY FOOTBALL LEGENDS 🏈</div>
-<div class="subtitle">Where Champions Are Made &amp; Dreams Are Crushed</div>
-</div>
-<!-- Navigation -->
-<nav>
-<ul>
-<li><a href="index.html">🏠 Home</a></li>
-<li><a href="pictures.html">📸 Pictures</a></li>
-<li><a href="standings.html">🏆 Standings</a></li>
-<li><a href="group.html">👥 Our Legends</a></li>
-<li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
-<li><a href="past-seasons.html">📚 History</a></li>
-<li><a href="draft-recap.html">📰 Draft Recap</a></li>
-<!-- Main Content Grid -->
-<div class="content-grid">
-<!-- Power Rankings -->
-<div class="content-card">
-<div class="card-header">🏆 CURRENT POWER RANKINGS 🏆</div>
-<div class="card-content">
-<ol class="power-rankings">
-<li class="power-ranking-item">
-<div class="ranking-number">1</div>
-<div class="ranking-team">Nobody's Hurt</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">2</div>
-<div class="ranking-team">4th n Long to Deannas Tight End</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">3</div>
-<div class="ranking-team">Blevins' RubNTug</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">4</div>
-<div class="ranking-team">Waddle you doing stepburrow</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">5</div>
-<div class="ranking-team">Beatin Sandy's Cheeks</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">6</div>
-<div class="ranking-team">Waffle House Bound</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">7</div>
-<div class="ranking-team">Mr Pfizer + Swifties for Kamala</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">8</div>
-<div class="ranking-team">Burrowito Bowl</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">9</div>
-<div class="ranking-team">Room 40's Nuts</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">10</div>
-<div class="ranking-team">Gut Check</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">11</div>
-<div class="ranking-team">Hawk Tua an Pitts On That Thang</div>
-</li>
-<li class="power-ranking-item">
-<div class="ranking-number">12</div>
-<div class="ranking-team">1st Pick Curse</div>
-</li>
-</ol>
-</div>
-</div>
-<!-- Video Section -->
-<div class="content-card">
-<div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
-<div class="card-content">
-<p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+        <h1 class="logo">NO-TEGRIDY</h1>
+        <div class="tagline">🏈 FANTASY FOOTBALL LEGENDS 🏈</div>
+        <div class="subtitle">Where Champions Are Made & Dreams Are Crushed</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="pictures.html">📸 Pictures</a></li>
+            <li><a href="standings.html">🏆 Standings</a></li>
+            <li><a href="group.html">👥 Our Legends</a></li>
+            <li><a href="roasting-isaac.html">🔥 Roast Isaac</a></li>
+            <li><a href="past-seasons.html">📚 History</a></li>
+            <li><a href="draft-recap.html">📰 Draft Recap</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+        <!-- Game Lines -->
+        <div class="content-card">
+            <div class="card-header">🎯 GAME LINES: WEEK 2 🎯</div>
+            <div class="card-content">
+                <div class="week-header">Don's Gooch</div>
+                <table class="game-lines-table">
+                    <thead>
+                        <tr>
+                            <th>AWAY TEAM</th>
+                            <th>PROJ</th>
+                            <th>LINE</th>
+                            <th></th>
+                            <th>LINE</th>
+                            <th>PROJ</th>
+                            <th>HOME TEAM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="away-team">Gut Check</td>
+                            <td class="projection">124.3</td>
+                            <td class="line-favorite">-9.1</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-underdog">+9.1</td>
+                            <td class="projection">115.2</td>
+                            <td class="home-team">3rd Beer Hits The Blake Towers</td>
+                        </tr>
+                        <tr>
+                            <td class="away-team">Room 40's Nuts</td>
+                            <td class="projection">115.7</td>
+                            <td class="line-favorite">-4.1</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-underdog">+4.1</td>
+                            <td class="projection">111.6</td>
+                            <td class="home-team">Mr Pfizer + Swifties for Kamala</td>
+                        </tr>
+                        <tr>
+                            <td class="away-team">Nobody's Hurt</td>
+                            <td class="projection">113.6</td>
+                            <td class="line-underdog">+8.8</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-favorite">-8.8</td>
+                            <td class="projection">122.4</td>
+                            <td class="home-team">Beatin Sandy's Cheeks</td>
+                        </tr>
+                        <tr>
+                            <td class="away-team">Burrowito Bowl</td>
+                            <td class="projection">124.9</td>
+                            <td class="line-favorite">-6.5</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-underdog">+6.5</td>
+                            <td class="projection">118.4</td>
+                            <td class="home-team">1st Pick Curse</td>
+                        </tr>
+                        <tr>
+                            <td class="away-team">Blevins' RubNTug</td>
+                            <td class="projection">121.0</td>
+                            <td class="line-underdog">+3.0</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-favorite">-3.0</td>
+                            <td class="projection">124.0</td>
+                            <td class="home-team">I chase brown kids</td>
+                        </tr>
+                        <tr>
+                            <td class="away-team">Waffle House Bound</td>
+                            <td class="projection">111.2</td>
+                            <td class="line-underdog">+17.2</td>
+                            <td><a href="javascript:void(0)" class="box-score-link">Box Score</a></td>
+                            <td class="line-favorite">-17.2</td>
+                            <td class="projection">128.4</td>
+                            <td class="home-team">4th n Long to Deannas Tight End</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div class="content-card">
+            <div class="card-header">🎬 WITNESS GREATNESS 🎬</div>
+            <div class="card-content">
+                <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
                     🔥 Watch How Fuckin' Sick We Are 🔥
                 </p>
-<div class="video-wrapper">
-<iframe allowfullscreen="" src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview">
-</iframe>
-</div>
-</div>
-</div>
-<!-- Weekly Updates -->
-<div class="content-card">
-<div class="card-header">📰 WEEKLY CHAOS 📰</div>
-<div class="card-content">
-<h3 style="color: #ffd700; margin-bottom: 15px;">🎯 2025 SEASON READY 🎯</h3>
-<p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;">
-                    🏈 Draft complete! Time to see who's destined for glory and who's headed for shame!
-                </p>
-<p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;">
-                    💀 Will Tyler ever complete his punishment? Current Betting odds: YES +560 | NO -560
-                </p>
-<p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6;">
-                    🤡 Text your bets to the Group Chat! 
-                </p>
-<div style="margin-top: 20px; padding: 15px; background: rgba(240, 173, 78, 0.1); border-radius: 10px; border-left: 4px solid #f0ad4e;">
-<strong>🚨 SEASON STARTS NOW 🚨</strong><br/>
-                    Wait, Logan took a kicker in WHAT round?
+                <div class="video-wrapper">
+                    <iframe src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" allowfullscreen></iframe>
                 </div>
-</div>
-</div>
-<!-- NFL Updates -->
-<div class="content-card">
-<div class="card-header">🏈 NFL UPDATES 🏈</div>
-<div class="card-content">
-<a class="twitter-timeline" data-height="650" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">Tweets by NFL</a>
-</div>
-</div>
-</div>
-<!-- Epic Footer -->
-<footer>
-<p>
-            🔥 <strong>NO-TEGRIDY FANTASY FOOTBALL</strong> 🔥<br/>
-<span style="color: #ff6b35;">Powered by Tall Boy Shotguns &amp; Ran Through Porn Stars</span><br/>
-<span style="color: #ffd700;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br/>
-<br/>
-<em style="font-size: 0.9rem; opacity: 0.8;">Est. 2021 • Champions Forever • Legends Never Die</em>
-</p>
-</footer>
-<!-- Scripts -->
-<script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
-<script>
+            </div>
+        </div>
+
+        <!-- Weekly Updates -->
+        <div class="content-card">
+            <div class="card-header">📰 WEEKLY CHAOS 📰</div>
+            <div class="card-content">
+                <h3 style="color: #ffd700; margin-bottom: 15px;">🎯 WEEK 2 PREDICTIONS 🎯</h3>
+                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px;">
+                    🏈 Week 1 is in the books! Time to see who can back up their draft day hype!
+                </p>
+                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;">
+                    💀 Current Upset Alert: Waffle House Bound (+17.2) vs 4th n Long to Deannas Tight End
+                </p>
+                <p style="color: #ff6b35; font-size: 1.1rem; line-height: 1.6;">
+                    🤡 Lock of the week: Gut Check laying 9.1 points 
+                </p>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(240, 173, 78, 0.1); border-radius: 10px; border-left: 4px solid #f0ad4e;">
+                    <strong>🚨 WEEK 2 CHAOS INCOMING 🚨</strong><br>
+                    Who's ready to disappoint their fans again?
+                </div>
+            </div>
+        </div>
+
+        <!-- NFL Updates -->
+        <div class="content-card">
+            <div class="card-header">🏈 NFL UPDATES 🏈</div>
+            <div class="card-content">
+                <a class="twitter-timeline" data-height="650" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">Tweets by NFL</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Epic Footer -->
+    <footer>
+        <p>
+            🔥 <strong>NO-TEGRIDY FANTASY FOOTBALL</strong> 🔥<br>
+            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Ran Through Porn Stars</span><br>
+            <span style="color: #ffd700;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
+            <br>
+            <em style="font-size: 0.9rem; opacity: 0.8;">Est. 2021 • Champions Forever • Legends Never Die</em>
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
+    <script>
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.querySelector('.particles');
@@ -574,19 +590,6 @@
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-        });
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 </body>
