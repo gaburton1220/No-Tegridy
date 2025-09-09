@@ -481,6 +481,55 @@
                 </div>
             </div>
 
+            <!-- Trash Talk Board -->
+            <div class="stat-card">
+                <div class="card-header">🔥 TRASH TALK ZONE 🔥</div>
+                <div style="background: rgba(33, 37, 41, 0.9); border-radius: 15px; padding: 20px; position: relative; z-index: 2;">
+                    <!-- Message Input -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="trashInput" placeholder="Drop your hottest take..." 
+                                   style="flex: 1; padding: 10px; border-radius: 20px; border: 2px solid #f0ad4e; background: rgba(0,0,0,0.5); color: white; font-size: 0.9rem;">
+                            <button onclick="addTrashTalk()" 
+                                    style="background: linear-gradient(45deg, #f0ad4e, #ff6b35); border: none; color: #000; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                                🔥 POST
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages -->
+                    <div id="trashMessages" style="max-height: 300px; overflow-y: auto;">
+                        <div style="background: rgba(240,173,78,0.1); border: 1px solid rgba(240,173,78,0.3); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #f0ad4e; font-weight: bold; font-size: 0.9rem;">CJ Tackett</span>
+                                <span style="color: #ccc; font-size: 0.8rem;">2 mins ago</span>
+                            </div>
+                            <div style="color: white; font-size: 0.9rem;">Last year's champion energy still flowing! Everyone else just playing for 2nd place 💪</div>
+                        </div>
+                        
+                        <div style="background: rgba(240,173,78,0.1); border: 1px solid rgba(240,173,78,0.3); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #f0ad4e; font-weight: bold; font-size: 0.9rem;">Blake Howell</span>
+                                <span style="color: #ccc; font-size: 0.8rem;">5 mins ago</span>
+                            </div>
+                            <div style="color: white; font-size: 0.9rem;">1st Pick Curse jumping 6 spots? Y'all bout to learn why they call it a CURSE 😈</div>
+                        </div>
+                        
+                        <div style="background: rgba(220,53,69,0.1); border: 1px solid rgba(220,53,69,0.3); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #dc3545; font-weight: bold; font-size: 0.9rem;">Eli Hurt</span>
+                                <span style="color: #ccc; font-size: 0.8rem;">8 mins ago</span>
+                            </div>
+                            <div style="color: white; font-size: 0.9rem;">Burrowito Bowl at #4? Biggest overreaction since Isaac thought he could win last year 💀</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(240,173,78,0.3); font-size: 0.8rem; color: #ccc; text-align: center;">
+                        💬 Live trash talk • Type your message and hit POST
+                    </div>
+                </div>
+            </div>
+
             <!-- Power Rankings List -->
             <div class="stat-card" style="grid-column: 1 / -1;">
                 <div class="card-header">🏆 CURRENT POWER RANKINGS 🏆</div>
@@ -805,13 +854,35 @@
         </p>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        // Create floating particles
+        function addTrashTalk() {
+            const input = document.getElementById('trashInput');
+            if (!input || input.value.trim() === '') return;
+            
+            const messagesContainer = document.getElementById('trashMessages');
+            if (!messagesContainer) return;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = 'background: rgba(40,167,69,0.1); border: 1px solid rgba(40,167,69,0.3); border-radius: 10px; padding: 12px; margin-bottom: 10px;';
+            
+            messageDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color: #28a745; font-weight: bold; font-size: 0.9rem;">You</span>
+                    <span style="color: #ccc; font-size: 0.8rem;">Just now</span>
+                </div>
+                <div style="color: white; font-size: 0.9rem;">${input.value}</div>
+            `;
+            
+            messagesContainer.insertBefore(messageDiv, messagesContainer.firstChild);
+            input.value = '';
+            messagesContainer.scrollTop = 0;
+        }
+
         function createParticles() {
             const particlesContainer = document.querySelector('.particles');
+            if (!particlesContainer) return;
+            
             const particleCount = 50;
-
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
@@ -822,19 +893,17 @@
             }
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
-        });
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            
+            const input = document.getElementById('trashInput');
+            if (input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addTrashTalk();
+                    }
                 });
-            });
+            }
         });
     </script>
 </body>
