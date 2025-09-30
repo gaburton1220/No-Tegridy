@@ -380,8 +380,16 @@
 
         @media (max-width: 480px) {
             nav ul {
-                flex-direction: column;
-                gap: 10px;
+                flex-direction: row;
+                gap: 5px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+                min-width: auto;
             }
 
             .hero-header {
