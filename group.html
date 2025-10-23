@@ -890,68 +890,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Add card interaction effects
-        function addCardEffects() {
-            const memberCards = document.querySelectorAll('.member-card');
-            
-            memberCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    // Add subtle shake effect to emoji
-                    const emoji = this.querySelector('.member-emoji');
-                    emoji.style.animation = 'shake 0.5s ease-in-out';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const emoji = this.querySelector('.member-emoji');
-                    emoji.style.animation = '';
-                });
-            });
-        }
-
-        // Add shake animation
-        const shakeKeyframes = `
-            @keyframes shake {
-                0%, 100% { transform: rotate(0deg); }
-                25% { transform: rotate(-5deg); }
-                75% { transform: rotate(5deg); }
-            }
-        `;
-        
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = shakeKeyframes;
-        document.head.appendChild(styleSheet);
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            addCardEffects();
-        });
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
