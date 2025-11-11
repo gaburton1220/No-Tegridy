@@ -208,6 +208,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Floating particles -->
     <div class="particles"></div>
 
@@ -219,6 +222,9 @@
 
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            ☰
+        </button>
         <ul>
             <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
             <li><a href="pictures.html" aria-label="View league pictures and gallery">📸 Pictures</a></li>
@@ -231,7 +237,7 @@
     </nav>
 
     <!-- Power Rankings Section -->
-    <div class="power-rankings-section">
+    <div id="main-content" class="power-rankings-section">
         <div class="power-rankings-header">
             <h1>🔥 POWER RANKINGS 🔥</h1>
             <div class="subtitle">Draft Day vs. Current Rankings</div>

@@ -609,6 +609,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Floating fire particles -->
     <div class="particles"></div>
 
@@ -625,6 +628,9 @@
 
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            ☰
+        </button>
         <ul>
             <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
             <li><a href="pictures.html" aria-label="View league pictures and gallery">📸 Pictures</a></li>
@@ -650,7 +656,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="content-section">
+    <div id="main-content" class="content-section">
         <div class="section-grid">
             <!-- Epic Fails -->
             <div class="roast-card">
@@ -770,7 +776,7 @@
             <h3 class="gallery-title">📸 MOMENTS OF SHAME 📸</h3>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="IMG_1131.jpeg" alt="Isaac Roast Session">
+                    <img loading="lazy" src="IMG_1131.jpeg" alt="Isaac Roast Session">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">🔥 ROAST SESSION ACTIVATED</div>
                         <div class="gallery-description">
@@ -780,7 +786,7 @@
                 </div>
 
                 <div class="gallery-item">
-                    <img src="IMG_1130.jpeg" alt="Isaac's Defeat">
+                    <img loading="lazy" src="IMG_1130.jpeg" alt="Isaac's Defeat">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">😭 DEFEAT ACCEPTED</div>
                         <div class="gallery-description">
@@ -790,7 +796,7 @@
                 </div>
 
                 <div class="gallery-item">
-                    <img src="IMG_0839.jpeg" alt="Maximum Roast">
+                    <img loading="lazy" src="IMG_0839.jpeg" alt="Maximum Roast">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">🤡 MAXIMUM ROAST ENERGY</div>
                         <div class="gallery-description">
@@ -806,17 +812,19 @@
             <h3 class="video-title">🎥 ROAST VIDEOS 🎥</h3>
             <div class="videos-grid">
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1i0gtAVLGUe_my2qmHtcefrHcHtbT0gVD/preview" 
-                        allowfullscreen>
+                    <iframe
+                        src="https://drive.google.com/file/d/1i0gtAVLGUe_my2qmHtcefrHcHtbT0gVD/preview"
+                        allowfullscreen
+                        loading="lazy">
                     </iframe>
                     <div class="video-caption">🤡 ISAAC'S GREATEST FAILS</div>
                 </div>
 
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1aFFMyCXk6UErhdVU9eKI60l7CiTI4m9u/preview" 
-                        allowfullscreen>
+                    <iframe
+                        src="https://drive.google.com/file/d/1aFFMyCXk6UErhdVU9eKI60l7CiTI4m9u/preview"
+                        allowfullscreen
+                        loading="lazy">
                     </iframe>
                     <div class="video-caption">💀 LEGENDARY ROAST COMPILATION</div>
                 </div>
@@ -1092,11 +1100,3 @@
     </script>
 </body>
 </html>
-                    <iframe 
-                        src="https://drive.google.com/file/d/1413yDkb6M39qeGOfRRuywraygRUT4cIi/preview" 
-                        allowfullscreen>
-                    </iframe>
-                    <div class="video-caption">🔥 EPIC ROAST SESSION #1</div>
-                </div>
-
-                <div class="video-wrapper">
