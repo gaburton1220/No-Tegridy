@@ -15,7 +15,21 @@ function createParticles() {
     }
 }
 
+// Hamburger menu toggle
+function toggleMobileMenu() {
+    const navUl = document.querySelector('nav ul');
+    if (navUl) {
+        navUl.classList.toggle('active');
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
+
+    // Set up hamburger menu if it exists
+    const hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMobileMenu);
+    }
 });

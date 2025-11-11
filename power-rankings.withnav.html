@@ -427,6 +427,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Floating particles -->
     <div class="particles"></div>
 
@@ -439,6 +442,9 @@
 
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            ☰
+        </button>
         <ul>
             <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
             <li><a href="pictures.html" aria-label="View league pictures and gallery">📸 Pictures</a></li>
@@ -451,7 +457,7 @@
     </nav>
 
     <!-- Main Content Grid -->
-    <div class="content-grid">
+    <div id="main-content" class="content-grid">
 <div class="content-card">
             <div class="card-header">🏆 CURRENT POWER RANKINGS 🏆</div>
             <div class="card-content">
@@ -507,60 +513,7 @@
                 </ol>
             </div>
         </div>
-</div>
-            <div class="card-content">
-                <ol class="power-rankings">
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">1</div>
-                        <div class="ranking-team">Nobody's Hurt</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">2</div>
-                        <div class="ranking-team">4th n Long to Deannas Tight End</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">3</div>
-                        <div class="ranking-team">Blevins' RubNTug</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">4</div>
-                        <div class="ranking-team">Waddle you doing stepburrow</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">5</div>
-                        <div class="ranking-team">Beatin Sandy's Cheeks</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">6</div>
-                        <div class="ranking-team">Waffle House Bound</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">7</div>
-                        <div class="ranking-team">Mr Pfizer + Swifties for Kamala</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">8</div>
-                        <div class="ranking-team">Burrowito Bowl</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">9</div>
-                        <div class="ranking-team">Room 40's Nuts</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">10</div>
-                        <div class="ranking-team">Gut Check</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">11</div>
-                        <div class="ranking-team">Hawk Tua an Pitts On That Thang</div>
-                    </li>
-                    <li class="power-ranking-item">
-                        <div class="ranking-number">12</div>
-                        <div class="ranking-team">1st Pick Curse</div>
-                    </li>
-                </ol>
-            </div>
-        </div>
+    </div>
 
         <!-- Video Section -->
         <div class="content-card">
@@ -570,9 +523,10 @@
                     🔥 Watch How Fuckin' Sick We Are 🔥
                 </p>
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" 
-                        allowfullscreen>
+                    <iframe
+                        src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview"
+                        allowfullscreen
+                        loading="lazy">
                     </iframe>
                 </div>
             </div>

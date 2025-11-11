@@ -372,10 +372,16 @@
                 padding: 1rem;
             }
 
+            .table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
             .table thead th,
             .table tbody td {
                 padding: 8px;
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -402,11 +408,17 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Floating particles -->
     <div class="particles"></div>
     
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            ☰
+        </button>
         <ul>
             <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
             <li><a href="pictures.html" aria-label="View league pictures and gallery">📸 Pictures</a></li>
@@ -419,7 +431,7 @@
     </nav>
 
     <main>
-        <section class="section">
+        <section id="main-content" class="section">
             <h1>2025 Draft Recap</h1>
             <p>Full results by team and by round.</p>
         </section>
