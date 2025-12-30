@@ -23,6 +23,20 @@ function toggleMobileMenu() {
     }
 }
 
+// Toggle season accordion sections (for past-seasons page)
+function toggleSeason(seasonId) {
+    const content = document.getElementById(seasonId);
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        header.classList.remove('active');
+    } else {
+        content.classList.add('active');
+        header.classList.add('active');
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
