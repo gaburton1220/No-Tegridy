@@ -8,374 +8,48 @@
     <link rel="icon" href="favicon-32x32.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(-45deg, #000000, #1a1a1a, #2d1b69, #1e3c72, #2a5298);
-            background-size: 400% 400%;
-            animation: epicGradient 15s ease infinite;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        @keyframes epicGradient {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles effect */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #f0ad4e;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Header */
-        .hero-header {
-            text-align: center;
-            padding: 50px 20px 30px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff6b35, #f0ad4e, #ff6b35);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: logoGlow 3s ease-in-out infinite alternate;
-            margin-bottom: 10px;
-        }
-
-        @keyframes logoGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: clamp(1rem, 3vw, 1.8rem);
-            color: #f0ad4e;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            color: #ff6b35;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Commissioner Section */
-        .commissioner-section {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
+        /* Our Legends page specific styles */
+        .commissioner-section { max-width: 1200px; margin: var(--space-xl) auto; padding: 0 var(--space-md); }
         .commissioner-card {
-            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-            color: #000;
-            padding: 40px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, var(--gold-bright), #FFED4E, var(--gold-bright));
+            color: var(--bg-deep);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
             text-align: center;
-            border: 4px solid #ff6b35;
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5);
-            animation: commissionerGlow 3s ease-in-out infinite alternate;
+            border: 4px solid var(--gold-warm);
+            box-shadow: var(--shadow-gold-lg);
             position: relative;
             overflow: hidden;
         }
-
-        @keyframes commissionerGlow {
-            0% { box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5); }
-            100% { box-shadow: 0 25px 60px rgba(255, 215, 0, 0.8); }
-        }
-
-        .commissioner-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 4s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-        }
-
-        .commissioner-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .commissioner-name {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .commissioner-team {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            color: #8B0000;
-            position: relative;
-            z-index: 2;
-        }
-
+        .commissioner-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-md); position: relative; z-index: 2; }
+        .commissioner-name { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: var(--space-sm); position: relative; z-index: 2; }
+        .commissioner-team { font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #8B0000; position: relative; z-index: 2; }
         /* Members Grid */
-        .members-section {
-            max-width: 1600px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: #f0ad4e;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .member-card {
-            background: rgba(52, 58, 64, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .member-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(240, 173, 78, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .member-card:hover::before {
-            opacity: 1;
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-
-        .member-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: #f0ad4e;
-            box-shadow: 0 25px 50px rgba(240, 173, 78, 0.3);
-        }
-
-        .member-emoji {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .member-name {
-            font-size: 1.8rem;
-            color: #f0ad4e;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            position: relative;
-            z-index: 2;
-        }
-
-        .member-team {
-            font-size: 1.3rem;
-            color: #ff6b35;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: bold;
-            position: relative;
-            z-index: 2;
-        }
-
-        .member-stats {
-            position: relative;
-            z-index: 2;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(240, 173, 78, 0.2);
-            font-size: 1rem;
-        }
-
-        .stat-row:last-child {
-            border-bottom: none;
-        }
-
-        .stat-label {
-            color: #ccc;
-            font-weight: bold;
-        }
-
-        .stat-value {
-            color: #f0ad4e;
-            font-weight: bold;
-        }
-
-        .member-quote {
-            background: rgba(240, 173, 78, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #f0ad4e;
-            margin-top: 15px;
-            font-style: italic;
-            color: #f0ad4e;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Special styling for Isaac (the roast target) */
-        .isaac-card {
-            border-color: #ff4444 !important;
-            background: rgba(139, 0, 0, 0.1) !important;
-        }
-
-        .isaac-card:hover {
-            border-color: #ff4444 !important;
-            box-shadow: 0 25px 50px rgba(255, 68, 68, 0.3) !important;
-        }
-
-        .isaac-card .member-name {
-            color: #ff4444 !important;
-        }
-
-        .isaac-card .member-team {
-            color: #ff6666 !important;
-        }
-
-        /* Champion styling for CJ */
-        .champion-card {
-            border-color: #ffd700 !important;
-            background: rgba(255, 215, 0, 0.1) !important;
-        }
-
-        .champion-card:hover {
-            border-color: #ffd700 !important;
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.4) !important;
-        }
-
-        .champion-card .member-name {
-            color: #ffd700 !important;
-        }
-
-        .champion-card .member-team {
-            color: #ffed4e !important;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #212529, #000);
-            padding: 40px 20px;
-            text-align: center;
-            color: #f0ad4e;
-            border-top: 3px solid #f0ad4e;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f0ad4e, #ff6b35, #f0ad4e);
-            animation: footerGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes footerGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .members-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .commissioner-card {
-                padding: 25px;
-            }
-
-            .member-card {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-header {
-                padding: 30px 10px 20px;
-            }
-        }
+        .members-section { max-width: 1600px; margin: var(--space-xl) auto; padding: 0 var(--space-md); }
+        .section-title { text-align: center; font-size: clamp(2rem, 4vw, 3rem); color: var(--gold-primary); margin-bottom: var(--space-xl); text-transform: uppercase; letter-spacing: 3px; }
+        .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-md); }
+        .member-card { background: var(--bg-card); backdrop-filter: blur(10px); border-radius: var(--radius-xl); padding: var(--space-md); border: 2px solid rgba(240, 173, 78, 0.3); transition: all var(--transition-base); position: relative; overflow: hidden; }
+        .member-card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
+        .member-emoji { font-size: 4rem; text-align: center; margin-bottom: var(--space-md); position: relative; z-index: 2; }
+        .member-name { font-size: 1.8rem; color: var(--gold-primary); text-align: center; margin-bottom: var(--space-sm); font-weight: bold; position: relative; z-index: 2; }
+        .member-team { font-size: 1.3rem; color: var(--gold-warm); text-align: center; margin-bottom: var(--space-md); font-weight: bold; position: relative; z-index: 2; }
+        .member-stats { position: relative; z-index: 2; }
+        .stat-row { display: flex; justify-content: space-between; padding: var(--space-xs) 0; border-bottom: 1px solid rgba(240, 173, 78, 0.2); font-size: 1rem; }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: var(--text-secondary); font-weight: bold; }
+        .stat-value { color: var(--gold-primary); font-weight: bold; }
+        .member-quote { background: rgba(240, 173, 78, 0.1); padding: var(--space-sm); border-radius: var(--radius-sm); border-left: 4px solid var(--gold-primary); margin-top: var(--space-sm); font-style: italic; color: var(--gold-primary); text-align: center; position: relative; z-index: 2; }
+        /* Special styling for Isaac */
+        .isaac-card { border-color: var(--isaac-shame) !important; background: rgba(139, 92, 246, 0.1) !important; }
+        .isaac-card:hover { border-color: var(--isaac-shame) !important; box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3) !important; }
+        .isaac-card .member-name { color: var(--isaac-shame) !important; }
+        .isaac-card .member-team { color: #A78BFA !important; }
+        /* Champion styling */
+        .champion-card { border-color: var(--gold-bright) !important; background: rgba(255, 215, 0, 0.1) !important; }
+        .champion-card:hover { border-color: var(--gold-bright) !important; box-shadow: var(--shadow-gold-lg) !important; }
+        .champion-card .member-name { color: var(--gold-bright) !important; }
+        .champion-card .member-team { color: #FFED4E !important; }
+        @media (max-width: 768px) { .members-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
