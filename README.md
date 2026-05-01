@@ -16,7 +16,7 @@ No-Tegridy Fantasy Football is a static website built for tracking our fantasy f
 - Photo gallery
 - Draft recaps and analysis
 - Historical league data
-- Live NFL updates via Twitter feed
+- Weekly recaps, standings, and league history updates
 
 ## Project Structure
 
@@ -29,7 +29,6 @@ No-Tegridy/
 ├── draft-recap.html              # Annual draft analysis
 ├── roasting-isaac.html           # Special roast page
 ├── past-seasons.html             # Historical league data
-├── power-rankings.withnav.html   # Alternative power rankings view
 ├── styles.css                    # Main stylesheet
 ├── script.js                     # JavaScript for animations
 ├── favicon-32x32.png             # Site favicon
