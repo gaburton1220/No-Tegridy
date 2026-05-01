@@ -3,537 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Standings & Power Rankings - No-Tegridy Fantasy Football 2025</title>
-
-    <!-- Favicon -->
+    <title>Final Standings &amp; Power Rankings — No-Tegridy 2025</title>
     <link rel="icon" href="favicon-32x32.png" type="image/png">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <!-- Main Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Page-specific styles -->
-    <style>
-        /* Power Rankings Section */
-        .power-rankings-section { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-md) var(--space-xl); }
-        .power-rankings-header {
-            background: linear-gradient(135deg, var(--gold-bright), var(--gold-warm));
-            color: var(--bg-deep);
-            padding: var(--space-md);
-            border-radius: var(--radius-xl);
-            text-align: center;
-            margin-bottom: var(--space-md);
-            border: 3px solid var(--gold-bright);
-            box-shadow: var(--shadow-gold-lg);
-        }
-        .power-rankings-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: var(--space-xs); }
-        .power-rankings-header .subtitle { font-size: 1.2rem; color: var(--bg-deep); margin-bottom: 0; }
-        /* Stats Cards */
-        .stats-section { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-md) var(--space-xl); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
-        .stat-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-xl);
-            padding: var(--space-md);
-            border: 2px solid rgba(240, 173, 78, 0.3);
-            transition: all var(--transition-base);
-        }
-        .stat-card:hover { transform: translateY(-5px); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
-        /* Team ranking row styles */
-        .team-row { display: flex; align-items: center; padding: var(--space-sm) 0; border-bottom: 1px solid rgba(240, 173, 78, 0.1); transition: all var(--transition-base); }
-        .team-row:hover { background: rgba(255, 215, 0, 0.05); }
-        .team-row:last-child { border-bottom: none; }
-        .team-row.champion { background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05)); border-left: 4px solid var(--gold-bright); margin-left: -20px; padding-left: 20px; }
-        .team-row.runner-up { background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent); border-left: 4px solid #C0C0C0; margin-left: -20px; padding-left: 20px; }
-        .team-row.third-place { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent); border-left: 4px solid #CD7F32; margin-left: -20px; padding-left: 20px; }
-        .team-row.last-place { background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), transparent); border-left: 4px solid var(--danger); margin-left: -20px; padding-left: 20px; }
-        .rank-badge { width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: var(--space-sm); }
-        .rank-badge.gold { background: var(--gold-bright); color: var(--bg-deep); }
-        .rank-badge.silver { background: #C0C0C0; color: var(--bg-deep); }
-        .rank-badge.bronze { background: #CD7F32; color: var(--bg-deep); }
-        .rank-badge.normal { background: var(--bg-elevated); color: var(--text-primary); }
-        .rank-badge.last { background: var(--danger); color: var(--text-primary); }
-        .team-info { flex: 1; }
-        .team-name-main { font-size: 1.1rem; color: var(--text-primary); font-weight: bold; }
-        .team-owner { font-size: 0.85rem; color: var(--text-muted); }
-        .team-badge { font-size: 0.75rem; padding: 3px 8px; border-radius: var(--radius-sm); margin-left: var(--space-xs); }
-        .badge-champion { background: var(--gold-bright); color: var(--bg-deep); }
-        .badge-runner-up { background: #C0C0C0; color: var(--bg-deep); }
-        .badge-third { background: #CD7F32; color: var(--bg-deep); }
-        .badge-toilet { background: var(--danger); color: var(--text-primary); }
-        .badge-consolation { background: var(--success); color: var(--text-primary); }
-        .badge-crybaby { background: var(--isaac-shame); color: var(--text-primary); }
-        /* Season Awards */
-        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
-        .award-card { background: var(--bg-elevated); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; transition: all var(--transition-base); }
-        .award-card:hover { transform: translateY(-5px); border-color: var(--gold-bright); }
-        .award-icon { font-size: 2.5rem; margin-bottom: var(--space-xs); }
-        .award-title { color: var(--gold-bright); font-size: 0.9rem; text-transform: uppercase; margin-bottom: var(--space-xs); }
-        .award-winner { color: var(--text-primary); font-size: 1rem; font-weight: bold; }
-        .award-value { color: var(--success); font-size: 0.9rem; margin-top: 5px; }
-        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } .awards-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .awards-grid { grid-template-columns: 1fr; } }
-    </style>
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Floating particles -->
-    <div class="particles"></div>
-
-    <!-- Hero Header -->
-    <div class="hero-header">
-        <h1 class="logo">FINAL STANDINGS</h1>
-        <div class="subtitle">2025 SEASON COMPLETE</div>
-    </div>
-
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-            &#9776;
-        </button>
-        <ul>
-            <li><a href="index.html" aria-label="Home page">Home</a></li>
-            <li><a href="pictures.html" aria-label="View league pictures and gallery">Pictures</a></li>
-            <li><a href="standings.html" aria-label="View current team standings and power rankings" aria-current="page">Standings</a></li>
-            <li><a href="group.html" aria-label="Meet our league members">Our Legends</a></li>
-            <li><a href="roasting-isaac.html" aria-label="Isaac roast section">Roast Isaac</a></li>
-            <li><a href="past-seasons.html" aria-label="View historical league data">History</a></li>
-            <li><a href="draft-recap.html" aria-label="View annual draft analysis">Draft Recap</a></li>
-        </ul>
-    </nav>
-
-    <!-- Power Rankings Section -->
-    <div id="main-content" class="power-rankings-section">
-        <!-- Champion Banner -->
-        <div class="champion-banner">
-            <h2>2025 LEAGUE CHAMPION</h2>
-            <div class="champion-info">
-                <span>LOGAN ALDERSON</span> - Mr Pfizer + Swifties for Kamala<br>
-                <span style="color: #28a745;">Championship Score: 138.12</span> | Defeated Blevins' RubNTug 138.12 - 85.0
-            </div>
+    <header class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand"><span class="brand-mark">NT</span><span>No-Tegridy</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav class="nav-links" aria-label="Main">
+                <a href="index.html">Home</a>
+                <a href="standings.html" aria-current="page">Standings</a>
+                <a href="group.html">Legends</a>
+                <a href="past-seasons.html">History</a>
+                <a href="draft-recap.html">Draft</a>
+                <a href="pictures.html">Gallery</a>
+                <a href="roasting-isaac.html">Roast Isaac</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="power-rankings-header">
-            <h1>FINAL POWER RANKINGS</h1>
-            <div class="subtitle">The Definitive 2025 Season Rankings</div>
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <span class="hero-eyebrow">2025 Final Standings</span>
+                <h1 class="hero-title">Power Rankings</h1>
+                <p class="hero-subtitle">The definitive 2025 finishing order, full season stats, and every award worth handing out.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="champion-hero">
+                <div class="trophy">&#127942;</div>
+                <div class="label">2025 Champion</div>
+                <div class="name">Logan Alderson</div>
+                <div class="team">Mr Pfizer + Swifties for Kamala &middot; defeated Blevins' RubNTug 138.12&ndash;85.0</div>
+            </div>
+        </section>
+
+        <!-- Final Power Rankings -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Final Order</div>
+                <h2 class="section-title">Power Rankings</h2>
+            </div>
+
+            <div class="rank-list">
+                <div class="rank-row is-1">
+                    <span class="rank">1</span>
+                    <div class="meta">
+                        <div class="team">Mr Pfizer + Swifties for Kamala <span class="pill pill-gold">Champion</span></div>
+                        <div class="owner">Logan Alderson</div>
+                    </div>
+                    <div class="num">9&ndash;5</div>
+                </div>
+                <div class="rank-row is-2">
+                    <span class="rank">2</span>
+                    <div class="meta">
+                        <div class="team">Blevins' RubNTug <span class="pill pill-silver">Runner-Up</span></div>
+                        <div class="owner">Jacob Johnson</div>
+                    </div>
+                    <div class="num">11&ndash;3</div>
+                </div>
+                <div class="rank-row is-3">
+                    <span class="rank">3</span>
+                    <div class="meta">
+                        <div class="team">Nobody's Hurt <span class="pill pill-bronze">3rd Place</span></div>
+                        <div class="owner">Eli Hurt</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">4</span>
+                    <div class="meta">
+                        <div class="team">3rd Beer Hits The Blake Towers</div>
+                        <div class="owner">Garrett Burton &middot; dropped 188.34 in R1</div>
+                    </div>
+                    <div class="num">8&ndash;6</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">5</span>
+                    <div class="meta">
+                        <div class="team">I chase brown kids</div>
+                        <div class="owner">jacob barnwell &middot; L7 streak to end the year</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">6</span>
+                    <div class="meta">
+                        <div class="team">4th n Long to Deannas Tight End</div>
+                        <div class="owner">Cain Cooksey &middot; 8 roster moves all year</div>
+                    </div>
+                    <div class="num">8&ndash;6</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">7</span>
+                    <div class="meta">
+                        <div class="team">Gut Check <span class="pill pill-shame">Crybaby</span></div>
+                        <div class="owner">Donavon Alderson &middot; lost R1 as #2 seed, rage quit</div>
+                    </div>
+                    <div class="num">10&ndash;4</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">8</span>
+                    <div class="meta">
+                        <div class="team">CeeDees Blue Balls</div>
+                        <div class="owner">Isaac Puzey &middot; 35 roster moves, still mid</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">9</span>
+                    <div class="meta">
+                        <div class="team">Beatin Sandy's Cheeks <span class="pill pill-win">Consolation Champ</span></div>
+                        <div class="owner">Tyler Blevins &middot; won by 1.32 points</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">10</span>
+                    <div class="meta">
+                        <div class="team">Room 40's Nuts</div>
+                        <div class="owner">CJ Tackett &middot; defending champ falls hard</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">11</span>
+                    <div class="meta">
+                        <div class="team">Naber, What?!</div>
+                        <div class="owner">Blake Howell &middot; 2022 champ to this</div>
+                    </div>
+                    <div class="num">4&ndash;10</div>
+                </div>
+                <div class="rank-row is-last">
+                    <span class="rank">12</span>
+                    <div class="meta">
+                        <div class="team">Waffle House Bound <span class="pill pill-lose">Toilet Bowl</span></div>
+                        <div class="owner">Rylan Thomas &middot; 63.3 in the finale</div>
+                    </div>
+                    <div class="num">4&ndash;10</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Stats Table -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Final Numbers</div>
+                <h2 class="section-title">Season Stats</h2>
+                <p class="section-lead">PF = Points For &middot; PA = Points Against &middot; STRK = Final Streak &middot; MOVES = Roster Moves</p>
+            </div>
+
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>RK</th>
+                            <th>Team</th>
+                            <th class="num-c">PF</th>
+                            <th class="num-c">PA</th>
+                            <th class="num-c">REC</th>
+                            <th class="num-c">Home</th>
+                            <th class="num-c">Away</th>
+                            <th class="num-c">Strk</th>
+                            <th class="num-c">Moves</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-champ">
+                            <td>1</td>
+                            <td>Mr Pfizer + Swifties for Kamala <span style="color: var(--t-3);">— Logan Alderson</span></td>
+                            <td class="num-c">1879.96</td>
+                            <td class="num-c">1610.60</td>
+                            <td class="num-c">9&ndash;5</td>
+                            <td class="num-c text-bright">7&ndash;0</td>
+                            <td class="num-c text-lose">2&ndash;5</td>
+                            <td class="num-c text-win">W1</td>
+                            <td class="num-c">23</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Blevins' RubNTug <span style="color: var(--t-3);">— Jacob Johnson</span></td>
+                            <td class="num-c">1670.82</td>
+                            <td class="num-c">1487.74</td>
+                            <td class="num-c text-win"><strong>11&ndash;3</strong></td>
+                            <td class="num-c">6&ndash;2</td>
+                            <td class="num-c">5&ndash;1</td>
+                            <td class="num-c text-win">W3</td>
+                            <td class="num-c">16</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Nobody's Hurt <span style="color: var(--t-3);">— Eli Hurt</span></td>
+                            <td class="num-c">1619.98</td>
+                            <td class="num-c">1598.44</td>
+                            <td class="num-c">6&ndash;8</td>
+                            <td class="num-c">3&ndash;5</td>
+                            <td class="num-c">3&ndash;3</td>
+                            <td class="num-c text-win">W1</td>
+                            <td class="num-c">13</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>3rd Beer Hits The Blake Towers <span style="color: var(--t-3);">— Garrett Burton</span></td>
+                            <td class="num-c">1539.60</td>
+                            <td class="num-c">1597.12</td>
+                            <td class="num-c">8&ndash;6</td>
+                            <td class="num-c">4&ndash;2</td>
+                            <td class="num-c">4&ndash;4</td>
+                            <td class="num-c text-lose">L2</td>
+                            <td class="num-c">12</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>I chase brown kids <span style="color: var(--t-3);">— jacob barnwell</span></td>
+                            <td class="num-c">1678.86</td>
+                            <td class="num-c">1653.92</td>
+                            <td class="num-c">6&ndash;8</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c text-lose"><strong>L7</strong></td>
+                            <td class="num-c">19</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>4th n Long to Deannas Tight End <span style="color: var(--t-3);">— Cain Cooksey</span></td>
+                            <td class="num-c">1593.18</td>
+                            <td class="num-c">1679.10</td>
+                            <td class="num-c">8&ndash;6</td>
+                            <td class="num-c">3&ndash;5</td>
+                            <td class="num-c">5&ndash;1</td>
+                            <td class="num-c text-win">W3</td>
+                            <td class="num-c text-win">8</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Gut Check <span style="color: var(--t-3);">— Donavon Alderson</span></td>
+                            <td class="num-c">1824.56</td>
+                            <td class="num-c">1492.06</td>
+                            <td class="num-c">10&ndash;4</td>
+                            <td class="num-c">5&ndash;1</td>
+                            <td class="num-c">5&ndash;3</td>
+                            <td class="num-c text-win">W2</td>
+                            <td class="num-c">25</td>
+                        </tr>
+                        <tr class="row-shame">
+                            <td>8</td>
+                            <td>CeeDees Blue Balls <span style="color: var(--t-3);">— Isaac Puzey</span></td>
+                            <td class="num-c">1598.38</td>
+                            <td class="num-c">1673.20</td>
+                            <td class="num-c">6&ndash;8</td>
+                            <td class="num-c">4&ndash;2</td>
+                            <td class="num-c">2&ndash;6</td>
+                            <td class="num-c">L1</td>
+                            <td class="num-c"><strong>35</strong></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Beatin Sandy's Cheeks <span style="color: var(--t-3);">— Tyler Blevins</span></td>
+                            <td class="num-c">1484.28</td>
+                            <td class="num-c">1644.10</td>
+                            <td class="num-c">6&ndash;8</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c text-lose">L1</td>
+                            <td class="num-c">17</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Room 40's Nuts <span style="color: var(--t-3);">— CJ Tackett</span></td>
+                            <td class="num-c">1490.40</td>
+                            <td class="num-c">1650.76</td>
+                            <td class="num-c">6&ndash;8</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c text-win">W4</td>
+                            <td class="num-c">25</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Naber, What?! <span style="color: var(--t-3);">— Blake Howell</span></td>
+                            <td class="num-c">1447.98</td>
+                            <td class="num-c">1618.96</td>
+                            <td class="num-c">4&ndash;10</td>
+                            <td class="num-c">1&ndash;6</td>
+                            <td class="num-c">3&ndash;4</td>
+                            <td class="num-c text-lose">L2</td>
+                            <td class="num-c">12</td>
+                        </tr>
+                        <tr class="row-toilet">
+                            <td>12</td>
+                            <td>Waffle House Bound <span style="color: var(--t-3);">— Rylan Thomas</span></td>
+                            <td class="num-c">1452.86</td>
+                            <td class="num-c">1574.86</td>
+                            <td class="num-c">4&ndash;10</td>
+                            <td class="num-c">2&ndash;5</td>
+                            <td class="num-c">2&ndash;5</td>
+                            <td class="num-c text-lose">L5</td>
+                            <td class="num-c">19</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Awards -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Hardware</div>
+                <h2 class="section-title">2025 Season Awards</h2>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent-bright);">&#127942; League Champion</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Logan Alderson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">Mr Pfizer + Swifties for Kamala</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#128200; Most Points</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Logan Alderson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">1879.96 PF</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#127968; Best Home Record</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Logan Alderson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">7&ndash;0&ndash;0 (perfect)</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#128640; Best Road Record</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Jacob Johnson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">5&ndash;1&ndash;0 away</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#128293; Best Regular Season</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Jacob Johnson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">11&ndash;3&ndash;0</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#128165; Single-Game High</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Garrett Burton</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">188.34 (Playoffs R1)</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#128260; Most Roster Moves</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Isaac Puzey</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">35 transactions</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--accent);">&#129504; Least Roster Moves</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Cain Cooksey</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">8 transactions</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--lose);">&#128169; Biggest Collapse</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">jacob barnwell</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">L7 to end the season</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--shame);">&#128557; Crybaby Award</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Donavon Alderson</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">Rage quit after R1</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--win);">&#127942; Consolation Champion</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Tyler Blevins</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">Won by 1.32 pts</div>
+                </div>
+                <div class="stat-block" style="text-align: left;">
+                    <div class="stat-label" style="color: var(--lose);">&#128701; Toilet Bowl Champion</div>
+                    <div style="color: var(--t-1); font-weight: 700; font-size: 1.05rem; margin-top: var(--s-2);">Rylan Thomas</div>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-top: 2px;">63.3 pts in finale</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recap -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Recap</div>
+                <h2 class="section-title">2025 in Four Acts</h2>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="callout">
+                    <h4>The Championship</h4>
+                    <p>Logan's <strong>Mr Pfizer + Swifties for Kamala</strong> dominated the title game, crushing Jacob Johnson's <strong>Blevins' RubNTug</strong> 138.12 to 85.0. The #3 seed completed a dominant playoff run after leading the league in scoring (1879.96 PF) and going undefeated at home. The 53-point margin was the largest of the entire playoffs.</p>
+                </div>
+                <div class="callout win">
+                    <h4>Cinderella Story</h4>
+                    <p>Eli Hurt's <strong>Nobody's Hurt</strong> entered the playoffs as the #7 seed at 6&ndash;8. They pulled off the upset of Round 1, knocking out the #2 seed 109.72 to 100.68. The magic continued to a 3rd-place finish &mdash; proof you don't need the best regular season to make noise in January.</p>
+                </div>
+                <div class="callout danger">
+                    <h4>The Great Collapse</h4>
+                    <p>jacob barnwell's <strong>I chase brown kids</strong> had the 5th-most points in the league (1678.86) but finished on a brutal seven-game losing streak. The L7 collapse is one for the record books &mdash; fantasy football is a cruel, cruel game.</p>
+                </div>
+                <div class="callout shame">
+                    <h4>Crybaby Chronicles</h4>
+                    <p>Donavon Alderson's <strong>Gut Check</strong> was the #2 seed at 10&ndash;4 with 1824.56 points. A first-round exit at the hands of the 7-seed was too much. Sources say he Venmo'd the league fees and ghosted. New commish era incoming?</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="brand-line">NO&middot;TEGRIDY FANTASY FOOTBALL</div>
+        <div class="footer-meta">
+            <span>2025 Champion: <strong style="color: var(--accent-bright);">Logan Alderson</strong></span>
+            <span>Est. 2021</span>
+            <span>See you in 2026</span>
         </div>
-    </div>
-
-    <!-- Stats Section -->
-    <div class="stats-section">
-        <div class="stats-grid">
-            <!-- Final Power Rankings List -->
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="card-header">FINAL POWER RANKINGS</div>
-                <div style="background: rgba(33, 37, 41, 0.9); border-radius: 15px; padding: 20px; position: relative; z-index: 2;">
-
-                    <div class="team-row champion">
-                        <div class="rank-badge gold">1</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Mr Pfizer + Swifties for Kamala
-                                <span class="team-badge badge-champion">CHAMPION</span>
-                            </div>
-                            <div class="team-owner">Logan Alderson</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row runner-up">
-                        <div class="rank-badge silver">2</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Blevins' RubNTug
-                                <span class="team-badge badge-runner-up">RUNNER-UP</span>
-                            </div>
-                            <div class="team-owner">Jacob Johnson</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row third-place">
-                        <div class="rank-badge bronze">3</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Nobody's Hurt
-                                <span class="team-badge badge-third">3RD PLACE</span>
-                            </div>
-                            <div class="team-owner">Eli Hurt</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">4</div>
-                        <div class="team-info">
-                            <div class="team-name-main">3rd Beer Hits The Blake Towers</div>
-                            <div class="team-owner">Garrett Burton - Dropped 188.34 in Round 1!</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">5</div>
-                        <div class="team-info">
-                            <div class="team-name-main">I chase brown kids</div>
-                            <div class="team-owner">jacob barnwell - L7 Streak to End Season</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">6</div>
-                        <div class="team-info">
-                            <div class="team-name-main">4th n Long to Deannas Tight End</div>
-                            <div class="team-owner">Cain Cooksey - Only 8 Roster Moves All Year</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">7</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Gut Check
-                                <span class="team-badge badge-crybaby">CRYBABY</span>
-                            </div>
-                            <div class="team-owner">Donavon Alderson - Lost Rd 1 as #2 Seed, Rage Quit</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">8</div>
-                        <div class="team-info">
-                            <div class="team-name-main">CeeDees Blue Balls</div>
-                            <div class="team-owner">Isaac Puzey - 35 Roster Moves, Still Mid</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">9</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Beatin Sandy's Cheeks
-                                <span class="team-badge badge-consolation">CONSOLATION CHAMP</span>
-                            </div>
-                            <div class="team-owner">Tyler Blevins - Won by 1.32 Points!</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">10</div>
-                        <div class="team-info">
-                            <div class="team-name-main">Room 40's Nuts</div>
-                            <div class="team-owner">CJ Tackett - Defending Champ Falls Hard</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row">
-                        <div class="rank-badge normal">11</div>
-                        <div class="team-info">
-                            <div class="team-name-main">Naber, What?!</div>
-                            <div class="team-owner">Blake Howell - From 2022 Champ to This</div>
-                        </div>
-                    </div>
-
-                    <div class="team-row last-place">
-                        <div class="rank-badge last">12</div>
-                        <div class="team-info">
-                            <div class="team-name-main">
-                                Waffle House Bound
-                                <span class="team-badge badge-toilet">TOILET BOWL</span>
-                            </div>
-                            <div class="team-owner">Rylan Thomas - 63.3 Points in Final Week. Pathetic.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Season Stats Table -->
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="card-header">FINAL SEASON STATS</div>
-                <div style="background: rgba(33, 37, 41, 0.9); border-radius: 15px; padding: 20px; position: relative; z-index: 2; overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 700px;">
-                        <thead>
-                            <tr style="background: rgba(240, 173, 78, 0.2); border-bottom: 2px solid #f0ad4e;">
-                                <th style="padding: 12px 8px; text-align: left; color: #f0ad4e; font-weight: bold;">RK</th>
-                                <th style="padding: 12px 8px; text-align: left; color: #f0ad4e; font-weight: bold;">TEAM</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">PF</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">PA</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">REC</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">HOME</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">AWAY</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">STRK</th>
-                                <th style="padding: 12px 8px; text-align: center; color: #f0ad4e; font-weight: bold;">MOVES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1); background: rgba(255, 215, 0, 0.1);">
-                                <td style="padding: 10px 8px; color: #ffd700; font-weight: bold;">1</td>
-                                <td style="padding: 10px 8px; color: #ffd700; font-weight: bold;">Mr Pfizer + Swifties for Kamala <span style="color: #ccc; font-size: 0.8rem;">(Logan Alderson)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745; font-weight: bold;">1879.96</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1610.6</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">9-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ffd700;">7-0-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">2-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">23</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #c0c0c0; font-weight: bold;">2</td>
-                                <td style="padding: 10px 8px; color: white;">Blevins' RubNTug <span style="color: #ccc; font-size: 0.8rem;">(Jacob Johnson)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1670.82</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1487.74</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745; font-weight: bold;">11-3-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">6-2-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">5-1-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W3</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">16</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #cd7f32; font-weight: bold;">3</td>
-                                <td style="padding: 10px 8px; color: white;">Nobody's Hurt <span style="color: #ccc; font-size: 0.8rem;">(Eli Hurt)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1619.98</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1598.44</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">6-8-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">3-3-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">13</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #f0ad4e;">4</td>
-                                <td style="padding: 10px 8px; color: white;">3rd Beer Hits The Blake Towers <span style="color: #ccc; font-size: 0.8rem;">(Garrett Burton)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1539.6</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1597.12</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">8-6-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">4-2-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">4-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">L2</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">12</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">5</td>
-                                <td style="padding: 10px 8px; color: white;">I chase brown kids <span style="color: #ccc; font-size: 0.8rem;">(jacob barnwell)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1678.86</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1653.92</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">6-8-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545; font-weight: bold;">L7</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">19</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">6</td>
-                                <td style="padding: 10px 8px; color: white;">4th n Long to Deannas Tight End <span style="color: #ccc; font-size: 0.8rem;">(Cain Cooksey)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1593.18</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1679.1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">8-6-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">5-1-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W3</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">8</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">7</td>
-                                <td style="padding: 10px 8px; color: white;">Gut Check <span style="color: #ccc; font-size: 0.8rem;">(Donavon Alderson)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1824.56</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1492.06</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">10-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">5-1-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">5-3-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W2</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">25</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">8</td>
-                                <td style="padding: 10px 8px; color: white;">CeeDees Blue Balls <span style="color: #ccc; font-size: 0.8rem;">(Isaac Puzey)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1598.38</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1673.2</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">6-8-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">4-2-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">2-6-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">L1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545; font-weight: bold;">35</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">9</td>
-                                <td style="padding: 10px 8px; color: white;">Beatin Sandy's Cheeks <span style="color: #ccc; font-size: 0.8rem;">(Tyler Blevins)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1484.28</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1644.1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">6-8-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">L1</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">17</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">10</td>
-                                <td style="padding: 10px 8px; color: white;">Room 40's Nuts <span style="color: #ccc; font-size: 0.8rem;">(CJ Tackett)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1490.4</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1650.76</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">6-8-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">W4</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">25</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(240, 173, 78, 0.1);">
-                                <td style="padding: 10px 8px; color: #6c757d;">11</td>
-                                <td style="padding: 10px 8px; color: white;">Naber, What?! <span style="color: #ccc; font-size: 0.8rem;">(Blake Howell)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #28a745;">1447.98</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1618.96</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">4-10-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">1-6-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">3-4-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">L2</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">12</td>
-                            </tr>
-                            <tr style="background: rgba(220, 53, 69, 0.1);">
-                                <td style="padding: 10px 8px; color: #dc3545; font-weight: bold;">12</td>
-                                <td style="padding: 10px 8px; color: #dc3545;">Waffle House Bound <span style="color: #ccc; font-size: 0.8rem;">(Rylan Thomas)</span></td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1452.86</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #ccc;">1574.86</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">4-10-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">2-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">2-5-0</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #dc3545;">L5</td>
-                                <td style="padding: 10px 8px; text-align: center; color: #f0ad4e;">19</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div style="margin-top: 15px; font-size: 0.8rem; color: #ccc; text-align: center;">
-                        <strong>Legend:</strong> PF = Points For | PA = Points Against | REC = Record | STRK = Final Streak | MOVES = Roster Moves
-                    </div>
-                </div>
-            </div>
-
-            <!-- Season Awards -->
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="card-header">2025 SEASON AWARDS</div>
-                <div class="awards-grid">
-                    <div class="award-card" style="border-color: #ffd700;">
-                        <div class="award-icon">&#127942;</div>
-                        <div class="award-title">League Champion</div>
-                        <div class="award-winner">Logan Alderson</div>
-                        <div class="award-value">Mr Pfizer + Swifties for Kamala</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#128200;</div>
-                        <div class="award-title">Most Points Scored</div>
-                        <div class="award-winner">Logan Alderson</div>
-                        <div class="award-value">1879.96 PF</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#127968;</div>
-                        <div class="award-title">Best Home Record</div>
-                        <div class="award-winner">Logan Alderson</div>
-                        <div class="award-value">7-0-0 (Perfect!)</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#128640;</div>
-                        <div class="award-title">Best Road Record</div>
-                        <div class="award-winner">Jacob Johnson</div>
-                        <div class="award-value">5-1-0 Away</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#128293;</div>
-                        <div class="award-title">Best Regular Season</div>
-                        <div class="award-winner">Jacob Johnson</div>
-                        <div class="award-value">11-3-0</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#128165;</div>
-                        <div class="award-title">Single Game High</div>
-                        <div class="award-winner">Garrett Burton</div>
-                        <div class="award-value">188.34 (Playoffs R1)</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#128260;</div>
-                        <div class="award-title">Most Roster Moves</div>
-                        <div class="award-winner">Isaac Puzey</div>
-                        <div class="award-value">35 Transactions</div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-icon">&#129504;</div>
-                        <div class="award-title">Least Roster Moves</div>
-                        <div class="award-winner">Cain Cooksey</div>
-                        <div class="award-value">8 Transactions</div>
-                    </div>
-                    <div class="award-card" style="border-color: #dc3545;">
-                        <div class="award-icon">&#128169;</div>
-                        <div class="award-title">Biggest Collapse</div>
-                        <div class="award-winner">jacob barnwell</div>
-                        <div class="award-value">L7 Losing Streak</div>
-                    </div>
-                    <div class="award-card" style="border-color: #8a2be2;">
-                        <div class="award-icon">&#128557;</div>
-                        <div class="award-title">Crybaby Award</div>
-                        <div class="award-winner">Donavon Alderson</div>
-                        <div class="award-value">Rage Quit After Round 1</div>
-                    </div>
-                    <div class="award-card" style="border-color: #28a745;">
-                        <div class="award-icon">&#127942;</div>
-                        <div class="award-title">Consolation Champion</div>
-                        <div class="award-winner">Tyler Blevins</div>
-                        <div class="award-value">Won by 1.32 pts!</div>
-                    </div>
-                    <div class="award-card" style="border-color: #dc3545;">
-                        <div class="award-icon">&#128701;</div>
-                        <div class="award-title">Toilet Bowl Champion</div>
-                        <div class="award-winner">Rylan Thomas</div>
-                        <div class="award-value">63.3 pts in finale</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Season Recap -->
-            <div class="stat-card" style="grid-column: 1 / -1;">
-                <div class="card-header">2025 SEASON RECAP</div>
-                <div style="background: rgba(33, 37, 41, 0.9); border-radius: 15px; padding: 25px; position: relative; z-index: 2;">
-                    <div style="display: grid; gap: 20px;">
-                        <div style="padding: 20px; background: rgba(255, 215, 0, 0.1); border-left: 4px solid #ffd700; border-radius: 8px;">
-                            <div style="color: #ffd700; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">THE CHAMPIONSHIP</div>
-                            <div style="color: white; line-height: 1.6;">
-                                Logan Alderson's <strong>Mr Pfizer + Swifties for Kamala</strong> dominated the championship game, crushing Jacob Johnson's <strong>Blevins' RubNTug</strong> 138.12 to 85.0. The #3 seed completed a dominant playoff run after leading the league in scoring (1879.96 PF) and going undefeated at home (7-0-0) during the regular season. The 53-point margin of victory in the finals was the largest of the entire playoffs.
-                            </div>
-                        </div>
-                        <div style="padding: 20px; background: rgba(40, 167, 69, 0.1); border-left: 4px solid #28a745; border-radius: 8px;">
-                            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">CINDERELLA STORY</div>
-                            <div style="color: white; line-height: 1.6;">
-                                Eli Hurt's <strong>Nobody's Hurt</strong> entered the playoffs as the #7 seed with a 6-8 record. They pulled off the biggest upset of Round 1, knocking out #2 seed Gut Check 109.72 to 100.68. The magical run continued to a 3rd place finish - proving you don't need the best regular season to make noise in the playoffs.
-                            </div>
-                        </div>
-                        <div style="padding: 20px; background: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545; border-radius: 8px;">
-                            <div style="color: #dc3545; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">THE GREAT COLLAPSE</div>
-                            <div style="color: white; line-height: 1.6;">
-                                jacob barnwell's <strong>I chase brown kids</strong> had the 5th most points in the league (1678.86) but finished the season on a brutal SEVEN-GAME LOSING STREAK. The L7 collapse is one for the record books, proving that fantasy football is a cruel, cruel game.
-                            </div>
-                        </div>
-                        <div style="padding: 20px; background: rgba(138, 43, 226, 0.1); border-left: 4px solid #8a2be2; border-radius: 8px;">
-                            <div style="color: #8a2be2; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">CRYBABY CHRONICLES</div>
-                            <div style="color: white; line-height: 1.6;">
-                                Donavon Alderson's <strong>Gut Check</strong> was the #2 seed with a 10-4 record and 1824.56 points. A first-round exit at the hands of the 7-seed was too much to handle. Sources say he immediately Venmo'd the league fees and ghosted. New commish era incoming?
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Epic Footer -->
-    <footer>
-        <p>
-            <strong>NO-TEGRIDY FANTASY FOOTBALL</strong><br>
-            <span style="color: #ffd700;">2025 CHAMPION: LOGAN ALDERSON</span><br>
-            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Championship Dreams</span><br>
-            <span style="color: #f0ad4e;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
-            <br>
-            <em style="font-size: 0.9rem; opacity: 0.8;">5 Years of Chaos - See You in 2026!</em>
-        </p>
+        <em>5 years of chaos &middot; 5 champions</em>
     </footer>
 
     <script src="script.js"></script>

@@ -3,653 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No-Tegridy Fantasy Football - 2025 CHAMPION CROWNED | LOGAN ALDERSON</title>
+    <title>No-Tegridy Fantasy Football — 2025 Champion: Logan Alderson</title>
+    <meta name="description" content="The official home of No-Tegridy Fantasy Football. 2025 champion crowned, full bracket, standings, and the chaos that defined the season.">
 
-    <!-- Favicon -->
     <link rel="icon" href="favicon-32x32.png" type="image/png">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Homepage-specific enhancements */
-        .champion-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--gold-bright), #ffed4e, #ffa500, var(--gold-bright));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: goldShift 3s ease-in-out infinite;
-            margin: var(--space-sm) 0;
-            position: relative;
-            z-index: 2;
-        }
-        @keyframes goldShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .champion-team {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--gold-bright);
-            margin: var(--space-xs) 0;
-            position: relative;
-            z-index: 2;
-        }
-        .champion-stats {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-            margin-top: var(--space-md);
-            position: relative;
-            z-index: 2;
-        }
-        .champ-stat {
-            background: rgba(255, 215, 0, 0.15);
-            border: 2px solid var(--gold-bright);
-            border-radius: var(--radius-md);
-            padding: var(--space-sm) var(--space-md);
-            text-align: center;
-        }
-        .champ-stat-label { color: var(--gold-bright); font-size: 0.9rem; margin-bottom: 5px; }
-        .champ-stat-value { color: var(--text-primary); font-size: 1.4rem; font-weight: bold; }
-        .asterisk-warning {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1));
-            border: 2px dashed var(--danger);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            margin-top: var(--space-md);
-            position: relative;
-            z-index: 2;
-        }
-        .asterisk-warning h4 { color: var(--danger); font-size: 1.3rem; margin-bottom: var(--space-xs); }
-        .asterisk-warning p { color: #FF6B6B; font-size: 1rem; }
-        /* Bracket */
-        .bracket-round { margin-bottom: var(--space-md); }
-        .round-title {
-            text-align: center;
-            font-size: 1.5rem;
-            color: var(--gold-bright);
-            margin-bottom: var(--space-md);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .bracket-matchup {
-            background: var(--bg-elevated);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: var(--radius-md);
-            padding: var(--space-sm);
-            margin-bottom: var(--space-sm);
-            transition: all var(--transition-base);
-        }
-        .bracket-matchup:hover {
-            border-color: var(--gold-bright);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-gold);
-        }
-        .bracket-matchup.championship-game {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
-            border: 3px solid var(--gold-bright);
-            box-shadow: var(--shadow-gold-lg);
-        }
-        .matchup-teams { display: flex; flex-direction: column; gap: var(--space-xs); }
-        .matchup-team {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            background: rgba(50, 50, 50, 0.5);
-        }
-        .matchup-team.winner { background: linear-gradient(90deg, rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.1)); border-left: 4px solid var(--success); }
-        .matchup-team.loser { opacity: 0.6; }
-        .team-seed { color: var(--gold-bright); font-weight: bold; margin-right: var(--space-xs); }
-        .team-name { flex: 1; color: var(--text-primary); }
-        .team-score { font-weight: bold; font-size: 1.2rem; }
-        .team-score.winning { color: var(--success); }
-        .team-score.losing { color: var(--danger); }
-        /* Wall of Shame */
-        .shame-section {
-            background: linear-gradient(135deg, #1a0505, #2d0a0a, #1a0505);
-            border: 3px solid var(--danger);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl) var(--space-md);
-            margin: var(--space-xl) auto;
-            max-width: 1200px;
-        }
-        .shame-title {
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--danger);
-            margin-bottom: var(--space-md);
-            text-transform: uppercase;
-        }
-        .shame-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md); }
-        .shame-card {
-            background: rgba(239, 68, 68, 0.1);
-            border: 2px solid rgba(239, 68, 68, 0.5);
-            border-radius: var(--radius-md);
-            padding: var(--space-md);
-            text-align: center;
-            transition: all var(--transition-base);
-        }
-        .shame-card:hover { transform: translateY(-5px); border-color: var(--danger); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); }
-        .shame-emoji { font-size: 3rem; margin-bottom: var(--space-sm); }
-        .shame-name { color: #FF6B6B; font-size: 1.4rem; font-weight: bold; margin-bottom: var(--space-xs); }
-        .shame-crime { color: var(--danger); font-size: 1rem; margin-bottom: var(--space-xs); }
-        .shame-punishment { background: rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); padding: var(--space-sm); color: var(--text-primary); font-weight: bold; }
-        .shame-status { margin-top: var(--space-xs); font-size: 0.9rem; color: #FF4444; font-style: italic; }
-        /* Drama items */
-        .drama-item {
-            background: rgba(240, 173, 78, 0.1);
-            border-left: 4px solid var(--gold-primary);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            padding: var(--space-md);
-            margin-bottom: var(--space-md);
-        }
-        .drama-item h4 { color: var(--gold-primary); font-size: 1.3rem; margin-bottom: var(--space-xs); }
-        .drama-item p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
-        /* Standings preview */
-        .standings-preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-sm); margin-top: var(--space-md); }
-        .standing-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            background: var(--bg-elevated);
-            padding: var(--space-sm);
-            border-radius: var(--radius-sm);
-            border-left: 4px solid;
-        }
-        .standing-item.first { border-color: var(--gold-bright); background: rgba(255, 215, 0, 0.1); }
-        .standing-item.second { border-color: #C0C0C0; }
-        .standing-item.third { border-color: #CD7F32; }
-        .standing-item.last { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
-        .standing-rank { font-size: 1.5rem; font-weight: bold; min-width: 40px; }
-        .standing-rank.first { color: var(--gold-bright); }
-        .standing-rank.second { color: #C0C0C0; }
-        .standing-rank.third { color: #CD7F32; }
-        .standing-rank.last { color: var(--danger); }
-        .standing-info { flex: 1; }
-        .standing-team { color: var(--text-primary); font-weight: bold; }
-        .standing-owner { color: var(--text-muted); font-size: 0.85rem; }
-    </style>
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Floating particles -->
-    <div class="particles" aria-hidden="true"></div>
-
-    <!-- Hero Header -->
-    <header class="hero-header">
-        <h1 class="logo">NO-TEGRIDY</h1>
-        <div class="tagline">2025 SEASON COMPLETE</div>
-        <div class="subtitle">A New Champion Has Been Crowned</div>
+    <header class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="No-Tegridy home">
+                <span class="brand-mark">NT</span>
+                <span>No-Tegridy</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav class="nav-links" aria-label="Main">
+                <a href="index.html" aria-current="page">Home</a>
+                <a href="standings.html">Standings</a>
+                <a href="group.html">Legends</a>
+                <a href="past-seasons.html">History</a>
+                <a href="draft-recap.html">Draft</a>
+                <a href="pictures.html">Gallery</a>
+                <a href="roasting-isaac.html">Roast Isaac</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-            &#9776;
-        </button>
-        <ul>
-            <li><a href="index.html" aria-label="Home page" aria-current="page">Home</a></li>
-            <li><a href="pictures.html" aria-label="View league pictures and gallery">Pictures</a></li>
-            <li><a href="standings.html" aria-label="View current team standings and power rankings">Standings</a></li>
-            <li><a href="group.html" aria-label="Meet our league members">Our Legends</a></li>
-            <li><a href="roasting-isaac.html" aria-label="Isaac roast section">Roast Isaac</a></li>
-            <li><a href="past-seasons.html" aria-label="View historical league data">History</a></li>
-            <li><a href="draft-recap.html" aria-label="View annual draft analysis">Draft Recap</a></li>
-        </ul>
-    </nav>
+    <main id="main">
 
-    <!-- Main Content -->
-    <main id="main-content" role="main">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <span class="hero-eyebrow">2025 Season &middot; Final</span>
+                <h1 class="hero-title">A New Champion<br>Has Been Crowned</h1>
+                <p class="hero-subtitle">From toilet bowl to trophy. Five years of chaos, five champions, and one ass tattoo still owed. Welcome to No-Tegridy.</p>
+            </div>
+        </section>
 
-        <!-- Champion Mega Banner -->
-        <div class="champion-mega-banner">
-            <div class="trophy-icon">&#127942;</div>
-            <div class="champion-title">2025 LEAGUE CHAMPION</div>
-            <div class="champion-name">LOGAN ALDERSON</div>
-            <div class="champion-team">Mr Pfizer + Swifties for Kamala</div>
+        <!-- Champion Hero -->
+        <section class="container">
+            <div class="champion-hero">
+                <div class="trophy" aria-hidden="true">&#127942;</div>
+                <div class="label">2025 League Champion</div>
+                <div class="name">Logan Alderson</div>
+                <div class="team">Mr Pfizer + Swifties for Kamala</div>
 
-            <div class="champion-stats">
-                <div class="champ-stat">
-                    <div class="champ-stat-label">FINAL RECORD</div>
-                    <div class="champ-stat-value">9-5-0</div>
+                <div class="stat-grid">
+                    <div class="stat-block">
+                        <div class="stat-label">Final Record</div>
+                        <div class="stat-value">9&ndash;5</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-label">Points For</div>
+                        <div class="stat-value">1879.96</div>
+                        <div class="stat-sub">league high</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-label">Title Game</div>
+                        <div class="stat-value">138.12</div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-label">Margin</div>
+                        <div class="stat-value">+53.12</div>
+                    </div>
                 </div>
-                <div class="champ-stat">
-                    <div class="champ-stat-label">POINTS FOR</div>
-                    <div class="champ-stat-value">1879.96</div>
-                </div>
-                <div class="champ-stat">
-                    <div class="champ-stat-label">CHAMPIONSHIP SCORE</div>
-                    <div class="champ-stat-value">138.12</div>
-                </div>
-                <div class="champ-stat">
-                    <div class="champ-stat-label">MARGIN OF VICTORY</div>
-                    <div class="champ-stat-value">+53.12</div>
+
+                <div class="callout danger" style="margin-top: var(--s-6); text-align: left; max-width: 720px; margin-left: auto; margin-right: auto;">
+                    <h4>Championship asterisk in effect</h4>
+                    <p>Logan still owes an ass tattoo from finishing dead last in 2022. Is he truly the champion until he pays up? The league demands justice.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="asterisk-warning">
-                <h4>* CHAMPIONSHIP LEGITIMACY IN QUESTION *</h4>
-                <p>Logan Alderson still owes an ASS TATTOO from finishing last place in a previous season. Is he truly the champion until he pays up? The league demands justice!</p>
+        <!-- Bracket -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head center">
+                <div class="section-eyebrow">Playoffs</div>
+                <h2 class="section-title">Championship Bracket</h2>
+                <p class="section-lead">A #3 seed redemption arc, a #7 seed Cinderella, and the highest single-game total of the playoffs from the team that didn't even make the final.</p>
             </div>
-        </div>
 
-        <!-- Content Grid -->
-        <div class="content-grid">
-
-            <!-- Championship Bracket Results -->
-            <div class="content-card">
-                <div class="card-header">CHAMPIONSHIP BRACKET - FINAL RESULTS</div>
-                <div class="card-content">
-                    <div class="bracket-container">
-
-                        <!-- Round 1 -->
-                        <div class="bracket-round">
-                            <div class="round-title">Round 1 - Week 15</div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#8</span>
-                                            <span class="team-name">CeeDees Blue Balls</span>
-                                            <span class="team-score losing">112.3</span>
-                                        </div>
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#1</span>
-                                            <span class="team-name">Blevins' RubNTug</span>
-                                            <span class="team-score winning">157.2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#5</span>
-                                            <span class="team-name">3rd Beer Hits The Blake Towers</span>
-                                            <span class="team-score winning">188.34</span>
-                                        </div>
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#4</span>
-                                            <span class="team-name">4th n Long to Deannas Tight End</span>
-                                            <span class="team-score losing">115.5</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#6</span>
-                                            <span class="team-name">I chase brown kids</span>
-                                            <span class="team-score losing">119.76</span>
-                                        </div>
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#3</span>
-                                            <span class="team-name">Mr Pfizer + Swifties for Kamala</span>
-                                            <span class="team-score winning">157.64</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team winner" style="border-color: #ffd700;">
-                                            <span class="team-seed">#7</span>
-                                            <span class="team-name">Nobody's Hurt (UPSET!)</span>
-                                            <span class="team-score winning">109.72</span>
-                                        </div>
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#2</span>
-                                            <span class="team-name">Gut Check</span>
-                                            <span class="team-score losing">100.68</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="bracket">
+                <div>
+                    <div class="bracket-round-title">Round 1 &middot; Week 15</div>
+                    <div class="bracket-grid">
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#1</span><span class="name">Blevins' RubNTug</span><span class="score">157.20</span></div>
+                            <div class="matchup-team lose"><span class="seed">#8</span><span class="name">CeeDees Blue Balls</span><span class="score">112.30</span></div>
                         </div>
-
-                        <!-- Semifinals -->
-                        <div class="bracket-round">
-                            <div class="round-title">Semifinals - Week 16</div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#5</span>
-                                            <span class="team-name">3rd Beer Hits The Blake Towers</span>
-                                            <span class="team-score losing">119.28</span>
-                                        </div>
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#1</span>
-                                            <span class="team-name">Blevins' RubNTug</span>
-                                            <span class="team-score winning">138.9</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#7</span>
-                                            <span class="team-name">Nobody's Hurt</span>
-                                            <span class="team-score losing">87.9</span>
-                                        </div>
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#3</span>
-                                            <span class="team-name">Mr Pfizer + Swifties for Kamala</span>
-                                            <span class="team-score winning">112.28</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#5</span><span class="name">3rd Beer Hits The Blake Towers</span><span class="score">188.34</span></div>
+                            <div class="matchup-team lose"><span class="seed">#4</span><span class="name">4th n Long to Deannas Tight End</span><span class="score">115.50</span></div>
                         </div>
-
-                        <!-- 3rd Place Game -->
-                        <div class="bracket-round">
-                            <div class="round-title">3rd Place Game - Week 17</div>
-                            <div style="max-width: 400px; margin: 0 auto;">
-                                <div class="bracket-matchup">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team winner">
-                                            <span class="team-seed">#7</span>
-                                            <span class="team-name">Nobody's Hurt</span>
-                                            <span class="team-score winning">104.18</span>
-                                        </div>
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#5</span>
-                                            <span class="team-name">3rd Beer Hits The Blake Towers</span>
-                                            <span class="team-score losing">100.36</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#3</span><span class="name">Mr Pfizer + Swifties for Kamala</span><span class="score">157.64</span></div>
+                            <div class="matchup-team lose"><span class="seed">#6</span><span class="name">I chase brown kids</span><span class="score">119.76</span></div>
                         </div>
-
-                        <!-- Championship -->
-                        <div class="bracket-round">
-                            <div class="round-title" style="color: #ffd700; font-size: 1.8rem;">CHAMPIONSHIP - Week 17</div>
-                            <div style="max-width: 450px; margin: 0 auto;">
-                                <div class="bracket-matchup championship-game">
-                                    <div class="matchup-teams">
-                                        <div class="matchup-team winner" style="background: linear-gradient(90deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1)); border-left: 4px solid #ffd700;">
-                                            <span class="team-seed">#3</span>
-                                            <span class="team-name" style="color: #ffd700; font-weight: bold;">Mr Pfizer + Swifties for Kamala</span>
-                                            <span class="team-score" style="color: #ffd700; font-size: 1.5rem;">138.12</span>
-                                        </div>
-                                        <div class="matchup-team loser">
-                                            <span class="team-seed">#1</span>
-                                            <span class="team-name">Blevins' RubNTug</span>
-                                            <span class="team-score losing">85.0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#7</span><span class="name">Nobody's Hurt <span class="pill pill-win">Upset</span></span><span class="score">109.72</span></div>
+                            <div class="matchup-team lose"><span class="seed">#2</span><span class="name">Gut Check</span><span class="score">100.68</span></div>
                         </div>
+                    </div>
+                </div>
 
+                <div>
+                    <div class="bracket-round-title">Semifinals &middot; Week 16</div>
+                    <div class="bracket-grid">
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#1</span><span class="name">Blevins' RubNTug</span><span class="score">138.90</span></div>
+                            <div class="matchup-team lose"><span class="seed">#5</span><span class="name">3rd Beer Hits The Blake Towers</span><span class="score">119.28</span></div>
+                        </div>
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#3</span><span class="name">Mr Pfizer + Swifties for Kamala</span><span class="score">112.28</span></div>
+                            <div class="matchup-team lose"><span class="seed">#7</span><span class="name">Nobody's Hurt</span><span class="score">87.90</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bracket-round-title">Third Place &middot; Week 17</div>
+                    <div class="bracket-grid" style="grid-template-columns: minmax(280px, 480px); justify-content: center;">
+                        <div class="matchup">
+                            <div class="matchup-team win"><span class="seed">#7</span><span class="name">Nobody's Hurt</span><span class="score">104.18</span></div>
+                            <div class="matchup-team lose"><span class="seed">#5</span><span class="name">3rd Beer Hits The Blake Towers</span><span class="score">100.36</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bracket-round-title">Championship &middot; Week 17</div>
+                    <div class="bracket-grid" style="grid-template-columns: minmax(280px, 520px); justify-content: center;">
+                        <div class="matchup championship">
+                            <div class="matchup-team win"><span class="seed">#3</span><span class="name">Mr Pfizer + Swifties for Kamala</span><span class="score">138.12</span></div>
+                            <div class="matchup-team lose"><span class="seed">#1</span><span class="name">Blevins' RubNTug</span><span class="score">85.00</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Season Storylines -->
-            <div class="content-card">
-                <div class="card-header">THE CHAMPIONSHIP STORY</div>
-                <div class="card-content">
-                    <div class="drama-item">
-                        <h4>LOGAN'S REDEMPTION ARC</h4>
-                        <p>After finishing DEAD LAST in 2022 with a brutal -28.1 point differential, Logan Alderson has completed the ultimate revenge tour. Leading the league in scoring with 1879.96 points and going UNDEFEATED at home (7-0-0), he demolished Jacob Johnson's Blevins' RubNTug 138.12 to 85.0 in the championship. From toilet bowl to trophy - but about that ass tattoo he still owes...</p>
+        <!-- Storylines -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">The Story</div>
+                <h2 class="section-title">How 2025 Played Out</h2>
+            </div>
+
+            <div class="grid grid-2">
+                <article class="card card-pad">
+                    <h3 class="card-title">Logan's Redemption Arc</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">After finishing dead last in 2022 with a brutal &minus;28.1 differential, Logan completed the ultimate revenge tour. Led the league in scoring (1879.96), went undefeated at home (7&ndash;0), then demolished Jacob Johnson 138.12 to 85.0 in the final. Toilet bowl to trophy &mdash; about that ass tattoo though.</p>
+                </article>
+                <article class="card card-pad">
+                    <h3 class="card-title">The 188-Point Explosion</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">Garrett Burton's 3rd Beer Hits The Blake Towers dropped 188.34 in Round 1 &mdash; the highest single-game total of the playoffs. The magic ran out in the semis against Blevins, but for one weekend Garrett looked unbeatable.</p>
+                </article>
+                <article class="card card-pad">
+                    <h3 class="card-title">Cinderella Loses Her Slipper</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">Eli Hurt's Nobody's Hurt entered as the #7 seed and shocked #2 Gut Check 109.72&ndash;100.68. The run ended in the semis but a 3rd-place finish for a 6&ndash;8 squad is nothing to scoff at.</p>
+                </article>
+                <article class="card card-pad">
+                    <h3 class="card-title">Donavon's Meltdown</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">The #2 seed, after a 10&ndash;4 regular season and 1824.56 points, got bounced in Round 1 by the 7-seed. Sources say Donavon immediately Venmo'd the league fees and dipped. The crybaby energy is real &mdash; new commish era incoming?</p>
+                </article>
+                <article class="card card-pad">
+                    <h3 class="card-title">Barnwell's Historic Collapse</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">I chase brown kids finished on a SEVEN-game losing streak. Despite ranking 5th in points scored (1678.86), the fantasy gods showed no mercy. Sometimes the schedule just hits different.</p>
+                </article>
+                <article class="card card-pad">
+                    <h3 class="card-title">The Defending Champ Falls</h3>
+                    <p style="color: var(--t-2); line-height: 1.7;">CJ Tackett's Room 40's Nuts crashed to 10th place after winning it all in 2024. The title defense was over before the calendar turned to November. Cycle continues.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Final Rankings preview -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Final Rankings</div>
+                <h2 class="section-title">Where Everyone Finished</h2>
+                <p class="section-lead">The full table of 12 teams, top to toilet bowl.</p>
+            </div>
+
+            <div class="rank-list">
+                <div class="rank-row is-1">
+                    <span class="rank">1</span>
+                    <div class="meta">
+                        <div class="team">Mr Pfizer + Swifties for Kamala <span class="pill pill-gold">Champion</span></div>
+                        <div class="owner">Logan Alderson</div>
                     </div>
-                    <div class="drama-item">
-                        <h4>THE 188-POINT EXPLOSION</h4>
-                        <p>Garrett Burton's 3rd Beer Hits The Blake Towers dropped an INSANE 188.34 points in Round 1 - the highest single-game score of the playoffs! Despite the monster performance, the magic ran out in the semis, falling to Blevins 138.9-119.28.</p>
+                    <div class="num">9&ndash;5</div>
+                </div>
+                <div class="rank-row is-2">
+                    <span class="rank">2</span>
+                    <div class="meta">
+                        <div class="team">Blevins' RubNTug <span class="pill pill-silver">Runner-Up</span></div>
+                        <div class="owner">Jacob Johnson</div>
                     </div>
-                    <div class="drama-item">
-                        <h4>CINDERELLA RUNS OUT OF GLASS SLIPPERS</h4>
-                        <p>Eli Hurt's Nobody's Hurt was the 7-seed that SHOCKED everyone, upsetting #2 Gut Check (Donavon) in Round 1 with a 109.72-100.68 victory. The upset run ended in the semis, but a 3rd place finish is nothing to sneeze at for a 6-8 team!</p>
+                    <div class="num">11&ndash;3</div>
+                </div>
+                <div class="rank-row is-3">
+                    <span class="rank">3</span>
+                    <div class="meta">
+                        <div class="team">Nobody's Hurt <span class="pill pill-bronze">3rd Place</span></div>
+                        <div class="owner">Eli Hurt</div>
                     </div>
-                    <div class="drama-item">
-                        <h4>DONAVON'S PLAYOFF MELTDOWN</h4>
-                        <p>The #2 seed Gut Check, after a dominant 10-4 regular season with 1824.56 points, got BOUNCED in Round 1 by the 7-seed. Sources say Donavon immediately Venmo'd the league fees and dipped. New commish incoming? The crybaby energy is real.</p>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">4</span>
+                    <div class="meta">
+                        <div class="team">3rd Beer Hits The Blake Towers</div>
+                        <div class="owner">Garrett Burton</div>
                     </div>
-                    <div class="drama-item">
-                        <h4>JACOB BARNWELL'S HISTORIC COLLAPSE</h4>
-                        <p>I chase brown kids finished the season on a SEVEN-GAME LOSING STREAK (L7). Despite having the 5th most points in the league (1678.86), the fantasy gods showed no mercy. Sometimes the schedule just hits different.</p>
+                    <div class="num">8&ndash;6</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">5</span>
+                    <div class="meta">
+                        <div class="team">I chase brown kids</div>
+                        <div class="owner">jacob barnwell</div>
                     </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">6</span>
+                    <div class="meta">
+                        <div class="team">4th n Long to Deannas Tight End</div>
+                        <div class="owner">Cain Cooksey</div>
+                    </div>
+                    <div class="num">8&ndash;6</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">7</span>
+                    <div class="meta">
+                        <div class="team">Gut Check <span class="pill pill-shame">Crybaby</span></div>
+                        <div class="owner">Donavon Alderson</div>
+                    </div>
+                    <div class="num">10&ndash;4</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">8</span>
+                    <div class="meta">
+                        <div class="team">CeeDees Blue Balls</div>
+                        <div class="owner">Isaac Puzey</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">9</span>
+                    <div class="meta">
+                        <div class="team">Beatin Sandy's Cheeks <span class="pill pill-win">Consolation</span></div>
+                        <div class="owner">Tyler Blevins</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">10</span>
+                    <div class="meta">
+                        <div class="team">Room 40's Nuts</div>
+                        <div class="owner">CJ Tackett &middot; defending champ</div>
+                    </div>
+                    <div class="num">6&ndash;8</div>
+                </div>
+                <div class="rank-row">
+                    <span class="rank">11</span>
+                    <div class="meta">
+                        <div class="team">Naber, What?!</div>
+                        <div class="owner">Blake Howell</div>
+                    </div>
+                    <div class="num">4&ndash;10</div>
+                </div>
+                <div class="rank-row is-last">
+                    <span class="rank">12</span>
+                    <div class="meta">
+                        <div class="team">Waffle House Bound <span class="pill pill-lose">Toilet Bowl</span></div>
+                        <div class="owner">Rylan Thomas</div>
+                    </div>
+                    <div class="num">4&ndash;10</div>
                 </div>
             </div>
 
-            <!-- Final Standings Preview -->
-            <div class="content-card">
-                <div class="card-header">FINAL POWER RANKINGS</div>
-                <div class="card-content">
-                    <div class="standings-preview">
-                        <div class="standing-item first">
-                            <div class="standing-rank first">1</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Mr Pfizer + Swifties for Kamala</div>
-                                <div class="standing-owner">Logan Alderson - CHAMPION</div>
-                            </div>
-                        </div>
-                        <div class="standing-item second">
-                            <div class="standing-rank second">2</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Blevins' RubNTug</div>
-                                <div class="standing-owner">Jacob Johnson - Runner Up</div>
-                            </div>
-                        </div>
-                        <div class="standing-item third">
-                            <div class="standing-rank third">3</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Nobody's Hurt</div>
-                                <div class="standing-owner">Eli Hurt - 3rd Place</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #f0ad4e;">4</div>
-                            <div class="standing-info">
-                                <div class="standing-team">3rd Beer Hits The Blake Towers</div>
-                                <div class="standing-owner">Garrett Burton</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #ccc;">5</div>
-                            <div class="standing-info">
-                                <div class="standing-team">I chase brown kids</div>
-                                <div class="standing-owner">jacob barnwell</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #ccc;">6</div>
-                            <div class="standing-info">
-                                <div class="standing-team">4th n Long to Deannas Tight End</div>
-                                <div class="standing-owner">Cain Cooksey</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #ccc;">7</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Gut Check</div>
-                                <div class="standing-owner">Donavon Alderson - Crybaby</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #ccc;">8</div>
-                            <div class="standing-info">
-                                <div class="standing-team">CeeDees Blue Balls</div>
-                                <div class="standing-owner">Isaac Puzey</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #999;">9</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Beatin Sandy's Cheeks</div>
-                                <div class="standing-owner">Tyler Blevins - Consolation Champ</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #999;">10</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Room 40's Nuts</div>
-                                <div class="standing-owner">CJ Tackett - Defending Champ Fall</div>
-                            </div>
-                        </div>
-                        <div class="standing-item">
-                            <div class="standing-rank" style="color: #666;">11</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Naber, What?!</div>
-                                <div class="standing-owner">Blake Howell</div>
-                            </div>
-                        </div>
-                        <div class="standing-item last">
-                            <div class="standing-rank last">12</div>
-                            <div class="standing-info">
-                                <div class="standing-team">Waffle House Bound</div>
-                                <div class="standing-owner">Rylan Thomas - TOILET BOWL</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 25px;">
-                        <a href="standings.html" style="display: inline-block; background: linear-gradient(135deg, #f0ad4e, #ff6b35); color: #000; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease;">VIEW FULL STANDINGS & STATS</a>
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: var(--s-5);">
+                <a href="standings.html" class="btn btn-primary">Full standings &amp; stats</a>
             </div>
-
-            <!-- Video Section -->
-            <div class="content-card">
-                <div class="card-header">WITNESS GREATNESS</div>
-                <div class="card-content">
-                    <p style="text-align: center; margin-bottom: 20px; font-size: 1.1rem;">
-                        Watch How We Do It In No-Tegridy
-                    </p>
-                    <div class="video-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </section>
 
         <!-- Wall of Shame -->
-        <div class="shame-section">
-            <h2 class="shame-title">WALL OF SHAME - UNPAID PUNISHMENTS</h2>
-            <div class="shame-grid">
-                <div class="shame-card">
-                    <div class="shame-emoji">&#127825;</div>
-                    <div class="shame-name">LOGAN ALDERSON</div>
-                    <div class="shame-crime">Finished LAST PLACE (2022)</div>
-                    <div class="shame-punishment">OWES: ASS TATTOO</div>
-                    <div class="shame-status">STATUS: UNPAID - Championship legitimacy in question!</div>
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head center">
+                <div class="section-eyebrow">Unpaid Debts</div>
+                <h2 class="section-title">Wall of Shame</h2>
+                <p class="section-lead">Punishments owed. The league has a long memory.</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card card-pad">
+                    <div style="font-size: 2rem; margin-bottom: var(--s-3);" aria-hidden="true">&#127825;</div>
+                    <h3 style="font-family: var(--font-display); color: var(--lose); font-size: 1rem; letter-spacing: 0.06em; margin-bottom: var(--s-2);">LOGAN ALDERSON</h3>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-bottom: var(--s-3);">Last place, 2022</div>
+                    <div style="color: var(--t-1); font-weight: 600; padding: var(--s-3); background: var(--bg-3); border-radius: var(--r-2);">Owes: Ass Tattoo</div>
+                    <p style="color: var(--lose); font-size: 0.85rem; margin-top: var(--s-3); font-style: italic;">Status: Unpaid &mdash; legitimacy in question</p>
                 </div>
-                <div class="shame-card">
-                    <div class="shame-emoji">&#127828;</div>
-                    <div class="shame-name">TYLER BLEVINS</div>
-                    <div class="shame-crime">Finished LAST PLACE (2024)</div>
-                    <div class="shame-punishment">OWES: 24 HOURS AT WAFFLE HOUSE</div>
-                    <div class="shame-status">STATUS: UNPAID - The waffles are waiting!</div>
+                <div class="card card-pad">
+                    <div style="font-size: 2rem; margin-bottom: var(--s-3);" aria-hidden="true">&#127828;</div>
+                    <h3 style="font-family: var(--font-display); color: var(--lose); font-size: 1rem; letter-spacing: 0.06em; margin-bottom: var(--s-2);">TYLER BLEVINS</h3>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-bottom: var(--s-3);">Last place, 2024</div>
+                    <div style="color: var(--t-1); font-weight: 600; padding: var(--s-3); background: var(--bg-3); border-radius: var(--r-2);">Owes: 24 Hours at Waffle House</div>
+                    <p style="color: var(--lose); font-size: 0.85rem; margin-top: var(--s-3); font-style: italic;">Status: Unpaid &mdash; the waffles are waiting</p>
                 </div>
-                <div class="shame-card">
-                    <div class="shame-emoji">&#128557;</div>
-                    <div class="shame-name">DONAVON ALDERSON</div>
-                    <div class="shame-crime">Lost Round 1 as #2 Seed, Rage Quit</div>
-                    <div class="shame-punishment">SENTENCE: ETERNAL SHAME</div>
-                    <div class="shame-status">STATUS: Venmo'd league fees and dipped. Crybaby confirmed.</div>
+                <div class="card card-pad">
+                    <div style="font-size: 2rem; margin-bottom: var(--s-3);" aria-hidden="true">&#128557;</div>
+                    <h3 style="font-family: var(--font-display); color: var(--lose); font-size: 1rem; letter-spacing: 0.06em; margin-bottom: var(--s-2);">DONAVON ALDERSON</h3>
+                    <div style="color: var(--t-3); font-size: 0.85rem; margin-bottom: var(--s-3);">Round 1 rage quit, 2025</div>
+                    <div style="color: var(--t-1); font-weight: 600; padding: var(--s-3); background: var(--bg-3); border-radius: var(--r-2);">Sentence: Eternal Shame</div>
+                    <p style="color: var(--lose); font-size: 0.85rem; margin-top: var(--s-3); font-style: italic;">Status: Venmo'd fees and ghosted</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- The Isaac Situation -->
-        <div class="content-grid">
-            <div class="content-card">
-                <div class="card-header" style="background: linear-gradient(135deg, #8a2be2, #4b0082);">THE ISAAC SITUATION</div>
-                <div class="card-content">
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 3rem; margin-bottom: 15px;">&#128064;</div>
-                        <h3 style="color: #8a2be2; margin-bottom: 15px;">WHAT HAPPENS NOW?</h3>
-                        <p style="font-size: 1.1rem; line-height: 1.6; color: #ccc; margin-bottom: 20px;">
-                            There was a bet... something about Tyler winning the league and Isaac getting oiled up. Tyler didn't win. But Logan did. Does Logan now inherit certain... rights? The group chat debates rage on. Isaac remains concerned.
-                        </p>
-                        <a href="roasting-isaac.html" style="display: inline-block; background: linear-gradient(135deg, #8a2be2, #4b0082); color: #fff; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold;">SEE MORE ISAAC CONTENT</a>
+        <!-- Isaac & Consolation -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="grid grid-2">
+                <div class="card card-pad">
+                    <h3 class="card-title">The Isaac Situation</h3>
+                    <p style="color: var(--t-2); line-height: 1.7; margin-bottom: var(--s-4);">There was a bet. Something about Tyler winning the league and Isaac getting oiled up. Tyler didn't win. Logan did. Does Logan now inherit certain rights? The group chat debates rage on. Isaac remains concerned.</p>
+                    <a href="roasting-isaac.html" class="btn btn-shame">More Isaac Content</a>
+                </div>
+                <div class="card card-pad">
+                    <h3 class="card-title">Consolation Bracket</h3>
+
+                    <div style="color: var(--t-3); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--s-2);">9th Place &middot; Week 17</div>
+                    <div class="matchup" style="margin-bottom: var(--s-4);">
+                        <div class="matchup-team win"><span class="seed">#10</span><span class="name">Beatin Sandy's Cheeks</span><span class="score">126.28</span></div>
+                        <div class="matchup-team lose"><span class="seed">#9</span><span class="name">Room 40's Nuts</span><span class="score">124.96</span></div>
                     </div>
-                </div>
-            </div>
+                    <p style="color: var(--win); font-size: 0.9rem; margin-bottom: var(--s-5);">Tyler wins by 1.32. Nail biter.</p>
 
-            <!-- Consolation Results -->
-            <div class="content-card">
-                <div class="card-header">CONSOLATION BRACKET</div>
-                <div class="card-content">
-                    <h4 style="color: #f0ad4e; margin-bottom: 15px;">9th Place Game (Week 17)</h4>
-                    <div class="bracket-matchup">
-                        <div class="matchup-teams">
-                            <div class="matchup-team winner">
-                                <span class="team-seed">#10</span>
-                                <span class="team-name">Beatin Sandy's Cheeks</span>
-                                <span class="team-score winning">126.28</span>
-                            </div>
-                            <div class="matchup-team loser">
-                                <span class="team-seed">#9</span>
-                                <span class="team-name">Room 40's Nuts</span>
-                                <span class="team-score losing">124.96</span>
-                            </div>
-                        </div>
+                    <div style="color: var(--t-3); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--s-2);">Toilet Bowl &middot; Week 17</div>
+                    <div class="matchup" style="border-color: rgba(248, 113, 113, 0.4);">
+                        <div class="matchup-team win"><span class="seed">#12</span><span class="name">Naber, What?!</span><span class="score">87.24</span></div>
+                        <div class="matchup-team lose"><span class="seed">#11</span><span class="name">Waffle House Bound</span><span class="score">63.30</span></div>
                     </div>
-                    <p style="text-align: center; color: #28a745; margin: 15px 0;">Tyler wins by 1.32 points! NAIL BITER!</p>
-
-                    <h4 style="color: #dc3545; margin-bottom: 15px; margin-top: 25px;">TOILET BOWL - 11th Place (Week 17)</h4>
-                    <div class="bracket-matchup" style="border-color: #dc3545;">
-                        <div class="matchup-teams">
-                            <div class="matchup-team winner">
-                                <span class="team-seed">#12</span>
-                                <span class="team-name">Naber, What?!</span>
-                                <span class="team-score winning">87.24</span>
-                            </div>
-                            <div class="matchup-team loser" style="background: rgba(220, 53, 69, 0.2);">
-                                <span class="team-seed">#11</span>
-                                <span class="team-name">Waffle House Bound</span>
-                                <span class="team-score losing">63.3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p style="text-align: center; color: #dc3545; margin: 15px 0;">Rylan finishes DEAD LAST with a pathetic 63.3 points. Waffle House awaits?</p>
+                    <p style="color: var(--lose); font-size: 0.9rem; margin-top: var(--s-3);">Rylan finishes dead last with a pathetic 63.3. Waffle House awaits.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- NFL Updates -->
-        <div class="content-grid">
-            <div class="content-card">
-                <div class="card-header">NFL UPDATES</div>
-                <div class="card-content">
-                    <a class="twitter-timeline" data-height="500" href="https://twitter.com/NFL?ref_src=twsrc%5Etfw">Tweets by NFL</a>
-                </div>
+        <!-- Witness Greatness -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head center">
+                <div class="section-eyebrow">Roll the tape</div>
+                <h2 class="section-title">Witness Greatness</h2>
+                <p class="section-lead">Watch how we do it in No-Tegridy.</p>
             </div>
-        </div>
+            <div class="video">
+                <iframe src="https://drive.google.com/file/d/1FqCwbtJNPTwEOCV17knB-RjSnwwdlxJz/preview" allowfullscreen loading="lazy" title="No-Tegridy highlight video"></iframe>
+            </div>
+        </section>
 
     </main>
 
-    <!-- Epic Footer -->
-    <footer role="contentinfo" aria-label="Site footer with league information">
-        <p>
-            <strong>NO-TEGRIDY FANTASY FOOTBALL</strong><br>
-            <span style="color: #ffd700;">2025 CHAMPION: LOGAN ALDERSON</span><br>
-            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Questionable Decisions</span><br>
-            <span style="color: #f0ad4e;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
-            <br>
-            <em style="font-size: 0.9rem; opacity: 0.8;">5 Years of Chaos - 5 Champions - 1 Guy Who Still Owes an Ass Tattoo</em>
-        </p>
+    <footer class="site-footer" role="contentinfo">
+        <div class="brand-line">NO&middot;TEGRIDY FANTASY FOOTBALL</div>
+        <div class="footer-meta">
+            <span>2025 Champion: <strong style="color: var(--accent-bright);">Logan Alderson</strong></span>
+            <span>Est. 2021</span>
+            <span>Sponsored by Jerk Riley's</span>
+        </div>
+        <em>5 years of chaos &middot; 5 champions &middot; 1 guy who still owes an ass tattoo</em>
     </footer>
 
-    <!-- Scripts -->
-    <script async charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

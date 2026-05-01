@@ -3,632 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic History - No-Tegridy Fantasy Football</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>League History — No-Tegridy Fantasy Football</title>
     <link rel="icon" href="favicon-32x32.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* History page specific styles */
-        .legacy-section { max-width: 1400px; margin: var(--space-xl) auto; padding: 0 var(--space-md); }
-        .legacy-banner {
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-primary));
-            border: 3px solid var(--gold-primary);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-xl);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-gold-lg);
-        }
-        .legacy-title { font-size: clamp(2rem, 5vw, 4rem); color: var(--gold-primary); margin-bottom: var(--space-md); position: relative; z-index: 2; text-transform: uppercase; }
-        .legacy-content { position: relative; z-index: 2; color: var(--text-primary); }
-        .legacy-description { font-size: clamp(1rem, 2vw, 1.3rem); line-height: 1.6; margin-bottom: var(--space-md); color: var(--text-secondary); }
-        .champions-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-md); }
-        .champion-year { background: rgba(255, 215, 0, 0.1); border: 2px solid var(--gold-bright); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; transition: all var(--transition-base); }
-        .champion-year:hover { background: rgba(255, 215, 0, 0.2); transform: translateY(-5px); box-shadow: var(--shadow-gold); }
-        .champion-year-title { color: var(--gold-bright); font-size: 1.3rem; font-weight: bold; margin-bottom: var(--space-xs); }
-        .champion-name { color: #FFED4E; font-size: 1.1rem; }
-        .hype-box { background: var(--gold-primary); color: var(--bg-primary); padding: var(--space-md); border-radius: var(--radius-md); margin-top: var(--space-md); position: relative; z-index: 2; }
-        .hype-title { font-size: 1.8rem; margin-bottom: var(--space-sm); text-transform: uppercase; font-weight: bold; }
-        .hype-text { font-size: 1.2rem; line-height: 1.6; }
-        /* Season sections */
-        .seasons-section { max-width: 1600px; margin: var(--space-xl) auto; padding: 0 var(--space-md); }
-        .season-item { background: var(--bg-card); backdrop-filter: blur(10px); border-radius: var(--radius-xl); margin-bottom: var(--space-xl); border: 2px solid rgba(240, 173, 78, 0.3); overflow: hidden; transition: all var(--transition-base); }
-        .season-item:hover { border-color: var(--gold-primary); box-shadow: var(--shadow-gold); transform: translateY(-5px); }
-        .season-header { background: linear-gradient(135deg, var(--gold-primary), var(--gold-warm)); color: var(--bg-deep); padding: var(--space-md); cursor: pointer; transition: all var(--transition-base); position: relative; overflow: hidden; }
-        .season-header:hover { background: linear-gradient(135deg, var(--gold-warm), var(--gold-primary)); }
-        .season-title { font-size: 2.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 2; }
-        .season-champion { font-size: 1.3rem; margin-top: var(--space-xs); position: relative; z-index: 2; }
-        .season-content { padding: 0; max-height: 0; overflow: hidden; transition: all 0.5s ease; }
-        .season-content.active { max-height: 2000px; padding: var(--space-md); overflow-x: auto; }
-        .season-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-md); background: rgba(30, 30, 30, 0.5); border-radius: var(--radius-md); overflow: hidden; }
-        .season-table th { background: linear-gradient(135deg, #343A40, var(--bg-primary)); color: var(--gold-primary); padding: var(--space-sm); text-align: center; font-weight: bold; text-transform: uppercase; }
-        .season-table td { padding: var(--space-sm); text-align: center; border-bottom: 1px solid rgba(240, 173, 78, 0.2); }
-        .season-table tr:nth-child(even) { background-color: rgba(42, 42, 42, 0.5); }
-        .season-table tr:nth-child(odd) { background-color: rgba(30, 30, 30, 0.5); }
-        .season-table tr:hover { background-color: rgba(240, 173, 78, 0.1); }
-        .champion-row { background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)) !important; border: 2px solid var(--gold-bright) !important; }
-        .champion-row td { color: var(--gold-bright) !important; font-weight: bold !important; }
-        .isaac-row { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1)) !important; border: 2px solid var(--isaac-shame) !important; }
-        .isaac-row td { color: var(--isaac-shame) !important; }
-        .season-highlights { background: rgba(240, 173, 78, 0.1); border: 2px solid rgba(240, 173, 78, 0.3); border-radius: var(--radius-md); padding: var(--space-md); margin-top: var(--space-md); }
-        .highlights-title { color: var(--gold-primary); font-size: 1.5rem; margin-bottom: var(--space-sm); text-transform: uppercase; }
-        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); }
-        .highlight-item { background: var(--bg-card); padding: var(--space-sm); border-radius: var(--radius-sm); border-left: 4px solid var(--gold-primary); }
-        .highlight-label { color: var(--gold-primary); font-weight: bold; margin-bottom: 5px; }
-        .highlight-value { color: var(--text-primary); font-size: 1.1rem; }
-        .expand-icon { float: right; font-size: 2rem; transition: transform var(--transition-base); position: relative; z-index: 2; }
-        .season-header.active .expand-icon { transform: rotate(180deg); }
-        /* Timeline */
-        .timeline-section { background: var(--bg-card); border-radius: var(--radius-xl); padding: var(--space-xl); margin: var(--space-xl) 0; border: 3px solid var(--gold-primary); }
-        .timeline-title { text-align: center; font-size: 2.5rem; color: var(--gold-primary); margin-bottom: var(--space-xl); text-transform: uppercase; }
-        .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); }
-        .timeline-item { background: rgba(240, 173, 78, 0.1); border: 2px solid rgba(240, 173, 78, 0.3); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; transition: all var(--transition-base); }
-        .timeline-item:hover { background: rgba(240, 173, 78, 0.2); border-color: var(--gold-primary); transform: translateY(-5px); }
-        .timeline-year { font-size: 2rem; color: var(--gold-primary); font-weight: bold; margin-bottom: var(--space-sm); }
-        .timeline-event { color: var(--text-primary); font-size: 1.1rem; line-height: 1.6; }
-        @media (max-width: 768px) { .seasons-section { padding: 0 var(--space-xs); } .season-table { font-size: 0.8rem; } .champions-list { grid-template-columns: 1fr; } }
-    </style>
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Floating particles -->
-    <div class="particles"></div>
-
-    <!-- Hero Header -->
-    <div class="hero-header">
-        <h1 class="logo">EPIC HISTORY</h1>
-        <div class="subtitle">Five Years of Legendary Chaos</div>
-        <div class="description">
-            From Jesse Tuggle's dominant 2000-point season to Logan's redemption arc championship,
-            this is the complete chronicle of No-Tegridy Fantasy Football.
-            Witness the champions, the chokes, and the comedy that built this legendary league.
+    <header class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand"><span class="brand-mark">NT</span><span>No-Tegridy</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav class="nav-links" aria-label="Main">
+                <a href="index.html">Home</a>
+                <a href="standings.html">Standings</a>
+                <a href="group.html">Legends</a>
+                <a href="past-seasons.html" aria-current="page">History</a>
+                <a href="draft-recap.html">Draft</a>
+                <a href="pictures.html">Gallery</a>
+                <a href="roasting-isaac.html">Roast Isaac</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-            ☰
-        </button>
-        <ul>
-            <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
-            <li><a href="pictures.html" aria-label="View league pictures and gallery">📸 Pictures</a></li>
-            <li><a href="standings.html" aria-label="View current team standings and power rankings">🏆 Standings</a></li>
-            <li><a href="group.html" aria-label="Meet our league members">👥 Our Legends</a></li>
-            <li><a href="roasting-isaac.html" aria-label="Isaac roast section">🔥 Roast Isaac</a></li>
-            <li><a href="past-seasons.html" aria-label="View historical league data" aria-current="page">📚 History</a></li>
-            <li><a href="draft-recap.html" aria-label="View annual draft analysis">📰 Draft Recap</a></li>
-        </ul>
-    </nav>
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <span class="hero-eyebrow">Five Seasons of Chaos</span>
+                <h1 class="hero-title">League History</h1>
+                <p class="hero-subtitle">From Jesse Tuggle's dominant 2000-point debut to Logan's redemption arc championship &mdash; the complete chronicle of No-Tegridy.</p>
+            </div>
+        </section>
 
-    <!-- League Legacy Section -->
-    <div id="main-content" class="legacy-section">
-        <div class="legacy-banner">
-            <h2 class="legacy-title">🏆 LEAGUE LEGACY 🏆</h2>
-            <div class="legacy-content">
-                <p class="legacy-description">
-                    Four seasons of pure chaos, legendary team names, and questionable roster decisions have led us here. 
-                    From Jesse Tuggle's dominant "Chicken Fingers" crushing everyone with 2000 points in 2021, 
-                    to the recent battle between "Room 40's Nuts" and "Hawk Tua an Pitts On That Thang" - this league has seen it all!
-                </p>
-                
-                <div class="champions-list">
-                    <div class="champion-year">
-                        <div class="champion-year-title">2021 CHAMPION</div>
-                        <div class="champion-name">Chicken Fingers (Jesse Tuggle)</div>
-                        <div style="color: #ffd700; margin-top: 5px;">12-2 BEAST MODE</div>
-                    </div>
-                    <div class="champion-year">
-                        <div class="champion-year-title">2022 CHAMPION</div>
-                        <div class="champion-name">Lets Ride (Blake Howell)</div>
-                        <div style="color: #ffd700; margin-top: 5px;">10-4 DOMINANT</div>
-                    </div>
-                    <div class="champion-year">
-                        <div class="champion-year-title">2023 CHAMPION</div>
-                        <div class="champion-name">Blevins' RubNTug (Jacob Johnson)</div>
-                        <div style="color: #ffd700; margin-top: 5px;">8-6 CLUTCH</div>
-                    </div>
-                    <div class="champion-year">
-                        <div class="champion-year-title">2024 CHAMPION</div>
-                        <div class="champion-name">Room 40's Nuts (CJ Tackett)</div>
-                        <div style="color: #ffd700; margin-top: 5px;">8-6 GRINDER</div>
-                    </div>
-                    <div class="champion-year" style="border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-                        <div class="champion-year-title">2025 CHAMPION</div>
-                        <div class="champion-name">Mr Pfizer + Swifties for Kamala (Logan Alderson)</div>
-                        <div style="color: #ffd700; margin-top: 5px;">9-5 REDEMPTION ARC</div>
-                    </div>
+        <!-- Champions Mosaic -->
+        <section class="container">
+            <div class="section-head">
+                <div class="section-eyebrow">Champions</div>
+                <h2 class="section-title">Five Years, Five Champions</h2>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card card-pad">
+                    <div style="color: var(--accent); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--s-2);">2021</div>
+                    <div style="font-family: var(--font-display); font-size: 1.3rem; color: var(--t-1); font-weight: 700;">Jesse Tuggle</div>
+                    <div style="color: var(--t-3); margin-top: 4px;">Chicken Fingers &middot; 12&ndash;2 beast mode</div>
                 </div>
-                
-                <div class="hype-box">
-                    <h3 class="hype-title">2025 SEASON COMPLETE</h3>
-                    <p class="hype-text">
-                        Logan Alderson completed the ultimate redemption arc - from toilet bowl in 2022 to league champion in 2025!
-                        Donavon's "Gut Check" choked as the #2 seed (lost Round 1, rage quit). Isaac stayed mid.
-                        CJ's title defense crashed and burned. THE CYCLE CONTINUES!
-                    </p>
+                <div class="card card-pad">
+                    <div style="color: var(--accent); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--s-2);">2022</div>
+                    <div style="font-family: var(--font-display); font-size: 1.3rem; color: var(--t-1); font-weight: 700;">Blake Howell</div>
+                    <div style="color: var(--t-3); margin-top: 4px;">Lets Ride &middot; 10&ndash;4 dominant</div>
+                </div>
+                <div class="card card-pad">
+                    <div style="color: var(--accent); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--s-2);">2023</div>
+                    <div style="font-family: var(--font-display); font-size: 1.3rem; color: var(--t-1); font-weight: 700;">Jacob Johnson</div>
+                    <div style="color: var(--t-3); margin-top: 4px;">Blevins' RubNTug &middot; 8&ndash;6 clutch</div>
+                </div>
+                <div class="card card-pad">
+                    <div style="color: var(--accent); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--s-2);">2024</div>
+                    <div style="font-family: var(--font-display); font-size: 1.3rem; color: var(--t-1); font-weight: 700;">CJ Tackett</div>
+                    <div style="color: var(--t-3); margin-top: 4px;">Room 40's Nuts &middot; 8&ndash;6 grinder</div>
+                </div>
+                <div class="card card-pad" style="border-color: var(--accent); box-shadow: var(--sh-glow);">
+                    <div style="color: var(--accent-bright); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--s-2);">2025</div>
+                    <div style="font-family: var(--font-display); font-size: 1.3rem; color: var(--accent-bright); font-weight: 700;">Logan Alderson</div>
+                    <div style="color: var(--t-2); margin-top: 4px;">Mr Pfizer + Swifties for Kamala &middot; 9&ndash;5 redemption</div>
                 </div>
             </div>
+        </section>
+
+        <!-- Season accordions -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Year by Year</div>
+                <h2 class="section-title">Season Archives</h2>
+                <p class="section-lead">Click any season to expand the full standings and highlights.</p>
+            </div>
+
+            <!-- 2025 -->
+            <article class="season open">
+                <button class="season-toggle" data-season-toggle aria-expanded="true">
+                    <div class="season-meta">
+                        <div class="season-year">2025</div>
+                        <div class="season-champ">Logan Alderson &middot; Mr Pfizer + Swifties for Kamala</div>
+                    </div>
+                    <span class="icon" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="season-body">
+                    <div class="season-body-inner">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>RK</th><th>Team</th><th>Manager</th><th class="num-c">REC</th><th class="num-c">PF</th><th class="num-c">PA</th><th class="num-c">Home</th><th class="num-c">Away</th><th class="num-c">Strk</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row-champ"><td>1</td><td>Mr Pfizer + Swifties for Kamala</td><td>Logan Alderson</td><td class="num-c">9&ndash;5</td><td class="num-c">1879.96</td><td class="num-c">1610.60</td><td class="num-c">7&ndash;0</td><td class="num-c">2&ndash;5</td><td class="num-c">W1</td></tr>
+                                    <tr><td>2</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td class="num-c">11&ndash;3</td><td class="num-c">1670.82</td><td class="num-c">1487.74</td><td class="num-c">6&ndash;2</td><td class="num-c">5&ndash;1</td><td class="num-c">W3</td></tr>
+                                    <tr><td>3</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td class="num-c">6&ndash;8</td><td class="num-c">1619.98</td><td class="num-c">1598.44</td><td class="num-c">3&ndash;5</td><td class="num-c">3&ndash;3</td><td class="num-c">W1</td></tr>
+                                    <tr><td>4</td><td>3rd Beer Hits The Blake Towers</td><td>Garrett Burton</td><td class="num-c">8&ndash;6</td><td class="num-c">1539.60</td><td class="num-c">1597.12</td><td class="num-c">4&ndash;2</td><td class="num-c">4&ndash;4</td><td class="num-c">L2</td></tr>
+                                    <tr><td>5</td><td>I chase brown kids</td><td>jacob barnwell</td><td class="num-c">6&ndash;8</td><td class="num-c">1678.86</td><td class="num-c">1653.92</td><td class="num-c">3&ndash;4</td><td class="num-c">3&ndash;4</td><td class="num-c">L7</td></tr>
+                                    <tr><td>6</td><td>4th n Long to Deannas Tight End</td><td>Cain Cooksey</td><td class="num-c">8&ndash;6</td><td class="num-c">1593.18</td><td class="num-c">1679.10</td><td class="num-c">3&ndash;5</td><td class="num-c">5&ndash;1</td><td class="num-c">W3</td></tr>
+                                    <tr><td>7</td><td>Gut Check</td><td>Donavon Alderson</td><td class="num-c">10&ndash;4</td><td class="num-c">1824.56</td><td class="num-c">1492.06</td><td class="num-c">5&ndash;1</td><td class="num-c">5&ndash;3</td><td class="num-c">W2</td></tr>
+                                    <tr class="row-shame"><td>8</td><td>CeeDees Blue Balls</td><td>Isaac Puzey</td><td class="num-c">6&ndash;8</td><td class="num-c">1598.38</td><td class="num-c">1673.20</td><td class="num-c">4&ndash;2</td><td class="num-c">2&ndash;6</td><td class="num-c">L1</td></tr>
+                                    <tr><td>9</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td class="num-c">6&ndash;8</td><td class="num-c">1484.28</td><td class="num-c">1644.10</td><td class="num-c">3&ndash;4</td><td class="num-c">3&ndash;4</td><td class="num-c">L1</td></tr>
+                                    <tr><td>10</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td class="num-c">6&ndash;8</td><td class="num-c">1490.40</td><td class="num-c">1650.76</td><td class="num-c">3&ndash;4</td><td class="num-c">3&ndash;4</td><td class="num-c">W4</td></tr>
+                                    <tr><td>11</td><td>Naber, What?!</td><td>Blake Howell</td><td class="num-c">4&ndash;10</td><td class="num-c">1447.98</td><td class="num-c">1618.96</td><td class="num-c">1&ndash;6</td><td class="num-c">3&ndash;4</td><td class="num-c">L2</td></tr>
+                                    <tr class="row-toilet"><td>12</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td class="num-c">4&ndash;10</td><td class="num-c">1452.86</td><td class="num-c">1574.86</td><td class="num-c">2&ndash;5</td><td class="num-c">2&ndash;5</td><td class="num-c">L5</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-3" style="margin-top: var(--s-5);">
+                            <div class="callout"><h4>Championship Blowout</h4><p>Logan crushed Blevins 138.12&ndash;85.0.</p></div>
+                            <div class="callout win"><h4>Biggest Upset</h4><p>#7 Nobody's Hurt over #2 Gut Check.</p></div>
+                            <div class="callout"><h4>Single Game High</h4><p>Garrett Burton, 188.34 pts (R1).</p></div>
+                            <div class="callout danger"><h4>Epic Collapse</h4><p>jacob barnwell, L7 to end the year.</p></div>
+                            <div class="callout shame"><h4>Crybaby Award</h4><p>Donavon &mdash; rage quit after R1 loss.</p></div>
+                            <div class="callout danger"><h4>Toilet Bowl Champion</h4><p>Rylan Thomas, 63.3 in the finale.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2024 -->
+            <article class="season">
+                <button class="season-toggle" data-season-toggle aria-expanded="false">
+                    <div class="season-meta">
+                        <div class="season-year">2024</div>
+                        <div class="season-champ">CJ Tackett &middot; Room 40's Nuts</div>
+                    </div>
+                    <span class="icon" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="season-body">
+                    <div class="season-body-inner">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>RK</th><th>Team</th><th>Manager</th><th class="num-c">REC</th><th class="num-c">PF</th><th class="num-c">PA</th><th class="num-c">PF/G</th><th class="num-c">PA/G</th><th class="num-c">Diff</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row-champ"><td>1</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td class="num-c">8&ndash;6</td><td class="num-c">1606.28</td><td class="num-c">1568.60</td><td class="num-c">114.7</td><td class="num-c">112.0</td><td class="num-c">+2.7</td></tr>
+                                    <tr><td>2</td><td>Hawk Tua an Pitts On That Thang</td><td>Garrett Burton</td><td class="num-c">6&ndash;8</td><td class="num-c">1693.42</td><td class="num-c">1713.76</td><td class="num-c">121.0</td><td class="num-c">122.4</td><td class="num-c">&minus;1.5</td></tr>
+                                    <tr><td>3</td><td>Waddle you doing stepburrow</td><td>Jacob Barnwell</td><td class="num-c">10&ndash;4</td><td class="num-c">1847.86</td><td class="num-c">1660.80</td><td class="num-c">132.0</td><td class="num-c">118.6</td><td class="num-c">+13.4</td></tr>
+                                    <tr><td>4</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td class="num-c">6&ndash;8</td><td class="num-c">1539.76</td><td class="num-c">1660.64</td><td class="num-c">110.0</td><td class="num-c">118.6</td><td class="num-c">&minus;8.6</td></tr>
+                                    <tr><td>5</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td class="num-c">6&ndash;8</td><td class="num-c">1619.46</td><td class="num-c">1553.44</td><td class="num-c">115.7</td><td class="num-c">111.0</td><td class="num-c">+4.7</td></tr>
+                                    <tr><td>6</td><td>Gut Check</td><td>Donavon Alderson</td><td class="num-c">11&ndash;3</td><td class="num-c">1793.26</td><td class="num-c">1529.50</td><td class="num-c">128.1</td><td class="num-c">109.3</td><td class="num-c">+18.8</td></tr>
+                                    <tr><td>7</td><td>Mr Pfizer + Swifties for Kamala</td><td>Logan Alderson</td><td class="num-c">9&ndash;5</td><td class="num-c">1706.22</td><td class="num-c">1555.44</td><td class="num-c">121.9</td><td class="num-c">111.1</td><td class="num-c">+10.8</td></tr>
+                                    <tr><td>8</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td class="num-c">9&ndash;5</td><td class="num-c">1545.62</td><td class="num-c">1501.64</td><td class="num-c">110.4</td><td class="num-c">107.3</td><td class="num-c">+3.1</td></tr>
+                                    <tr class="row-shame"><td>9</td><td>Burrowito Bowl</td><td>Isaac Puzey</td><td class="num-c">5&ndash;9</td><td class="num-c">1557.84</td><td class="num-c">1639.96</td><td class="num-c">111.3</td><td class="num-c">117.1</td><td class="num-c">&minus;5.9</td></tr>
+                                    <tr><td>10</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td class="num-c">4&ndash;10</td><td class="num-c">1445.34</td><td class="num-c">1689.92</td><td class="num-c">103.2</td><td class="num-c">120.7</td><td class="num-c">&minus;17.5</td></tr>
+                                    <tr><td>11</td><td>1st Pick Curse</td><td>Blake Howell</td><td class="num-c">5&ndash;9</td><td class="num-c">1487.28</td><td class="num-c">1674.74</td><td class="num-c">106.2</td><td class="num-c">119.6</td><td class="num-c">&minus;13.4</td></tr>
+                                    <tr><td>12</td><td>Deannas Fat TDs</td><td>Cain Cooksey</td><td class="num-c">5&ndash;9</td><td class="num-c">1552.82</td><td class="num-c">1646.72</td><td class="num-c">110.9</td><td class="num-c">117.6</td><td class="num-c">&minus;6.7</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-3" style="margin-top: var(--s-5);">
+                            <div class="callout"><h4>Biggest Upset</h4><p>CJ's 8&ndash;6 championship run.</p></div>
+                            <div class="callout danger"><h4>Biggest Heartbreak</h4><p>Don's 11&ndash;3 with no title.</p></div>
+                            <div class="callout"><h4>Most Points</h4><p>Barney &mdash; 1847.86.</p></div>
+                            <div class="callout shame"><h4>Isaac's Performance</h4><p>5&ndash;9 (predictably trash).</p></div>
+                            <div class="callout"><h4>Best Team Name</h4><p>Hawk Tua an Pitts.</p></div>
+                            <div class="callout danger"><h4>Toilet Bowl King</h4><p>Tyler &mdash; 4&ndash;10.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2023 -->
+            <article class="season">
+                <button class="season-toggle" data-season-toggle aria-expanded="false">
+                    <div class="season-meta">
+                        <div class="season-year">2023</div>
+                        <div class="season-champ">Jacob Johnson &middot; Blevins' RubNTug</div>
+                    </div>
+                    <span class="icon" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="season-body">
+                    <div class="season-body-inner">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead><tr><th>RK</th><th>Team</th><th>Manager</th><th class="num-c">REC</th><th class="num-c">PF</th><th class="num-c">PA</th><th class="num-c">PF/G</th><th class="num-c">PA/G</th><th class="num-c">Diff</th></tr></thead>
+                                <tbody>
+                                    <tr class="row-champ"><td>1</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td class="num-c">8&ndash;6</td><td class="num-c">1748.28</td><td class="num-c">1615.66</td><td class="num-c">124.9</td><td class="num-c">115.4</td><td class="num-c">+9.5</td></tr>
+                                    <tr><td>2</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td class="num-c">8&ndash;6</td><td class="num-c">1619.10</td><td class="num-c">1592.08</td><td class="num-c">115.6</td><td class="num-c">113.7</td><td class="num-c">+1.9</td></tr>
+                                    <tr><td>3</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td class="num-c">7&ndash;7</td><td class="num-c">1686.92</td><td class="num-c">1544.08</td><td class="num-c">120.5</td><td class="num-c">110.3</td><td class="num-c">+10.2</td></tr>
+                                    <tr><td>4</td><td>Jerkin Goff</td><td>Logan Alderson</td><td class="num-c">10&ndash;4</td><td class="num-c">1598.64</td><td class="num-c">1485.66</td><td class="num-c">114.2</td><td class="num-c">106.1</td><td class="num-c">+8.1</td></tr>
+                                    <tr><td>5</td><td>CeeDeez Nutz</td><td>Blake Howell</td><td class="num-c">7&ndash;7</td><td class="num-c">1666.68</td><td class="num-c">1528.02</td><td class="num-c">119.0</td><td class="num-c">109.1</td><td class="num-c">+9.9</td></tr>
+                                    <tr><td>6</td><td>Adrian beaturson</td><td>Jacob Barnwell</td><td class="num-c">8&ndash;6</td><td class="num-c">1739.54</td><td class="num-c">1687.30</td><td class="num-c">124.3</td><td class="num-c">120.5</td><td class="num-c">+3.7</td></tr>
+                                    <tr class="row-shame"><td>7</td><td>IAMAFRAUD</td><td>Isaac Puzey</td><td class="num-c">8&ndash;6</td><td class="num-c">1508.42</td><td class="num-c">1533.90</td><td class="num-c">107.7</td><td class="num-c">109.6</td><td class="num-c">&minus;1.8</td></tr>
+                                    <tr><td>8</td><td>I am a fraud</td><td>Donavon Alderson</td><td class="num-c">9&ndash;5</td><td class="num-c">1545.50</td><td class="num-c">1580.20</td><td class="num-c">110.4</td><td class="num-c">112.9</td><td class="num-c">&minus;2.5</td></tr>
+                                    <tr><td>9</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td class="num-c">5&ndash;9</td><td class="num-c">1522.42</td><td class="num-c">1676.26</td><td class="num-c">108.7</td><td class="num-c">119.7</td><td class="num-c">&minus;11.0</td></tr>
+                                    <tr><td>10</td><td>Deanna's Tight End</td><td>Cain Cooksey</td><td class="num-c">2&ndash;12</td><td class="num-c">1447.92</td><td class="num-c">1632.74</td><td class="num-c">103.4</td><td class="num-c">116.6</td><td class="num-c">&minus;13.2</td></tr>
+                                    <tr><td>11</td><td>Stinky Stubby Isaac</td><td>Garrett Burton</td><td class="num-c">7&ndash;7</td><td class="num-c">1530.12</td><td class="num-c">1645.60</td><td class="num-c">109.3</td><td class="num-c">117.5</td><td class="num-c">&minus;8.2</td></tr>
+                                    <tr><td>12</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td class="num-c">5&ndash;9</td><td class="num-c">1498.78</td><td class="num-c">1590.82</td><td class="num-c">107.1</td><td class="num-c">113.6</td><td class="num-c">&minus;6.6</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-3" style="margin-top: var(--s-5);">
+                            <div class="callout"><h4>Championship Surprise</h4><p>Jacob Johnson's clutch run.</p></div>
+                            <div class="callout shame"><h4>Isaac's "Best" Year</h4><p>8&ndash;6, still called himself a fraud.</p></div>
+                            <div class="callout danger"><h4>Biggest Disaster</h4><p>Cain's 2&ndash;12 catastrophe.</p></div>
+                            <div class="callout"><h4>Most Points</h4><p>Jacob Johnson &mdash; 1748.28.</p></div>
+                            <div class="callout"><h4>Best Regular Season</h4><p>Logan's 10&ndash;4.</p></div>
+                            <div class="callout"><h4>Notable Team Name</h4><p>Blevins' RubNTug.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2022 -->
+            <article class="season">
+                <button class="season-toggle" data-season-toggle aria-expanded="false">
+                    <div class="season-meta">
+                        <div class="season-year">2022</div>
+                        <div class="season-champ">Blake Howell &middot; Lets Ride</div>
+                    </div>
+                    <span class="icon" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="season-body">
+                    <div class="season-body-inner">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead><tr><th>RK</th><th>Team</th><th>Manager</th><th class="num-c">REC</th><th class="num-c">PF</th><th class="num-c">PA</th><th class="num-c">PF/G</th><th class="num-c">PA/G</th><th class="num-c">Diff</th></tr></thead>
+                                <tbody>
+                                    <tr class="row-champ"><td>1</td><td>Lets Ride</td><td>Blake Howell</td><td class="num-c">10&ndash;4</td><td class="num-c">1783.58</td><td class="num-c">1482.80</td><td class="num-c">127.4</td><td class="num-c">106.0</td><td class="num-c">+21.5</td></tr>
+                                    <tr class="row-shame"><td>2</td><td>Catalina Wine Mixon</td><td>Isaac Puzey</td><td class="num-c">9&ndash;5</td><td class="num-c">1760.02</td><td class="num-c">1658.00</td><td class="num-c">125.7</td><td class="num-c">118.0</td><td class="num-c">+7.3</td></tr>
+                                    <tr><td>3</td><td>Thicc Succ</td><td>Tyler Blevins</td><td class="num-c">8&ndash;6</td><td class="num-c">1720.52</td><td class="num-c">1506.40</td><td class="num-c">122.9</td><td class="num-c">108.0</td><td class="num-c">+15.3</td></tr>
+                                    <tr><td>4</td><td>Urban Meyer's Sunday Scaries</td><td>CJ Tackett</td><td class="num-c">10&ndash;4</td><td class="num-c">1640.54</td><td class="num-c">1537.70</td><td class="num-c">117.2</td><td class="num-c">110.0</td><td class="num-c">+7.3</td></tr>
+                                    <tr><td>5</td><td>Racing with Ruggs</td><td>Garrett Burton</td><td class="num-c">8&ndash;6</td><td class="num-c">1559.24</td><td class="num-c">1362.70</td><td class="num-c">111.4</td><td class="num-c">97.3</td><td class="num-c">+14.0</td></tr>
+                                    <tr><td>6</td><td>Burrow McCokiner</td><td>Jacob Johnson</td><td class="num-c">6&ndash;8</td><td class="num-c">1502.50</td><td class="num-c">1605.90</td><td class="num-c">107.0</td><td class="num-c">115.0</td><td class="num-c">&minus;7.4</td></tr>
+                                    <tr><td>7</td><td>Franklin Pussa Grabbers</td><td>Rylan Thomas</td><td class="num-c">7&ndash;7</td><td class="num-c">1719.90</td><td class="num-c">1628.00</td><td class="num-c">122.9</td><td class="num-c">116.0</td><td class="num-c">+6.6</td></tr>
+                                    <tr><td>8</td><td>Team Littrell</td><td>Parker Littrell</td><td class="num-c">8&ndash;6</td><td class="num-c">1531.50</td><td class="num-c">1434.40</td><td class="num-c">109.4</td><td class="num-c">103.0</td><td class="num-c">+6.9</td></tr>
+                                    <tr><td>9</td><td>Fantasy Foursome</td><td>Garrett Johnson</td><td class="num-c">4&ndash;10</td><td class="num-c">1454.52</td><td class="num-c">1773.70</td><td class="num-c">103.9</td><td class="num-c">127.0</td><td class="num-c">&minus;22.8</td></tr>
+                                    <tr><td>10</td><td>Team Alderson</td><td>Donavon Alderson</td><td class="num-c">5&ndash;9</td><td class="num-c">1599.38</td><td class="num-c">1737.50</td><td class="num-c">114.2</td><td class="num-c">124.0</td><td class="num-c">&minus;9.9</td></tr>
+                                    <tr class="row-toilet"><td>11</td><td>Babysitting By AP</td><td>Logan Alderson</td><td class="num-c">5&ndash;9</td><td class="num-c">1493.08</td><td class="num-c">1885.90</td><td class="num-c">106.6</td><td class="num-c">135.0</td><td class="num-c">&minus;28.1</td></tr>
+                                    <tr><td>12</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td class="num-c">4&ndash;10</td><td class="num-c">1445.52</td><td class="num-c">1597.30</td><td class="num-c">103.3</td><td class="num-c">114.0</td><td class="num-c">&minus;10.8</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-3" style="margin-top: var(--s-5);">
+                            <div class="callout"><h4>Blake's Peak</h4><p>10&ndash;4 championship dominance.</p></div>
+                            <div class="callout shame"><h4>Isaac's Only Good Season</h4><p>9&ndash;5 runner-up &mdash; peak Isaac.</p></div>
+                            <div class="callout"><h4>Best Team Name</h4><p>Franklin Pussa Grabbers.</p></div>
+                            <div class="callout"><h4>Most Points</h4><p>Blake Howell &mdash; 1783.58.</p></div>
+                            <div class="callout danger"><h4>Biggest Choke</h4><p>Logan's &minus;28.1 differential.</p></div>
+                            <div class="callout"><h4>False Hope</h4><p>Isaac &mdash; never repeated success.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2021 -->
+            <article class="season">
+                <button class="season-toggle" data-season-toggle aria-expanded="false">
+                    <div class="season-meta">
+                        <div class="season-year">2021</div>
+                        <div class="season-champ">Jesse Tuggle &middot; Chicken Fingers</div>
+                    </div>
+                    <span class="icon" aria-hidden="true">&#9662;</span>
+                </button>
+                <div class="season-body">
+                    <div class="season-body-inner">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead><tr><th>RK</th><th>Team</th><th>Manager</th><th class="num-c">REC</th><th class="num-c">PF</th><th class="num-c">PA</th><th class="num-c">PF/G</th><th class="num-c">PA/G</th><th class="num-c">Diff</th></tr></thead>
+                                <tbody>
+                                    <tr class="row-champ"><td>1</td><td>Chicken Fingers</td><td>Jesse Tuggle</td><td class="num-c">12&ndash;2</td><td class="num-c">1999.62</td><td class="num-c">1588.70</td><td class="num-c">142.8</td><td class="num-c">114.0</td><td class="num-c">+29.4</td></tr>
+                                    <tr><td>2</td><td>Hanging with Hernandez</td><td>Garrett Burton</td><td class="num-c">11&ndash;3</td><td class="num-c">1804.10</td><td class="num-c">1571.10</td><td class="num-c">128.9</td><td class="num-c">112.0</td><td class="num-c">+16.6</td></tr>
+                                    <tr><td>3</td><td>Chubb At Half Stafford</td><td>Jacob Johnson</td><td class="num-c">8&ndash;6</td><td class="num-c">1765.66</td><td class="num-c">1691.40</td><td class="num-c">126.1</td><td class="num-c">121.0</td><td class="num-c">+5.3</td></tr>
+                                    <tr><td>4</td><td>Not the worst Alderson</td><td>Donavon Alderson</td><td class="num-c">9&ndash;5</td><td class="num-c">1710.94</td><td class="num-c">1611.20</td><td class="num-c">122.2</td><td class="num-c">115.0</td><td class="num-c">+7.1</td></tr>
+                                    <tr><td>5</td><td>I Kill The Goblin</td><td>Blake Howell</td><td class="num-c">8&ndash;6</td><td class="num-c">1549.56</td><td class="num-c">1523.70</td><td class="num-c">110.7</td><td class="num-c">109.0</td><td class="num-c">+1.9</td></tr>
+                                    <tr><td>6</td><td>Puzey's Barrel</td><td>Logan Alderson</td><td class="num-c">5&ndash;9</td><td class="num-c">1784.40</td><td class="num-c">1777.80</td><td class="num-c">128.0</td><td class="num-c">127.0</td><td class="num-c">+0.5</td></tr>
+                                    <tr><td>7</td><td>Team Littrell</td><td>Parker Littrell</td><td class="num-c">6&ndash;8</td><td class="num-c">1485.16</td><td class="num-c">1485.30</td><td class="num-c">106.1</td><td class="num-c">106.0</td><td class="num-c">0.0</td></tr>
+                                    <tr><td>8</td><td>Urban Meyer's Sunday Scaries</td><td>CJ Tackett</td><td class="num-c">6&ndash;8</td><td class="num-c">1510.36</td><td class="num-c">1550.40</td><td class="num-c">107.9</td><td class="num-c">111.0</td><td class="num-c">&minus;2.9</td></tr>
+                                    <tr class="row-shame"><td>9</td><td>Balls Mcgee</td><td>Isaac Puzey</td><td class="num-c">5&ndash;9</td><td class="num-c">1495.80</td><td class="num-c">1729.30</td><td class="num-c">106.8</td><td class="num-c">124.0</td><td class="num-c">&minus;16.7</td></tr>
+                                    <tr><td>10</td><td>Thicc Succ</td><td>Tyler Blevins</td><td class="num-c">5&ndash;9</td><td class="num-c">1476.58</td><td class="num-c">1586.40</td><td class="num-c">105.5</td><td class="num-c">113.0</td><td class="num-c">&minus;7.8</td></tr>
+                                    <tr><td>11</td><td>Fantasy Foursome</td><td>Garrett Johnson</td><td class="num-c">5&ndash;9</td><td class="num-c">1452.44</td><td class="num-c">1682.80</td><td class="num-c">103.7</td><td class="num-c">120.0</td><td class="num-c">&minus;16.5</td></tr>
+                                    <tr><td>12</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td class="num-c">4&ndash;10</td><td class="num-c">1477.66</td><td class="num-c">1714.40</td><td class="num-c">105.5</td><td class="num-c">123.0</td><td class="num-c">&minus;16.9</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-3" style="margin-top: var(--s-5);">
+                            <div class="callout"><h4>GOAT Performance</h4><p>Jesse's 12&ndash;2, 2000-point season.</p></div>
+                            <div class="callout shame"><h4>Isaac's Debut</h4><p>5&ndash;9 &mdash; set the standard.</p></div>
+                            <div class="callout"><h4>Most Heartbreaking</h4><p>Logan's high points, bad record.</p></div>
+                            <div class="callout"><h4>Perfect Tie</h4><p>Parker's 0.0 differential.</p></div>
+                            <div class="callout"><h4>League Founded</h4><p>The beginning of chaos.</p></div>
+                            <div class="callout shame"><h4>Isaac's Trajectory</h4><p>Started bad, stayed bad.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Timeline -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head">
+                <div class="section-eyebrow">Timeline</div>
+                <h2 class="section-title">Five Years at a Glance</h2>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card card-pad">
+                    <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800; margin-bottom: var(--s-2);">2021</div>
+                    <p style="color: var(--t-2); line-height: 1.7;">League founded. Jesse dominates with 2000 points. Isaac starts his 5&ndash;9 tradition.</p>
+                </div>
+                <div class="card card-pad">
+                    <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800; margin-bottom: var(--s-2);">2022</div>
+                    <p style="color: var(--t-2); line-height: 1.7;">Blake's championship peak. Isaac's only good season (9&ndash;5). Franklin Pussa Grabbers born.</p>
+                </div>
+                <div class="card card-pad">
+                    <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800; margin-bottom: var(--s-2);">2023</div>
+                    <p style="color: var(--t-2); line-height: 1.7;">Jacob Johnson clutch title. Cain's historic 2&ndash;12. Isaac literally named his team "IAMAFRAUD".</p>
+                </div>
+                <div class="card card-pad">
+                    <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 800; margin-bottom: var(--s-2);">2024</div>
+                    <p style="color: var(--t-2); line-height: 1.7;">CJ's grinder championship. Don's 11&ndash;3 heartbreak. Isaac back to 5&ndash;9 form.</p>
+                </div>
+                <div class="card card-pad" style="border-color: var(--accent); box-shadow: var(--sh-glow);">
+                    <div style="font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); font-weight: 800; margin-bottom: var(--s-2);">2025</div>
+                    <p style="color: var(--t-2); line-height: 1.7;">Logan's redemption arc &mdash; from last place to champion. Donavon rage-quit. CJ's title defense crashed.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="brand-line">NO&middot;TEGRIDY FANTASY FOOTBALL</div>
+        <div class="footer-meta">
+            <span>2025 Champion: <strong style="color: var(--accent-bright);">Logan Alderson</strong></span>
+            <span>Est. 2021</span>
         </div>
-    </div>
-
-    <!-- Seasons Section -->
-    <div class="seasons-section">
-        <!-- 2025 Season -->
-        <div class="season-item">
-            <div class="season-header" onclick="toggleSeason('season2025')">
-                <div class="season-title">2025 SEASON</div>
-                <div class="season-champion">CHAMPION: Mr Pfizer + Swifties for Kamala (Logan Alderson)</div>
-                <span class="expand-icon">&#11015;</span>
-            </div>
-            <div class="season-content" id="season2025">
-                <table class="season-table">
-                    <tr>
-                        <th>RK</th><th>Team</th><th>Manager</th><th>REC</th><th>PF</th><th>PA</th><th>HOME</th><th>AWAY</th><th>STRK</th>
-                    </tr>
-                    <tr class="champion-row">
-                        <td>1</td><td>Mr Pfizer + Swifties for Kamala</td><td>Logan Alderson</td><td>9-5</td><td>1879.96</td><td>1610.6</td><td>7-0</td><td>2-5</td><td>W1</td>
-                    </tr>
-                    <tr>
-                        <td>2</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td>11-3</td><td>1670.82</td><td>1487.74</td><td>6-2</td><td>5-1</td><td>W3</td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td>6-8</td><td>1619.98</td><td>1598.44</td><td>3-5</td><td>3-3</td><td>W1</td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td>3rd Beer Hits The Blake Towers</td><td>Garrett Burton</td><td>8-6</td><td>1539.6</td><td>1597.12</td><td>4-2</td><td>4-4</td><td>L2</td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td>I chase brown kids</td><td>jacob barnwell</td><td>6-8</td><td>1678.86</td><td>1653.92</td><td>3-4</td><td>3-4</td><td>L7</td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td>4th n Long to Deannas Tight End</td><td>Cain Cooksey</td><td>8-6</td><td>1593.18</td><td>1679.1</td><td>3-5</td><td>5-1</td><td>W3</td>
-                    </tr>
-                    <tr>
-                        <td>7</td><td>Gut Check</td><td>Donavon Alderson</td><td>10-4</td><td>1824.56</td><td>1492.06</td><td>5-1</td><td>5-3</td><td>W2</td>
-                    </tr>
-                    <tr class="isaac-row">
-                        <td>8</td><td>CeeDees Blue Balls</td><td>Isaac Puzey</td><td>6-8</td><td>1598.38</td><td>1673.2</td><td>4-2</td><td>2-6</td><td>L1</td>
-                    </tr>
-                    <tr>
-                        <td>9</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td>6-8</td><td>1484.28</td><td>1644.1</td><td>3-4</td><td>3-4</td><td>L1</td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td>6-8</td><td>1490.4</td><td>1650.76</td><td>3-4</td><td>3-4</td><td>W4</td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td>Naber, What?!</td><td>Blake Howell</td><td>4-10</td><td>1447.98</td><td>1618.96</td><td>1-6</td><td>3-4</td><td>L2</td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td>4-10</td><td>1452.86</td><td>1574.86</td><td>2-5</td><td>2-5</td><td>L5</td>
-                    </tr>
-                </table>
-
-                <div class="season-highlights">
-                    <h4 class="highlights-title">2025 SEASON HIGHLIGHTS</h4>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <div class="highlight-label">Championship Blowout:</div>
-                            <div class="highlight-value">Logan crushed Blevins 138.12 - 85.0</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Biggest Upset:</div>
-                            <div class="highlight-value">#7 Nobody's Hurt over #2 Gut Check</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Single Game High:</div>
-                            <div class="highlight-value">Garrett Burton 188.34 pts (R1)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Epic Collapse:</div>
-                            <div class="highlight-value">jacob barnwell L7 Streak</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Crybaby Award:</div>
-                            <div class="highlight-value">Donavon (Rage Quit after R1 loss)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Toilet Bowl Champion:</div>
-                            <div class="highlight-value">Rylan Thomas (63.3 pts finale)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2024 Season -->
-        <div class="season-item">
-            <div class="season-header" onclick="toggleSeason('season2024')">
-                <div class="season-title">2024 SEASON</div>
-                <div class="season-champion">👑 Champion: Room 40's Nuts (CJ Tackett)</div>
-                <span class="expand-icon">⬇️</span>
-            </div>
-            <div class="season-content" id="season2024">
-                <table class="season-table">
-                    <tr>
-                        <th>RK</th><th>Team</th><th>Manager</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th>
-                    </tr>
-                    <tr class="champion-row">
-                        <td>1</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td>8-6</td><td>1606.28</td><td>1568.6</td><td>114.7</td><td>112</td><td>+2.7</td>
-                    </tr>
-                    <tr>
-                        <td>2</td><td>Hawk Tua an Pitts On That Thang</td><td>Garrett Burton</td><td>6-8</td><td>1693.42</td><td>1713.76</td><td>121</td><td>122.4</td><td>-1.5</td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td>Waddle you doing stepburrow</td><td>Jacob Barnwell</td><td>10-4</td><td>1847.86</td><td>1660.8</td><td>132</td><td>118.6</td><td>+13.4</td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td>6-8</td><td>1539.76</td><td>1660.64</td><td>110</td><td>118.6</td><td>-8.6</td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td>6-8</td><td>1619.46</td><td>1553.44</td><td>115.7</td><td>111</td><td>+4.7</td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td>Gut Check</td><td>Donavon Alderson</td><td>11-3</td><td>1793.26</td><td>1529.5</td><td>128.1</td><td>109.3</td><td>+18.8</td>
-                    </tr>
-                    <tr>
-                        <td>7</td><td>Mr Pfizer + Swifties for Kamala</td><td>Logan Alderson</td><td>9-5</td><td>1706.22</td><td>1555.44</td><td>121.9</td><td>111.1</td><td>+10.8</td>
-                    </tr>
-                    <tr>
-                        <td>8</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td>9-5</td><td>1545.62</td><td>1501.64</td><td>110.4</td><td>107.3</td><td>+3.1</td>
-                    </tr>
-                    <tr class="isaac-row">
-                        <td>9</td><td>Burrowito Bowl</td><td>Isaac Puzey</td><td>5-9</td><td>1557.84</td><td>1639.96</td><td>111.3</td><td>117.1</td><td>-5.9</td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td>4-10</td><td>1445.34</td><td>1689.92</td><td>103.2</td><td>120.7</td><td>-17.5</td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td>1st Pick Curse</td><td>Blake Howell</td><td>5-9</td><td>1487.28</td><td>1674.74</td><td>106.2</td><td>119.6</td><td>-13.4</td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td>Deannas Fat TDs</td><td>Cain Cooksey</td><td>5-9</td><td>1552.82</td><td>1646.72</td><td>110.9</td><td>117.6</td><td>-6.7</td>
-                    </tr>
-                </table>
-                
-                <div class="season-highlights">
-                    <h4 class="highlights-title">🔥 2024 SEASON HIGHLIGHTS 🔥</h4>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <div class="highlight-label">Biggest Upset:</div>
-                            <div class="highlight-value">CJ's 8-6 Championship Run</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Biggest Heartbreak:</div>
-                            <div class="highlight-value">Don's 11-3 No Title</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Most Points:</div>
-                            <div class="highlight-value">Barney (1847.86)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Isaac's Performance:</div>
-                            <div class="highlight-value">5-9 (Predictably Trash)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Best Team Name:</div>
-                            <div class="highlight-value">Hawk Tua an Pitts</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Toilet Bowl King:</div>
-                            <div class="highlight-value">Tyler (4-10)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2023 Season -->
-        <div class="season-item">
-            <div class="season-header" onclick="toggleSeason('season2023')">
-                <div class="season-title">2023 SEASON</div>
-                <div class="season-champion">👑 Champion: Blevins' RubNTug (Jacob Johnson)</div>
-                <span class="expand-icon">⬇️</span>
-            </div>
-            <div class="season-content" id="season2023">
-                <table class="season-table">
-                    <tr>
-                        <th>RK</th><th>Team</th><th>Manager</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th>
-                    </tr>
-                    <tr class="champion-row">
-                        <td>1</td><td>Blevins' RubNTug</td><td>Jacob Johnson</td><td>8-6</td><td>1748.28</td><td>1615.66</td><td>124.9</td><td>115.4</td><td>+9.5</td>
-                    </tr>
-                    <tr>
-                        <td>2</td><td>Room 40's Nuts</td><td>CJ Tackett</td><td>8-6</td><td>1619.1</td><td>1592.08</td><td>115.6</td><td>113.7</td><td>+1.9</td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td>Waffle House Bound</td><td>Rylan Thomas</td><td>7-7</td><td>1686.92</td><td>1544.08</td><td>120.5</td><td>110.3</td><td>+10.2</td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td>Jerkin Goff</td><td>Logan Alderson</td><td>10-4</td><td>1598.64</td><td>1485.66</td><td>114.2</td><td>106.1</td><td>+8.1</td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td>CeeDeez Nutz</td><td>Blake Howell</td><td>7-7</td><td>1666.68</td><td>1528.02</td><td>119</td><td>109.1</td><td>+9.9</td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td>Adrian beaturson</td><td>Jacob Barnwell</td><td>8-6</td><td>1739.54</td><td>1687.3</td><td>124.3</td><td>120.5</td><td>+3.7</td>
-                    </tr>
-                    <tr class="isaac-row">
-                        <td>7</td><td>IAMAFRAUD</td><td>Isaac Puzey</td><td>8-6</td><td>1508.42</td><td>1533.9</td><td>107.7</td><td>109.6</td><td>-1.8</td>
-                    </tr>
-                    <tr>
-                        <td>8</td><td>I am a fraud</td><td>Donavon Alderson</td><td>9-5</td><td>1545.5</td><td>1580.2</td><td>110.4</td><td>112.9</td><td>-2.5</td>
-                    </tr>
-                    <tr>
-                        <td>9</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td>5-9</td><td>1522.42</td><td>1676.26</td><td>108.7</td><td>119.7</td><td>-11</td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td>Deanna's Tight End</td><td>Cain Cooksey</td><td>2-12</td><td>1447.92</td><td>1632.74</td><td>103.4</td><td>116.6</td><td>-13.2</td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td>Stinky Stubby Isaac</td><td>Garrett Burton</td><td>7-7</td><td>1530.12</td><td>1645.6</td><td>109.3</td><td>117.5</td><td>-8.2</td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td>Beatin Sandy's Cheeks</td><td>Tyler Blevins</td><td>5-9</td><td>1498.78</td><td>1590.82</td><td>107.1</td><td>113.6</td><td>-6.6</td>
-                    </tr>
-                </table>
-                
-                <div class="season-highlights">
-                    <h4 class="highlights-title">🔥 2023 SEASON HIGHLIGHTS 🔥</h4>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <div class="highlight-label">Championship Surprise:</div>
-                            <div class="highlight-value">Jacob Johnson's Clutch Run</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Isaac's "Best" Season:</div>
-                            <div class="highlight-value">8-6 (Still Called Himself Fraud)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Biggest Disaster:</div>
-                            <div class="highlight-value">Cain's 2-12 Catastrophe</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Most Points:</div>
-                            <div class="highlight-value">Jacob Johnson (1748.28)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Best Regular Season:</div>
-                            <div class="highlight-value">Logan's 10-4</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Questionable Team Name:</div>
-                            <div class="highlight-value">Blevins' RubNTug</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2022 Season -->
-        <div class="season-item">
-            <div class="season-header" onclick="toggleSeason('season2022')">
-                <div class="season-title">2022 SEASON</div>
-                <div class="season-champion">👑 Champion: Lets Ride (Blake Howell)</div>
-                <span class="expand-icon">⬇️</span>
-            </div>
-            <div class="season-content" id="season2022">
-                <table class="season-table">
-                    <tr>
-                        <th>RK</th><th>Team</th><th>Manager</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th>
-                    </tr>
-                    <tr class="champion-row">
-                        <td>1</td><td>Lets Ride</td><td>Blake Howell</td><td>10-4</td><td>1783.58</td><td>1482.8</td><td>127.4</td><td>106</td><td>+21.5</td>
-                    </tr>
-                    <tr class="isaac-row">
-                        <td>2</td><td>Catalina Wine Mixon</td><td>Isaac Puzey</td><td>9-5</td><td>1760.02</td><td>1658</td><td>125.7</td><td>118</td><td>+7.3</td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td>Thicc Succ</td><td>Tyler Blevins</td><td>8-6</td><td>1720.52</td><td>1506.4</td><td>122.9</td><td>108</td><td>+15.3</td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td>Urban Meyer's Sunday Scaries</td><td>CJ Tackett</td><td>10-4</td><td>1640.54</td><td>1537.7</td><td>117.2</td><td>110</td><td>+7.3</td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td>Racing with Ruggs</td><td>Garrett Burton</td><td>8-6</td><td>1559.24</td><td>1362.7</td><td>111.4</td><td>97.3</td><td>+14</td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td>Burrow McCokiner</td><td>Jacob Johnson</td><td>6-8</td><td>1502.5</td><td>1605.9</td><td>107</td><td>115</td><td>-7.4</td>
-                    </tr>
-                    <tr>
-                        <td>7</td><td>Franklin Pussa Grabbers</td><td>Rylan Thomas</td><td>7-7</td><td>1719.9</td><td>1628</td><td>122.9</td><td>116</td><td>+6.6</td>
-                    </tr>
-                    <tr>
-                        <td>8</td><td>Team Littrell</td><td>Parker Littrell</td><td>8-6</td><td>1531.5</td><td>1434.4</td><td>109.4</td><td>103</td><td>+6.9</td>
-                    </tr>
-                    <tr>
-                        <td>9</td><td>Fantasy Foursome</td><td>Garrett Johnson</td><td>4-10</td><td>1454.52</td><td>1773.7</td><td>103.9</td><td>127</td><td>-22.8</td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td>Team Alderson</td><td>Donavon Alderson</td><td>5-9</td><td>1599.38</td><td>1737.5</td><td>114.2</td><td>124</td><td>-9.9</td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td>Babysitting By AP</td><td>Logan Alderson</td><td>5-9</td><td>1493.08</td><td>1885.9</td><td>106.6</td><td>135</td><td>-28.1</td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td>4-10</td><td>1445.52</td><td>1597.3</td><td>103.3</td><td>114</td><td>-10.8</td>
-                    </tr>
-                </table>
-                
-                <div class="season-highlights">
-                    <h4 class="highlights-title">🔥 2022 SEASON HIGHLIGHTS 🔥</h4>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <div class="highlight-label">Blake's Peak:</div>
-                            <div class="highlight-value">10-4 Championship Dominance</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Isaac's Only Good Season:</div>
-                            <div class="highlight-value">9-5 Runner-Up (Peak Isaac)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Best Team Name:</div>
-                            <div class="highlight-value">Franklin Pussa Grabbers</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Most Points:</div>
-                            <div class="highlight-value">Blake Howell (1783.58)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Biggest Choke:</div>
-                            <div class="highlight-value">Logan's 28.1 Point Deficit</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">False Hope Given To:</div>
-                            <div class="highlight-value">Isaac (Never Repeated Success)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2021 Season -->
-        <div class="season-item">
-            <div class="season-header" onclick="toggleSeason('season2021')">
-                <div class="season-title">2021 SEASON</div>
-                <div class="season-champion">👑 Champion: Chicken Fingers (Jesse Tuggle)</div>
-                <span class="expand-icon">⬇️</span>
-            </div>
-            <div class="season-content" id="season2021">
-                <table class="season-table">
-                    <tr>
-                        <th>RK</th><th>Team</th><th>Manager</th><th>REC</th><th>PF</th><th>PA</th><th>PF/G</th><th>PA/G</th><th>DIFF</th>
-                    </tr>
-                    <tr class="champion-row">
-                        <td>1</td><td>Chicken Fingers</td><td>Jesse Tuggle</td><td>12-2</td><td>1999.62</td><td>1588.7</td><td>142.8</td><td>114</td><td>+29.4</td>
-                    </tr>
-                    <tr>
-                        <td>2</td><td>Hanging with Hernandez</td><td>Garrett Burton</td><td>11-3</td><td>1804.1</td><td>1571.1</td><td>128.9</td><td>112</td><td>+16.6</td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td>Chubb At Half Stafford</td><td>Jacob Johnson</td><td>8-6</td><td>1765.66</td><td>1691.4</td><td>126.1</td><td>121</td><td>+5.3</td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td>Not the worst Alderson</td><td>Donavon Alderson</td><td>9-5</td><td>1710.94</td><td>1611.2</td><td>122.2</td><td>115</td><td>+7.1</td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td>I Kill The Goblin</td><td>Blake Howell</td><td>8-6</td><td>1549.56</td><td>1523.7</td><td>110.7</td><td>109</td><td>+1.9</td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td>Puzey's Barrel</td><td>Logan Alderson</td><td>5-9</td><td>1784.4</td><td>1777.8</td><td>128</td><td>127</td><td>+0.5</td>
-                    </tr>
-                    <tr>
-                        <td>7</td><td>Team Littrell</td><td>Parker Littrell</td><td>6-8</td><td>1485.16</td><td>1485.3</td><td>106.1</td><td>106</td><td>0</td>
-                    </tr>
-                    <tr>
-                        <td>8</td><td>Urban Meyer's Sunday Scaries</td><td>CJ Tackett</td><td>6-8</td><td>1510.36</td><td>1550.4</td><td>107.9</td><td>111</td><td>-2.9</td>
-                    </tr>
-                    <tr class="isaac-row">
-                        <td>9</td><td>Balls Mcgee</td><td>Isaac Puzey</td><td>5-9</td><td>1495.8</td><td>1729.3</td><td>106.8</td><td>124</td><td>-16.7</td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td>Thicc Succ</td><td>Tyler Blevins</td><td>5-9</td><td>1476.58</td><td>1586.4</td><td>105.5</td><td>113</td><td>-7.8</td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td>Fantasy Foursome</td><td>Garrett Johnson</td><td>5-9</td><td>1452.44</td><td>1682.8</td><td>103.7</td><td>120</td><td>-16.5</td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td>Nobody's Hurt</td><td>Eli Hurt</td><td>4-10</td><td>1477.66</td><td>1714.4</td><td>105.5</td><td>123</td><td>-16.9</td>
-                    </tr>
-                </table>
-                
-                <div class="season-highlights">
-                    <h4 class="highlights-title">🔥 2021 SEASON HIGHLIGHTS 🔥</h4>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <div class="highlight-label">GOAT Performance:</div>
-                            <div class="highlight-value">Jesse's 12-2, 2000-Point Season</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Isaac's Debut:</div>
-                            <div class="highlight-value">5-9 (Set the Standard)</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Most Heartbreaking:</div>
-                            <div class="highlight-value">Logan's High Points, Bad Record</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Perfect Tie:</div>
-                            <div class="highlight-value">Parker's 0.0 Point Differential</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">League Founded:</div>
-                            <div class="highlight-value">The Beginning of Chaos</div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-label">Isaac's Trajectory:</div>
-                            <div class="highlight-value">Started Bad, Stayed Bad</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Timeline Section -->
-    <div class="timeline-section">
-        <h3 class="timeline-title">📅 NO-TEGRIDY TIMELINE 📅</h3>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-event">
-                    League Founded<br>
-                    Jesse Dominates with 2000 points<br>
-                    Isaac starts his 5-9 tradition
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-event">
-                    Blake's Championship Peak<br>
-                    Isaac's only good season (9-5)<br>
-                    Franklin Pussa Grabbers born
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-event">
-                    Jacob Johnson clutch title<br>
-                    Cain's historic 2-12 disaster<br>
-                    Isaac called himself "IAMAFRAUD"
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2024</div>
-                <div class="timeline-event">
-                    CJ's grinder championship<br>
-                    Don's 11-3 heartbreak<br>
-                    Isaac back to 5-9 form
-                </div>
-            </div>
-            <div class="timeline-item" style="border-color: #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-event">
-                    Logan's Redemption Arc<br>
-                    From Last Place to Champion<br>
-                    Donavon Rage Quit (L)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Epic Footer -->
-    <footer>
-        <p>
-            <strong>NO-TEGRIDY FANTASY FOOTBALL</strong><br>
-            <span style="color: #ffd700;">2025 CHAMPION: LOGAN ALDERSON</span><br>
-            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Questionable Decisions</span><br>
-            <span style="color: #f0ad4e;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
-            <br>
-            <em style="font-size: 0.9rem; opacity: 0.8;">Five Years of History - Five Champions - One Guy Who Still Owes an Ass Tattoo</em>
-        </p>
+        <em>Five years of history &middot; five champions &middot; one ass tattoo still owed</em>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>

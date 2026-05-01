@@ -3,349 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Gallery - No-Tegridy Fantasy Football</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Gallery — No-Tegridy Fantasy Football</title>
     <link rel="icon" href="favicon-32x32.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Pictures page specific styles */
-        .gallery-section { max-width: 1600px; margin: var(--space-xl) auto; padding: 0 var(--space-md); }
-        .gallery-header { text-align: center; margin-bottom: var(--space-xl); }
-        .gallery-title { font-size: clamp(2rem, 5vw, 4rem); color: var(--gold-primary); text-transform: uppercase; letter-spacing: 3px; margin-bottom: var(--space-md); }
-        .gallery-subtitle { font-size: clamp(1rem, 2vw, 1.5rem); color: var(--gold-warm); margin-bottom: var(--space-md); }
-        /* Filter Buttons */
-        .filter-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-xl); }
-        .filter-btn { background: var(--bg-card); border: 2px solid var(--gold-primary); color: var(--gold-primary); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-full); font-family: var(--font-body); font-size: 1.1rem; text-transform: uppercase; cursor: pointer; transition: all var(--transition-base); backdrop-filter: blur(10px); }
-        .filter-btn:hover, .filter-btn.active { background: linear-gradient(45deg, var(--gold-primary), var(--gold-warm)); color: var(--bg-deep); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
-        /* Gallery Grid */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-xl); }
-        .gallery-item { position: relative; border-radius: var(--radius-xl); overflow: hidden; cursor: pointer; transition: all var(--transition-base); border: 3px solid transparent; background: var(--bg-card); backdrop-filter: blur(10px); }
-        .gallery-item:hover { transform: translateY(-15px) scale(1.03); border-color: var(--gold-primary); box-shadow: var(--shadow-gold); }
-        .gallery-item img { width: 100%; height: 300px; object-fit: cover; transition: all var(--transition-base); }
-        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1.2); }
-        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)); color: var(--text-primary); padding: var(--space-md) var(--space-md) var(--space-md); transform: translateY(100%); transition: all var(--transition-base); }
-        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
-        .gallery-caption { font-size: 1.2rem; font-weight: bold; color: var(--gold-primary); margin-bottom: var(--space-xs); text-transform: uppercase; }
-        .gallery-description { font-size: 1rem; color: var(--text-secondary); line-height: 1.4; }
-        /* Stats Section */
-        .stats-section { background: var(--bg-card); backdrop-filter: blur(10px); border-radius: var(--radius-xl); padding: var(--space-xl); margin: var(--space-xl) 0; border: 3px solid var(--gold-primary); text-align: center; }
-        .stats-title { font-size: 2.5rem; color: var(--gold-primary); margin-bottom: var(--space-md); text-transform: uppercase; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); }
-        .stat-item { background: rgba(240, 173, 78, 0.1); padding: var(--space-md); border-radius: var(--radius-md); border: 2px solid rgba(240, 173, 78, 0.3); transition: all var(--transition-base); }
-        .stat-item:hover { background: rgba(240, 173, 78, 0.2); border-color: var(--gold-primary); transform: translateY(-5px); }
-        .stat-number { font-size: 3rem; color: var(--gold-primary); font-weight: bold; margin-bottom: var(--space-xs); }
-        .stat-label { font-size: 1.2rem; color: var(--text-secondary); text-transform: uppercase; }
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
-        .modal-content { position: relative; margin: auto; padding: var(--space-md); max-width: 90%; max-height: 90%; top: 50%; transform: translateY(-50%); }
-        .modal img { width: 100%; height: auto; border-radius: var(--radius-md); border: 3px solid var(--gold-primary); }
-        .close { position: absolute; top: var(--space-sm); right: var(--space-lg); color: var(--gold-primary); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2001; }
-        .close:hover { color: var(--gold-warm); }
-        @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } .filter-btn { font-size: 0.9rem; padding: var(--space-xs) var(--space-sm); } }
-        @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-    </style>
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <!-- Floating particles -->
-    <div class="particles"></div>
-
-    <!-- Hero Header -->
-    <div class="hero-header">
-        <h1 class="logo">EPIC GALLERY</h1>
-        <div class="subtitle">📸 Legendary Moments Captured 📸</div>
-        <div class="description">
-            From championship celebrations to epic fails, these photos tell the story of No-Tegridy's greatest moments. 
-            Witness the glory, the agony, and the pure chaos that makes this league legendary.
+    <header class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand"><span class="brand-mark">NT</span><span>No-Tegridy</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav class="nav-links" aria-label="Main">
+                <a href="index.html">Home</a>
+                <a href="standings.html">Standings</a>
+                <a href="group.html">Legends</a>
+                <a href="past-seasons.html">History</a>
+                <a href="draft-recap.html">Draft</a>
+                <a href="pictures.html" aria-current="page">Gallery</a>
+                <a href="roasting-isaac.html">Roast Isaac</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-            ☰
-        </button>
-        <ul>
-            <li><a href="index.html" aria-label="Home page with current game lines">🏠 Home</a></li>
-            <li><a href="pictures.html" aria-label="View league pictures and gallery" aria-current="page">📸 Pictures</a></li>
-            <li><a href="standings.html" aria-label="View current team standings and power rankings">🏆 Standings</a></li>
-            <li><a href="group.html" aria-label="Meet our league members">👥 Our Legends</a></li>
-            <li><a href="roasting-isaac.html" aria-label="Isaac roast section">🔥 Roast Isaac</a></li>
-            <li><a href="past-seasons.html" aria-label="View historical league data">📚 History</a></li>
-            <li><a href="draft-recap.html" aria-label="View annual draft analysis">📰 Draft Recap</a></li>
-        </ul>
-    </nav>
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <span class="hero-eyebrow">Hall of Fame Photos</span>
+                <h1 class="hero-title">The Gallery</h1>
+                <p class="hero-subtitle">Championship celebrations, epic fails, and pure chaos. Tap any tile to see it full size.</p>
+            </div>
+        </section>
 
-    <!-- Gallery Section -->
-    <div id="main-content" class="gallery-section">
-        <div class="gallery-header">
-            <h2 class="gallery-title">🔥 HALL OF FAME PHOTOS 🔥</h2>
-            <p class="gallery-subtitle">Click any photo to experience it in all its glory</p>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">🌟 All Legends</button>
-            <button class="filter-btn" data-filter="champions">🏆 Champions</button>
-            <button class="filter-btn" data-filter="chaos">🔥 Pure Chaos</button>
-            <button class="filter-btn" data-filter="roasts">🤡 Epic Roasts</button>
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="gallery-grid">
-            <div class="gallery-item" data-category="champions chaos">
-                <img loading="lazy" src="IMG_0822.jpeg" alt="League Champions">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🏆 CHAMPIONS ASSEMBLED</div>
-                    <div class="gallery-description">
-                        The elite few who have tasted championship glory. Notice how they're not Isaac.
-                    </div>
-                </div>
+        <section class="container-wide">
+            <div class="chip-bar" role="tablist" aria-label="Filter photos">
+                <button class="chip active" data-filter="all">All</button>
+                <button class="chip" data-filter="champions">Champions</button>
+                <button class="chip" data-filter="chaos">Pure Chaos</button>
+                <button class="chip" data-filter="roasts">Roasts</button>
             </div>
 
-            <div class="gallery-item" data-category="roasts chaos">
-                <img loading="lazy" src="IMG_0839.jpeg" alt="Isaac Roast Session">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🔥 ROAST SESSION ACTIVATED</div>
-                    <div class="gallery-description">
-                        Isaac getting the roasting he deserves. This is what 5-9 seasons look like.
+            <div class="gallery">
+                <button class="tile" data-tags="champions chaos" data-src="IMG_0822.jpeg" data-alt="League champions assembled">
+                    <img loading="lazy" src="IMG_0822.jpeg" alt="League champions assembled">
+                    <div class="tile-overlay">
+                        <h4>Champions Assembled</h4>
+                        <p>The elite few who have tasted championship glory. Notice how they're not Isaac.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="champions">
-                <img loading="lazy" src="IMG_1126.jpeg" alt="Victory Celebration">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🎉 VICTORY CELEBRATION</div>
-                    <div class="gallery-description">
-                        When you finally beat Isaac and it actually matters. Pure euphoria captured.
+                <button class="tile" data-tags="roasts chaos" data-src="IMG_0839.jpeg" data-alt="Isaac roast session">
+                    <img loading="lazy" src="IMG_0839.jpeg" alt="Isaac roast session">
+                    <div class="tile-overlay">
+                        <h4>Roast Session Activated</h4>
+                        <p>Isaac getting the roasting he deserves. This is what 5&ndash;9 seasons look like.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_1129.jpeg" alt="Draft Day Chaos">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">📊 DRAFT DAY MADNESS</div>
-                    <div class="gallery-description">
-                        The moment dreams are born and immediately crushed. Classic No-Tegridy energy.
+                <button class="tile" data-tags="champions" data-src="IMG_1126.jpeg" data-alt="Victory celebration">
+                    <img loading="lazy" src="IMG_1126.jpeg" alt="Victory celebration">
+                    <div class="tile-overlay">
+                        <h4>Victory Celebration</h4>
+                        <p>When you finally beat Isaac and it actually matters. Pure euphoria captured.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="roasts">
-                <img loading="lazy" src="IMG_1130.jpeg" alt="Isaac's Shame">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">😭 ISAAC'S ETERNAL STRUGGLE</div>
-                    <div class="gallery-description">
-                        The face of a man who drafted three defenses in the first four rounds.
+                <button class="tile" data-tags="chaos" data-src="IMG_1129.jpeg" data-alt="Draft day chaos">
+                    <img loading="lazy" src="IMG_1129.jpeg" alt="Draft day chaos">
+                    <div class="tile-overlay">
+                        <h4>Draft Day Madness</h4>
+                        <p>The moment dreams are born and immediately crushed. Classic No-Tegridy energy.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="roasts chaos">
-                <img loading="lazy" src="IMG_1131.jpeg" alt="Maximum Roast Energy">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🤡 MAXIMUM ROAST ENERGY</div>
-                    <div class="gallery-description">
-                        When the entire league unites to roast someone. Spoiler: It's usually Isaac.
+                <button class="tile" data-tags="roasts" data-src="IMG_1130.jpeg" data-alt="Isaac's shame">
+                    <img loading="lazy" src="IMG_1130.jpeg" alt="Isaac's shame">
+                    <div class="tile-overlay">
+                        <h4>Isaac's Eternal Struggle</h4>
+                        <p>The face of a man who drafted three defenses in the first four rounds.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="77947403321__DD73D87C-7C4A-4EC9-8E8E-703AB2ABB3BC.jpeg" alt="Group Chat Madness">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">💬 GROUP CHAT GOES NUCLEAR</div>
-                    <div class="gallery-description">
-                        Tyler defending his lineup management while Isaac bets his dignity. Classic Tuesday night.
+                <button class="tile" data-tags="roasts chaos" data-src="IMG_1131.jpeg" data-alt="Maximum roast energy">
+                    <img loading="lazy" src="IMG_1131.jpeg" alt="Maximum roast energy">
+                    <div class="tile-overlay">
+                        <h4>Maximum Roast Energy</h4>
+                        <p>When the entire league unites to roast someone. Spoiler: it's usually Isaac.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="77709251284__05F2169A-2642-4399-A2B0-762DDED43D46.JPEG" alt="Epic League Moment">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🔥 LEGENDARY LEAGUE VIBES</div>
-                    <div class="gallery-description">
-                        The boys in their natural habitat: talking shit and making questionable life choices.
+                <button class="tile" data-tags="chaos" data-src="77947403321__DD73D87C-7C4A-4EC9-8E8E-703AB2ABB3BC.jpeg" data-alt="Group chat madness">
+                    <img loading="lazy" src="77947403321__DD73D87C-7C4A-4EC9-8E8E-703AB2ABB3BC.jpeg" alt="Group chat madness">
+                    <div class="tile-overlay">
+                        <h4>Group Chat Goes Nuclear</h4>
+                        <p>Tyler defending his lineup management while Isaac bets his dignity. Classic Tuesday.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="roasts">
-                <img loading="lazy" src="brokeback.JPEG" alt="Brokeback Mountain">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🏔️ BROKEBACK FANTASY</div>
-                    <div class="gallery-description">
-                        When the bromance gets a little too real. Still a better love story than Isaac's draft picks.
+                <button class="tile" data-tags="chaos" data-src="77709251284__05F2169A-2642-4399-A2B0-762DDED43D46.JPEG" data-alt="Epic league moment">
+                    <img loading="lazy" src="77709251284__05F2169A-2642-4399-A2B0-762DDED43D46.JPEG" alt="Epic league moment">
+                    <div class="tile-overlay">
+                        <h4>Legendary League Vibes</h4>
+                        <p>The boys in their natural habitat: talking shit and making questionable life choices.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_1951.GIF" alt="Animated Chaos">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🎬 PURE CHAOS IN MOTION</div>
-                    <div class="gallery-description">
-                        When someone checks their lineup at 12:59 PM on Sunday. The panic is palpable.
+                <button class="tile" data-tags="roasts" data-src="brokeback.JPEG" data-alt="Brokeback fantasy">
+                    <img loading="lazy" src="brokeback.JPEG" alt="Brokeback fantasy">
+                    <div class="tile-overlay">
+                        <h4>Brokeback Fantasy</h4>
+                        <p>When the bromance gets a little too real. Still a better love story than Isaac's draft picks.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_1987.JPEG" alt="League Shenanigans">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🎭 SHENANIGANS INTENSIFY</div>
-                    <div class="gallery-description">
-                        Another day, another terrible trade proposal. Probably from Isaac.
+                <button class="tile" data-tags="chaos" data-src="IMG_1951.GIF" data-alt="Animated chaos">
+                    <img loading="lazy" src="IMG_1951.GIF" alt="Animated chaos">
+                    <div class="tile-overlay">
+                        <h4>Pure Chaos in Motion</h4>
+                        <p>When someone checks their lineup at 12:59pm on Sunday. The panic is palpable.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_4326.jpeg" alt="Draft Night Drama">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">📱 DRAFT NIGHT INTENSITY</div>
-                    <div class="gallery-description">
-                        The moment someone realizes they auto-drafted a player on IR. RIP their season.
+                <button class="tile" data-tags="chaos" data-src="IMG_1987.JPEG" data-alt="League shenanigans">
+                    <img loading="lazy" src="IMG_1987.JPEG" alt="League shenanigans">
+                    <div class="tile-overlay">
+                        <h4>Shenanigans Intensify</h4>
+                        <p>Another day, another terrible trade proposal. Probably from Isaac.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_4826.gif" alt="Celebration Time">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🎉 VICTORY LAP INCOMING</div>
-                    <div class="gallery-description">
-                        When you beat the #1 seed by 0.3 points on a Monday Night miracle. Pure ecstasy.
+                <button class="tile" data-tags="chaos" data-src="IMG_4326.jpeg" data-alt="Draft night drama">
+                    <img loading="lazy" src="IMG_4326.jpeg" alt="Draft night drama">
+                    <div class="tile-overlay">
+                        <h4>Draft Night Intensity</h4>
+                        <p>The moment someone realizes they auto-drafted a player on IR. RIP their season.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_5295.JPEG" alt="League Legends">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">👑 LEGENDS IN THE MAKING</div>
-                    <div class="gallery-description">
-                        The squad that puts the "No" in No-Tegridy. Zero chill, maximum chaos.
+                <button class="tile" data-tags="chaos" data-src="IMG_4826.gif" data-alt="Celebration time">
+                    <img loading="lazy" src="IMG_4826.gif" alt="Celebration time">
+                    <div class="tile-overlay">
+                        <h4>Victory Lap Incoming</h4>
+                        <p>When you beat the #1 seed by 0.3 points on a Monday-night miracle. Pure ecstasy.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="IMG_6014.JPEG" alt="Wild Moments">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">🌪️ ABSOLUTE MAYHEM</div>
-                    <div class="gallery-description">
-                        Whatever happened here, we're pretty sure it violated at least 3 league rules.
+                <button class="tile" data-tags="chaos" data-src="IMG_5295.JPEG" data-alt="League legends">
+                    <img loading="lazy" src="IMG_5295.JPEG" alt="League legends">
+                    <div class="tile-overlay">
+                        <h4>Legends in the Making</h4>
+                        <p>The squad that puts the "No" in No-Tegridy. Zero chill, max chaos.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="champions chaos">
-                <img loading="lazy" src="IMG_6150.JPEG" alt="Championship Vibes">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">💎 CHAMPIONSHIP ENERGY</div>
-                    <div class="gallery-description">
-                        The face of someone who just clinched a playoff spot while Isaac watches from the toilet bowl.
+                <button class="tile" data-tags="chaos" data-src="IMG_6014.JPEG" data-alt="Wild moments">
+                    <img loading="lazy" src="IMG_6014.JPEG" alt="Wild moments">
+                    <div class="tile-overlay">
+                        <h4>Absolute Mayhem</h4>
+                        <p>Whatever happened here, we're pretty sure it violated at least 3 league rules.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="roasts">
-                <img loading="lazy" src="IMG_8461.GIF" alt="Roast GIF">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">😂 ROAST MODE: ACTIVATED</div>
-                    <div class="gallery-description">
-                        The exact moment Isaac realizes he's the punchline. Again. As always.
+                <button class="tile" data-tags="champions chaos" data-src="IMG_6150.JPEG" data-alt="Championship vibes">
+                    <img loading="lazy" src="IMG_6150.JPEG" alt="Championship vibes">
+                    <div class="tile-overlay">
+                        <h4>Championship Energy</h4>
+                        <p>The face of someone who just clinched a playoff spot while Isaac watches from the toilet bowl.</p>
                     </div>
-                </div>
-            </div>
+                </button>
 
-            <div class="gallery-item" data-category="chaos">
-                <img loading="lazy" src="RDT_20241202_1219325533978348006866477.JPEG" alt="Reddit Worthy">
-                <div class="gallery-overlay">
-                    <div class="gallery-caption">📲 REDDIT HALL OF FAME</div>
-                    <div class="gallery-description">
-                        This moment was so legendary it needed to be immortalized. No-Tegridy at its finest.
+                <button class="tile" data-tags="roasts" data-src="IMG_8461.GIF" data-alt="Roast GIF">
+                    <img loading="lazy" src="IMG_8461.GIF" alt="Roast GIF">
+                    <div class="tile-overlay">
+                        <h4>Roast Mode: Activated</h4>
+                        <p>The exact moment Isaac realizes he's the punchline. Again. As always.</p>
                     </div>
-                </div>
-            </div>
-        </div>
+                </button>
 
-        <!-- Epic Stats Section -->
-        <div class="stats-section">
-            <h3 class="stats-title">📊 GALLERY STATS 📊</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">18</div>
-                    <div class="stat-label">Epic Photos</div>
+                <button class="tile" data-tags="chaos" data-src="RDT_20241202_1219325533978348006866477.JPEG" data-alt="Reddit-worthy moment">
+                    <img loading="lazy" src="RDT_20241202_1219325533978348006866477.JPEG" alt="Reddit-worthy moment">
+                    <div class="tile-overlay">
+                        <h4>Reddit Hall of Fame</h4>
+                        <p>This moment was so legendary it needed to be immortalized. No-Tegridy at its finest.</p>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="grid grid-4">
+                <div class="stat-block">
+                    <div class="stat-label">Photos</div>
+                    <div class="stat-value">18</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">∞</div>
+                <div class="stat-block">
                     <div class="stat-label">Isaac Roasts</div>
+                    <div class="stat-value">&infin;</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
+                <div class="stat-block">
                     <div class="stat-label">Pure Chaos</div>
+                    <div class="stat-value">100%</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">0</div>
+                <div class="stat-block">
                     <div class="stat-label">Isaac Wins</div>
+                    <div class="stat-value">0</div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Quote Section -->
-        <div style="background: linear-gradient(135deg, #8B0000, #654321); border-radius: 20px; padding: 40px; text-align: center; border: 3px solid #D2691E;">
-            <h3 style="color: #D2691E; font-size: 2rem; margin-bottom: 20px;">💬 LEGENDARY QUOTES</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px;">
-                    <p style="font-style: italic; color: #f0ad4e; margin-bottom: 10px;">
-                        "I can't believe Isaac drafted a kicker in the 3rd round"
-                    </p>
-                    <small style="color: #ccc;">- Everyone, Every Year</small>
+        <!-- Quotes -->
+        <section class="container" style="margin-top: var(--s-8);">
+            <div class="section-head center">
+                <div class="section-eyebrow">Word for Word</div>
+                <h2 class="section-title">Legendary Quotes</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="callout">
+                    <h4>Everyone, every year</h4>
+                    <p>"I can't believe Isaac drafted a kicker in the 3rd round."</p>
                 </div>
-                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px;">
-                    <p style="font-style: italic; color: #f0ad4e; margin-bottom: 10px;">
-                        "This is my year, I can feel it!"
-                    </p>
-                    <small style="color: #ccc;">- Isaac, Before Going 5-9</small>
+                <div class="callout">
+                    <h4>Isaac, before going 5&ndash;9</h4>
+                    <p>"This is my year. I can feel it."</p>
                 </div>
-                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px;">
-                    <p style="font-style: italic; color: #f0ad4e; margin-bottom: 10px;">
-                        "From last place to champion - the redemption arc is COMPLETE!"
-                    </p>
-                    <small style="color: #ccc;">- Logan, 2025 Champion</small>
+                <div class="callout">
+                    <h4>Logan, 2025 champion</h4>
+                    <p>"From last place to champion &mdash; the redemption arc is COMPLETE."</p>
                 </div>
             </div>
-        </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="modal" role="dialog" aria-label="Photo lightbox">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <img src="" alt="">
     </div>
 
-    <!-- Modal for full-size images -->
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="">
+    <footer class="site-footer">
+        <div class="brand-line">NO&middot;TEGRIDY FANTASY FOOTBALL</div>
+        <div class="footer-meta">
+            <span>2025 Champion: <strong style="color: var(--accent-bright);">Logan Alderson</strong></span>
+            <span>Est. 2021</span>
         </div>
-    </div>
-
-    <!-- Epic Footer -->
-    <footer>
-        <p>
-            <strong>NO-TEGRIDY FANTASY FOOTBALL</strong><br>
-            <span style="color: #ffd700;">2025 CHAMPION: LOGAN ALDERSON</span><br>
-            <span style="color: #ff6b35;">Powered by Tall Boy Shotguns & Questionable Decisions</span><br>
-            <span style="color: #f0ad4e;">SPONSORED BY: Jerk Riley's - Where We Go to Get JERKED</span><br>
-            <br>
-            <em style="font-size: 0.9rem; opacity: 0.8;">Memories Made - Legends Captured - Isaac Roasted</em>
-        </p>
+        <em>Memories made &middot; legends captured &middot; Isaac roasted</em>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
