@@ -57,19 +57,52 @@ function initLightbox() {
     if (!modal) return;
     const img = modal.querySelector('img');
     const close = modal.querySelector('.modal-close');
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    let lastTrigger = null;
+
+    const getFocusable = () => [...modal.querySelectorAll(focusableSelector)].filter((el) => !el.hasAttribute('disabled'));
+
+    const openModal = (tile) => {
+        lastTrigger = tile;
+        img.src = tile.dataset.src;
+        img.alt = tile.dataset.alt || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        close?.focus();
+    };
+
+    const dismiss = () => {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (lastTrigger) lastTrigger.focus();
+    };
 
     document.querySelectorAll('.tile[data-src]').forEach((tile) => {
-        tile.addEventListener('click', () => {
-            img.src = tile.dataset.src;
-            img.alt = tile.dataset.alt || '';
-            modal.classList.add('open');
-        });
+        tile.addEventListener('click', () => openModal(tile));
     });
 
-    const dismiss = () => modal.classList.remove('open');
     close?.addEventListener('click', dismiss);
     modal.addEventListener('click', (e) => { if (e.target === modal) dismiss(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('open')) return;
+        if (e.key === 'Escape') {
+            dismiss();
+            return;
+        }
+        if (e.key === 'Tab') {
+            const focusable = getFocusable();
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
 }
 
 /* Roast machine (Isaac page) */
