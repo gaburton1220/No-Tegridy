@@ -3,311 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legends — No-Tegridy Fantasy Football</title>
+    <title>The Legends — NTSN | No-Tegridy Fantasy Football</title>
     <link rel="icon" href="favicon-32x32.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
 
-    <header class="site-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="brand"><span class="brand-mark">NT</span><span>No-Tegridy</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-            <nav class="nav-links" aria-label="Main">
-                <a href="index.html">Home</a>
-                <a href="standings.html">Standings</a>
-                <a href="group.html" aria-current="page">Legends</a>
-                <a href="past-seasons.html">History</a>
-                <a href="draft-recap.html">Draft</a>
-                <a href="pictures.html">Gallery</a>
-                <a href="roasting-isaac.html">Roast Isaac</a>
-            </nav>
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker">
+        <span class="ticker-item">🏆 Logan Alderson wins the 2025 chip</span>
+        <span class="ticker-item">12 managers · infinite trash talk</span>
+        <span class="ticker-item">5 years of chaos</span>
+        <span class="ticker-item">5 champions</span>
+        <span class="ticker-item">Tyler owes 24 hrs at Waffle House</span>
+        <span class="ticker-item">Donavon rage-quit in Round 1</span>
+        <span class="ticker-item">Isaac: 35 roster moves, still mid</span>
+        <span class="ticker-item">Sponsored by Jerk Riley's</span>
+        <span class="ticker-item">Est. 2021</span>
+    </div>
+</div>
+
+<div class="util">
+    <div class="wrap">
+        <div class="u-left">
+            <a href="index.html">NTSN</a>
+            <a href="standings.html">Standings</a>
+            <a class="on" href="group.html">Legends</a>
+            <a href="#commish">Commish</a>
+            <a href="roasting-isaac.html">Shame</a>
         </div>
-    </header>
-
-    <main id="main">
-        <section class="hero">
-            <div class="container">
-                <span class="hero-eyebrow">The Roster</span>
-                <h1 class="hero-title">Meet the Legends</h1>
-                <p class="hero-subtitle">12 elite fantasy managers. Infinite trash talk. One legendary league. The champions, clowns, and everyone in between that make No-Tegridy what it is.</p>
-            </div>
-        </section>
-
-        <!-- Commissioner -->
-        <section class="container">
-            <div class="champion-hero">
-                <div class="label">League Commissioner</div>
-                <div class="name" style="color: var(--accent-bright);">Don Alderson</div>
-                <div class="team">Gut Check</div>
-                <p style="margin-top: var(--s-5); color: var(--t-2); max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.7;">The man, the myth, the crybaby. Lost as the #2 seed in Round 1 of the 2025 playoffs, immediately Venmo'd the league fees and disappeared. New commish era incoming?</p>
-            </div>
-        </section>
-
-        <!-- Members -->
-        <section class="container-wide" style="margin-top: var(--s-8);">
-            <div class="section-head">
-                <div class="section-eyebrow">2025 Roster</div>
-                <h2 class="section-title">Manager Cards</h2>
-            </div>
-
-            <div class="grid grid-3">
-
-                <article class="legend is-champion">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#128137;</div>
-                        <div>
-                            <div class="legend-name">Logan Alderson</div>
-                            <div class="legend-team">Mr Pfizer + Swifties for Kamala</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value text-bright">Champion</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value">9&ndash;5</span></div>
-                    <div class="stat-row"><span class="label">Points For</span><span class="value">1879.96 (most)</span></div>
-                    <div class="stat-row"><span class="label">Home record</span><span class="value">7&ndash;0 (perfect)</span></div>
-                    <p class="legend-quote">"From toilet bowl to trophy. Still owe that ass tat tho."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#129299;</div>
-                        <div>
-                            <div class="legend-name">CJ Tackett</div>
-                            <div class="legend-team">Room 40's Nuts</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">10th place</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value">6&ndash;8</span></div>
-                    <div class="stat-row"><span class="label">Title defense</span><span class="value text-lose">Failed</span></div>
-                    <div class="stat-row"><span class="label">Championships</span><span class="value">2024</span></div>
-                    <p class="legend-quote">"From champion to almost toilet bowl. The fall is real."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#128187;</div>
-                        <div>
-                            <div class="legend-name">Garrett Burton</div>
-                            <div class="legend-team">3rd Beer Hits The Blake Towers</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">4th place</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value">8&ndash;6</span></div>
-                    <div class="stat-row"><span class="label">Playoff high</span><span class="value">188.34 (R1)</span></div>
-                    <div class="stat-row"><span class="label">Roster moves</span><span class="value">12 (minimal)</span></div>
-                    <p class="legend-quote">"Dropped 188 in Round 1. Still couldn't close it out."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#127895;&#65039;</div>
-                        <div>
-                            <div class="legend-name">Jacob Barnwell</div>
-                            <div class="legend-team">I chase brown kids</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 record</span><span class="value">6&ndash;8</span></div>
-                    <div class="stat-row"><span class="label">Points For</span><span class="value">1678.86</span></div>
-                    <div class="stat-row"><span class="label">Final streak</span><span class="value text-lose">L7 (brutal)</span></div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">5th place</span></div>
-                    <p class="legend-quote">"Seven straight losses to end the season. Collapse is real."</p>
-                </article>
-
-                <article class="legend is-shame">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#128701;</div>
-                        <div>
-                            <div class="legend-name">Rylan Thomas</div>
-                            <div class="legend-team">Waffle House Bound</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value text-lose">Dead last</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value">4&ndash;10</span></div>
-                    <div class="stat-row"><span class="label">Final week</span><span class="value text-lose">63.3 pts (oof)</span></div>
-                    <div class="stat-row"><span class="label">Streak</span><span class="value text-lose">L5</span></div>
-                    <p class="legend-quote">"Waffle House Bound indeed. Toilet Bowl champ 2025."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#127973;</div>
-                        <div>
-                            <div class="legend-name">Eli Hurt</div>
-                            <div class="legend-team">Nobody's Hurt</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value text-bright">3rd place</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value">6&ndash;8</span></div>
-                    <div class="stat-row"><span class="label">Playoff seed</span><span class="value">#7 Cinderella</span></div>
-                    <div class="stat-row"><span class="label">Upset</span><span class="value text-win">Beat #2 Gut Check</span></div>
-                    <p class="legend-quote">"Nobody's Hurt&hellip; except Donavon's ego after I bounced him."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#129305;&#127995;</div>
-                        <div>
-                            <div class="legend-name">Jacob Johnson</div>
-                            <div class="legend-team">Blevins' RubNTug</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">Runner-Up</span></div>
-                    <div class="stat-row"><span class="label">Record</span><span class="value text-win">11&ndash;3 (best)</span></div>
-                    <div class="stat-row"><span class="label">Championship</span><span class="value text-lose">Lost 138.12&ndash;85.0</span></div>
-                    <div class="stat-row"><span class="label">Championships</span><span class="value">2023</span></div>
-                    <p class="legend-quote">"Best record. Got smoked in the final. Pain is eternal."</p>
-                </article>
-
-                <article class="legend is-shame">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#127828;</div>
-                        <div>
-                            <div class="legend-name">Isaac "Isuck" Puzey</div>
-                            <div class="legend-team">CeeDees Blue Balls</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 record</span><span class="value">6&ndash;8</span></div>
-                    <div class="stat-row"><span class="label">Roster moves</span><span class="value text-lose">35 (most)</span></div>
-                    <div class="stat-row"><span class="label">Result</span><span class="value">Still mid</span></div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">8th place</span></div>
-                    <p class="legend-quote">"35 roster moves and still couldn't make playoffs."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#128016;</div>
-                        <div>
-                            <div class="legend-name">Cain Cooksey</div>
-                            <div class="legend-team">4th n Long to Deannas Tight End</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 record</span><span class="value">8&ndash;6</span></div>
-                    <div class="stat-row"><span class="label">Roster moves</span><span class="value text-win">8 (fewest)</span></div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">6th place</span></div>
-                    <div class="stat-row"><span class="label">Streak</span><span class="value text-win">W3</span></div>
-                    <p class="legend-quote">"Set it and forget it. Efficient king."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#127939;&#127995;</div>
-                        <div>
-                            <div class="legend-name">Blake Howell</div>
-                            <div class="legend-team">Naber, What?!</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 record</span><span class="value">4&ndash;10</span></div>
-                    <div class="stat-row"><span class="label">Championships</span><span class="value">2022</span></div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value">11th place</span></div>
-                    <div class="stat-row"><span class="label">Fall from grace</span><span class="value">2022 champ to this</span></div>
-                    <p class="legend-quote">"From 2022 champion to 11th place. How the mighty fall."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#129767;</div>
-                        <div>
-                            <div class="legend-name">Tyler Blevins</div>
-                            <div class="legend-team">Beatin Sandy's Cheeks</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">2025 record</span><span class="value">6&ndash;8</span></div>
-                    <div class="stat-row"><span class="label">2025 finish</span><span class="value text-win">Consolation Champ</span></div>
-                    <div class="stat-row"><span class="label">Margin</span><span class="value">1.32 pts</span></div>
-                    <div class="stat-row"><span class="label">Owes</span><span class="value text-lose">24h Waffle House</span></div>
-                    <p class="legend-quote">"Won consolation but still owes 24 hours at Waffle House from 2024."</p>
-                </article>
-
-                <article class="legend">
-                    <div class="legend-head">
-                        <div class="legend-emoji" aria-hidden="true">&#127919;</div>
-                        <div>
-                            <div class="legend-name">Donavon Alderson</div>
-                            <div class="legend-team">Gut Check</div>
-                        </div>
-                    </div>
-                    <div class="stat-row"><span class="label">Regular season</span><span class="value">10&ndash;4</span></div>
-                    <div class="stat-row"><span class="label">Points For</span><span class="value">1824.56</span></div>
-                    <div class="stat-row"><span class="label">Playoffs</span><span class="value text-lose">R1 exit (#2 seed)</span></div>
-                    <div class="stat-row"><span class="label">Award</span><span class="value text-shame">Crybaby of the Year</span></div>
-                    <p class="legend-quote">"Venmo'd the fees and dipped. Tale as old as time."</p>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Hall of Fame -->
-        <section class="container" style="margin-top: var(--s-8);">
-            <div class="section-head">
-                <div class="section-eyebrow">Five Years</div>
-                <h2 class="section-title">League Hall of Fame</h2>
-            </div>
-
-            <div class="grid grid-3">
-                <div class="card card-pad">
-                    <h3 class="card-title">Champions Club</h3>
-                    <div class="stat-row"><span class="label">2021</span><span class="value">Jesse Tuggle</span></div>
-                    <div class="stat-row"><span class="label">2022</span><span class="value">Blake Howell</span></div>
-                    <div class="stat-row"><span class="label">2023</span><span class="value">Jacob Johnson</span></div>
-                    <div class="stat-row"><span class="label">2024</span><span class="value">CJ Tackett</span></div>
-                    <div class="stat-row"><span class="label text-bright">2025</span><span class="value text-bright">Logan Alderson</span></div>
-                </div>
-                <div class="card card-pad">
-                    <h3 class="card-title" style="color: var(--lose);">Toilet Bowl Legends</h3>
-                    <div class="stat-row"><span class="label">2024</span><span class="value">Tyler Blevins (4&ndash;10)</span></div>
-                    <div class="stat-row"><span class="label">2025</span><span class="value">Rylan Thomas (63.3 finale)</span></div>
-                    <div class="stat-row"><span class="label">Most pathetic</span><span class="value text-lose">Rylan's 63.3</span></div>
-                    <div class="stat-row"><span class="label">Owes Waffle House</span><span class="value">Tyler (24 hours)</span></div>
-                </div>
-                <div class="card card-pad">
-                    <h3 class="card-title">Wild 2025 Stats</h3>
-                    <div class="stat-row"><span class="label">Most points</span><span class="value">Logan &middot; 1879.96</span></div>
-                    <div class="stat-row"><span class="label">Best record</span><span class="value">Jacob Johnson &middot; 11&ndash;3</span></div>
-                    <div class="stat-row"><span class="label">Single-game high</span><span class="value">Garrett &middot; 188.34</span></div>
-                    <div class="stat-row"><span class="label">Most moves</span><span class="value">Isaac &middot; 35</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Rivalries -->
-        <section class="container" style="margin-top: var(--s-8);">
-            <div class="section-head">
-                <div class="section-eyebrow">Beef</div>
-                <h2 class="section-title">Legendary Rivalries</h2>
-            </div>
-
-            <div class="grid grid-3">
-                <div class="callout">
-                    <h4>The Alderson Brothers</h4>
-                    <p>Don vs Logan. Commissioner vs the challenger. <strong>Series:</strong> Don leading.</p>
-                </div>
-                <div class="callout">
-                    <h4>Champ vs Chump</h4>
-                    <p>CJ vs Isaac. Champion vs consistent loser. <strong>Status:</strong> Not even close.</p>
-                </div>
-                <div class="callout">
-                    <h4>The Fallen Kings</h4>
-                    <p>Blake vs Jacob J. Two former champions both trending down. <strong>Status:</strong> Both struggling.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <div class="brand-line">NO&middot;TEGRIDY FANTASY FOOTBALL</div>
-        <div class="footer-meta">
-            <span>2025 Champion: <strong style="color: var(--accent-bright);">Logan Alderson</strong></span>
-            <span>Est. 2021</span>
-            <span>Sponsored by Jerk Riley's</span>
+        <div class="u-right">
+            <span class="live"><span class="dot"></span>ROSTER · 2025</span>
+            <span>12 TEAMS</span>
         </div>
-        <em>12 legends &middot; infinite drama &middot; max chaos since 2021</em>
-    </footer>
+    </div>
+</div>
 
-    <script src="script.js"></script>
+<div class="masthead">
+    <div class="wrap">
+        <a class="logo" href="index.html" aria-label="NTSN home">
+            <span class="mark">NT</span>
+            <span class="word">N<b>S</b>N</span>
+            <span class="tag">No-Tegridy<br>Sports Network</span>
+        </a>
+        <div class="mh-search" aria-hidden="true">
+            <span>🔍</span><input type="text" placeholder="Search players, teams, debts...">
+        </div>
+    </div>
+</div>
+
+<nav class="subnav" id="top" aria-label="Main">
+    <div class="wrap">
+        <a href="index.html">Home</a>
+        <a href="standings.html">Standings</a>
+        <a class="on" href="group.html">Legends</a>
+        <a href="past-seasons.html">History</a>
+        <a href="draft-recap.html">Draft</a>
+        <a href="pictures.html">Film</a>
+        <a class="roast" href="roasting-isaac.html">Roast Isaac</a>
+    </div>
+</nav>
+
+<main id="main">
+
+<div class="page-title-band">
+    <div class="wrap">
+        <div class="eyebrow">The Roster · 2025</div>
+        <h1>Meet the <em>Legends</em></h1>
+        <p class="dek">12 elite fantasy managers. Infinite trash talk. One legendary league. Champions, clowns, and everything in between.</p>
+    </div>
+</div>
+
+<!-- Commissioner -->
+<section class="sec" id="commish">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="bar"></span>
+            <h2>The Commissioner</h2>
+            <span class="rule"></span>
+        </div>
+
+        <div class="analysis reveal red">
+            <div class="big">😭<small>RAGE QUIT</small></div>
+            <div>
+                <h3>Don Alderson · Gut Check</h3>
+                <p>The man, the myth, the crybaby. The #2 seed of 2025 lost in Round 1 of the playoffs at 10–4 with 1,824.56 points scored. Sources say he immediately Venmo'd the league fees and disappeared from the group chat. New commish era incoming?</p>
+                <p class="quote">"Someone's gotta finish last every year. It just ain't gonna be me, even though I lost." — Don, allegedly</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Members Grid -->
+<section class="sec">
+    <div class="wrap-wide">
+        <div class="sec-head reveal">
+            <span class="bar gold"></span>
+            <h2>The 12 Managers</h2>
+            <span class="rule"></span>
+            <span class="sec-sub" style="margin-bottom:0;">2025 PROFILES</span>
+        </div>
+
+        <div class="legend-grid reveal">
+
+            <article class="legend champion">
+                <div class="legend-head">
+                    <div class="legend-num">💉</div>
+                    <div class="legend-title">
+                        <h3>Logan Alderson</h3>
+                        <p>Mr Pfizer + Swifties for Kamala</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v gold">Champion</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">9–5</span></div>
+                    <div class="row"><span class="k">Points For</span><span class="v">1879.96</span></div>
+                    <div class="row"><span class="k">Home record</span><span class="v green">7–0 perfect</span></div>
+                </div>
+                <div class="legend-quote">"From toilet bowl to trophy. Still owe that ass tat tho."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🤝</div>
+                    <div class="legend-title">
+                        <h3>Jacob Johnson</h3>
+                        <p>Blevins' RubNTug</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">Runner-Up</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v green">11–3 (best)</span></div>
+                    <div class="row"><span class="k">Final score</span><span class="v red">85.0 (smoked)</span></div>
+                    <div class="row"><span class="k">Championships</span><span class="v">2023</span></div>
+                </div>
+                <div class="legend-quote">"Best record. Got smoked in the final. Pain is eternal."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🏥</div>
+                    <div class="legend-title">
+                        <h3>Eli Hurt</h3>
+                        <p>Nobody's Hurt</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v gold">3rd Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">6–8</span></div>
+                    <div class="row"><span class="k">Playoff seed</span><span class="v">#7 Cinderella</span></div>
+                    <div class="row"><span class="k">Upset</span><span class="v green">Beat #2 Gut Check</span></div>
+                </div>
+                <div class="legend-quote">"Nobody's Hurt… except Donavon's ego after I bounced him."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">💻</div>
+                    <div class="legend-title">
+                        <h3>Garrett Burton</h3>
+                        <p>3rd Beer Hits The Blake Towers</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">4th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">8–6</span></div>
+                    <div class="row"><span class="k">Playoff high</span><span class="v green">188.34 (R1)</span></div>
+                    <div class="row"><span class="k">Roster moves</span><span class="v">12</span></div>
+                </div>
+                <div class="legend-quote">"Dropped 188 in Round 1. Still couldn't close it out."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">😬</div>
+                    <div class="legend-title">
+                        <h3>Jacob Barnwell</h3>
+                        <p>I chase brown kids</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">5th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">6–8</span></div>
+                    <div class="row"><span class="k">Points For</span><span class="v">1678.86</span></div>
+                    <div class="row"><span class="k">Final streak</span><span class="v red">L7 brutal</span></div>
+                </div>
+                <div class="legend-quote">"Seven straight losses to end the season. Collapse is real."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🐐</div>
+                    <div class="legend-title">
+                        <h3>Cain Cooksey</h3>
+                        <p>4th n Long to Deannas Tight End</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">6th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">8–6</span></div>
+                    <div class="row"><span class="k">Roster moves</span><span class="v green">8 (fewest)</span></div>
+                    <div class="row"><span class="k">Streak</span><span class="v green">W3</span></div>
+                </div>
+                <div class="legend-quote">"Set it and forget it. Efficient king."</div>
+            </article>
+
+            <article class="legend shame">
+                <div class="legend-head">
+                    <div class="legend-num">😭</div>
+                    <div class="legend-title">
+                        <h3>Donavon Alderson</h3>
+                        <p>Gut Check · Commissioner</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">7th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">10–4</span></div>
+                    <div class="row"><span class="k">Playoffs</span><span class="v red">R1 exit (#2 seed)</span></div>
+                    <div class="row"><span class="k">Award</span><span class="v red">Crybaby of Year</span></div>
+                </div>
+                <div class="legend-quote">"Venmo'd the fees and dipped. Tale as old as time."</div>
+            </article>
+
+            <article class="legend shame">
+                <div class="legend-head">
+                    <div class="legend-num">🍔</div>
+                    <div class="legend-title">
+                        <h3>Isaac "Isuck" Puzey</h3>
+                        <p>CeeDees Blue Balls</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">8th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">6–8</span></div>
+                    <div class="row"><span class="k">Roster moves</span><span class="v red">35 (most)</span></div>
+                    <div class="row"><span class="k">Result</span><span class="v">Still Mid</span></div>
+                </div>
+                <div class="legend-quote">"35 roster moves and still couldn't make playoffs."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🧇</div>
+                    <div class="legend-title">
+                        <h3>Tyler Blevins</h3>
+                        <p>Beatin Sandy's Cheeks</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v green">Consol. Champ</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">6–8</span></div>
+                    <div class="row"><span class="k">Margin</span><span class="v">1.32 pts</span></div>
+                    <div class="row"><span class="k">Owes</span><span class="v red">24h Waffle House</span></div>
+                </div>
+                <div class="legend-quote">"Won consolation. Still owes 24 hours at Waffle House from 2024."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🤓</div>
+                    <div class="legend-title">
+                        <h3>CJ Tackett</h3>
+                        <p>Room 40's Nuts</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">10th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">6–8</span></div>
+                    <div class="row"><span class="k">Title defense</span><span class="v red">Failed</span></div>
+                    <div class="row"><span class="k">Championships</span><span class="v">2024</span></div>
+                </div>
+                <div class="legend-quote">"From champion to almost toilet bowl. The fall is real."</div>
+            </article>
+
+            <article class="legend">
+                <div class="legend-head">
+                    <div class="legend-num">🏃</div>
+                    <div class="legend-title">
+                        <h3>Blake Howell</h3>
+                        <p>Naber, What?!</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v">11th Place</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">4–10</span></div>
+                    <div class="row"><span class="k">Championships</span><span class="v">2022</span></div>
+                    <div class="row"><span class="k">Trajectory</span><span class="v red">Champ → 11th</span></div>
+                </div>
+                <div class="legend-quote">"From 2022 champion to 11th place. How the mighty fall."</div>
+            </article>
+
+            <article class="legend shame">
+                <div class="legend-head">
+                    <div class="legend-num">🚽</div>
+                    <div class="legend-title">
+                        <h3>Rylan Thomas</h3>
+                        <p>Waffle House Bound</p>
+                    </div>
+                </div>
+                <div class="legend-stats">
+                    <div class="row"><span class="k">2025 finish</span><span class="v red">Dead Last</span></div>
+                    <div class="row"><span class="k">Record</span><span class="v">4–10</span></div>
+                    <div class="row"><span class="k">Final week</span><span class="v red">63.3 pts (oof)</span></div>
+                    <div class="row"><span class="k">Streak</span><span class="v red">L5</span></div>
+                </div>
+                <div class="legend-quote">"Waffle House Bound indeed. Toilet Bowl champ 2025."</div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- Hall of Fame -->
+<section class="sec">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="bar gold"></span>
+            <h2>The Hall of Fame</h2>
+            <span class="rule"></span>
+            <a class="all" href="past-seasons.html">Full History →</a>
+        </div>
+
+        <div class="split reveal">
+            <div class="panel-card">
+                <div class="pc-head gold">Champions Club <span class="sm">5 YEARS</span></div>
+                <table class="stand">
+                    <tbody>
+                        <tr><td class="rk" style="color:var(--faint);">2021</td><td><div class="team">Chicken Fingers</div><div class="own">Jesse Tuggle · 12–2</div></td></tr>
+                        <tr><td class="rk" style="color:var(--faint);">2022</td><td><div class="team">Lets Ride</div><div class="own">Blake Howell · 10–4</div></td></tr>
+                        <tr><td class="rk" style="color:var(--faint);">2023</td><td><div class="team">Blevins' RubNTug</div><div class="own">Jacob Johnson · 8–6</div></td></tr>
+                        <tr><td class="rk" style="color:var(--faint);">2024</td><td><div class="team">Room 40's Nuts</div><div class="own">CJ Tackett · 8–6</div></td></tr>
+                        <tr class="p1"><td class="rk">2025</td><td><div class="team">Mr Pfizer + Swifties</div><div class="own">Logan Alderson · 9–5</div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-card">
+                <div class="pc-head red">Toilet Bowl Legends <span class="sm">UNPAID DEBTS</span></div>
+                <table class="stand">
+                    <tbody>
+                        <tr><td class="rk" style="color:var(--faint);">2022</td><td><div class="team">Logan Alderson</div><div class="own">Owes: Ass Tattoo</div></td></tr>
+                        <tr><td class="rk" style="color:var(--faint);">2024</td><td><div class="team">Tyler Blevins</div><div class="own">Owes: 24 Hrs Waffle House</div></td></tr>
+                        <tr class="last"><td class="rk">2025</td><td><div class="team">Rylan Thomas</div><div class="own">63.3 pts in finale</div></td></tr>
+                        <tr><td class="rk" style="color:var(--faint);">2025</td><td><div class="team">Donavon Alderson</div><div class="own">Sentenced: Eternal Shame</div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="callouts reveal" style="margin-top:18px;">
+            <div class="callout"><div class="lbl">Most Points · 2025</div><div class="val">Logan · 1879.96</div></div>
+            <div class="callout"><div class="lbl">Best Record</div><div class="val">Jacob Johnson · 11–3</div></div>
+            <div class="callout gold"><div class="lbl">Single-Game High</div><div class="val">Garrett · 188.34</div></div>
+            <div class="callout red"><div class="lbl">Most Roster Moves</div><div class="val">Isaac · 35</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Rivalries -->
+<section class="sec">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="bar red"></span>
+            <h2>Legendary Rivalries</h2>
+            <span class="rule"></span>
+            <span class="sec-sub" style="margin-bottom:0;">BEEF FILES</span>
+        </div>
+
+        <div class="cards reveal">
+            <article class="card">
+                <div class="thumb g6"><span class="cat">Bros</span></div>
+                <div class="cbody">
+                    <h3>The Alderson Brothers</h3>
+                    <p>Don vs Logan. Commissioner vs the challenger. <strong>Series:</strong> Don leading historically — but the little brother just won the chip while big bro rage-quit. Power has shifted.</p>
+                    <div class="meta">Beef Files · 3 min read</div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="thumb g7"><span class="cat">Champ vs Chump</span></div>
+                <div class="cbody">
+                    <h3>CJ vs Isaac</h3>
+                    <p>Champion vs consistent loser. <strong>Status:</strong> Not even close, ever. CJ has a ring; Isaac has 35 roster moves and no playoffs.</p>
+                    <div class="meta">Beef Files · 2 min read</div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="thumb g3"><span class="cat">Fallen Kings</span></div>
+                <div class="cbody">
+                    <h3>Blake vs Jacob J.</h3>
+                    <p>Two former champions both trending down hard. <strong>Status:</strong> Both struggling. Blake's at 4–10, Jacob just got smoked in the final.</p>
+                    <div class="meta">Beef Files · 3 min read</div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="foot">
+    <div class="wrap">
+        <div class="ftop">
+            <a class="logo" href="index.html"><span class="mark">NT</span><span class="word">N<b>S</b>N</span></a>
+            <div class="fmeta">
+                2025 Champion: <span class="gold">Logan Alderson</span><br>
+                Est. 2021 · Sponsored by Jerk Riley's<br>
+                12 Legends · Infinite Drama · Max Chaos Since 2021
+            </div>
+        </div>
+        <div class="fbottom">
+            <span>© 2025 No-Tegridy Sports Network. Not affiliated with anything reputable.</span>
+            <span>Built on chaos. Run on trash talk.</span>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

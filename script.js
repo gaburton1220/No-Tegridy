@@ -1,39 +1,54 @@
-// No-Tegridy — interactions for the redesigned site.
+// NTSN — No-Tegridy Sports Network. Site interactions.
 
 document.addEventListener('DOMContentLoaded', () => {
-    initNav();
-    initSeasonAccordion();
-    initGalleryFilter();
+    duplicateTicker();
+    initReveal();
+    initSeasons();
+    initGallery();
     initLightbox();
-    initRoastMachine();
+    initRoast();
 });
 
-/* Mobile nav */
-function initNav() {
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
-    if (!toggle || !links) return;
-    toggle.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+/* Seamless infinite ticker — duplicate items once so the -50% loop is invisible. */
+function duplicateTicker() {
+    const track = document.getElementById('ticker');
+    if (track) track.innerHTML += track.innerHTML;
 }
 
-/* Past-seasons accordion */
-function initSeasonAccordion() {
+/* Scroll-in reveal */
+function initReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach((e) => e.classList.add('in'));
+        return;
+    }
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    els.forEach((e) => io.observe(e));
+}
+
+/* Season accordion (history page) */
+function initSeasons() {
     document.querySelectorAll('[data-season-toggle]').forEach((btn) => {
         btn.addEventListener('click', () => {
             const item = btn.closest('.season');
             if (!item) return;
-            item.classList.toggle('open');
-            const expanded = item.classList.contains('open');
-            btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            const open = item.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
     });
 }
 
 /* Gallery filter chips */
-function initGalleryFilter() {
+function initGallery() {
     const chips = document.querySelectorAll('[data-filter]');
     const tiles = document.querySelectorAll('.tile[data-tags]');
     if (!chips.length) return;
@@ -44,8 +59,7 @@ function initGalleryFilter() {
             const filter = chip.dataset.filter;
             tiles.forEach((tile) => {
                 const tags = tile.dataset.tags.split(/\s+/);
-                const show = filter === 'all' || tags.includes(filter);
-                tile.classList.toggle('is-hidden', !show);
+                tile.classList.toggle('hidden', filter !== 'all' && !tags.includes(filter));
             });
         });
     });
@@ -57,55 +71,22 @@ function initLightbox() {
     if (!modal) return;
     const img = modal.querySelector('img');
     const close = modal.querySelector('.modal-close');
-    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    let lastTrigger = null;
-
-    const getFocusable = () => [...modal.querySelectorAll(focusableSelector)].filter((el) => !el.hasAttribute('disabled'));
-
-    const openModal = (tile) => {
-        lastTrigger = tile;
-        img.src = tile.dataset.src;
-        img.alt = tile.dataset.alt || '';
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        close?.focus();
-    };
-
-    const dismiss = () => {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
-        if (lastTrigger) lastTrigger.focus();
-    };
 
     document.querySelectorAll('.tile[data-src]').forEach((tile) => {
-        tile.addEventListener('click', () => openModal(tile));
+        tile.addEventListener('click', () => {
+            img.src = tile.dataset.src;
+            img.alt = tile.dataset.alt || '';
+            modal.classList.add('open');
+        });
     });
 
+    const dismiss = () => modal.classList.remove('open');
     close?.addEventListener('click', dismiss);
     modal.addEventListener('click', (e) => { if (e.target === modal) dismiss(); });
-    document.addEventListener('keydown', (e) => {
-        if (!modal.classList.contains('open')) return;
-        if (e.key === 'Escape') {
-            dismiss();
-            return;
-        }
-        if (e.key === 'Tab') {
-            const focusable = getFocusable();
-            if (!focusable.length) return;
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
-            }
-        }
-    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
 }
 
-/* Roast machine (Isaac page) */
+/* Roast generator (Isaac page) */
 const ISAAC_ROASTS = [
     "35 roster moves and still couldn't make playoffs. The math ain't mathing.",
     "Drafts like he's blindfolded with a Magic 8-Ball as his only consultant.",
@@ -129,20 +110,18 @@ const ISAAC_ROASTS = [
     "Records 35 transactions per season. Records exactly zero playoff wins."
 ];
 
-function initRoastMachine() {
+function initRoast() {
     const btn = document.getElementById('roast-btn');
     const out = document.getElementById('roast-output');
     if (!btn || !out) return;
 
     const generate = () => {
         out.classList.remove('shake');
-        const choice = ISAAC_ROASTS[Math.floor(Math.random() * ISAAC_ROASTS.length)];
-        // Force reflow for animation restart
         void out.offsetWidth;
-        out.textContent = choice;
+        out.textContent = ISAAC_ROASTS[Math.floor(Math.random() * ISAAC_ROASTS.length)];
         out.classList.add('shake');
     };
 
     btn.addEventListener('click', generate);
-    setTimeout(generate, 600);
+    setTimeout(generate, 500);
 }
