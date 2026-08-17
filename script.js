@@ -107,7 +107,12 @@ const ISAAC_ROASTS = [
     "Makes missing playoffs look easier than breathing.",
     "A masterclass in consistent mediocrity.",
     "Turns first-round picks into benchwarming disasters since forever.",
-    "Records 35 transactions per season. Records exactly zero playoff wins."
+    "Records 35 transactions per season. Records exactly zero playoff wins.",
+    "Changed his team name instead of his lineup habits. Bold strategy.",
+    "Got the 1.01 and the league still isn't worried. Let that sink in.",
+    "Rebranding won't save you when you're the one setting the lineup.",
+    "New name, new number one pick, same guy who starts players on bye.",
+    "Aaronning Away With It — from the responsibility, mostly."
 ];
 
 function initRoast() {
